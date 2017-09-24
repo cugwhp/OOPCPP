@@ -6,6 +6,14 @@ There are course lecture, exercises, example code and reference books.
 
 ## 0. Preview
 
+[Inspire Students to coding](https://code.org/educate/resources/inspire)
+
+Bad programming is *easy*. Even Dummies can learn it in 21days.
+
+Good programming requires **thought**, but *everyone can do it* and everyone can experience the *extreme satisfaction* that comes with it.
+
+`										by Matthias Felleisen`
+
 ## 1. Chapter 1
 ### 1.1
 
