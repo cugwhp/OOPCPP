@@ -8,4 +8,4 @@ Any question or problem in c++ programming language, please contact me with [ema
 # 课程清单
 |课次|内容|
 |:---:|:---|
-|1|[绪论](./02.%20PPT/Fall/README.md)|
+|1|[绪论](/02.%20PPT/Fall/%E7%BB%AA%E8%AE%BA.md)|
