@@ -49,7 +49,7 @@ int main()		//主函数
 }
 ```
 
-### s5. Quotes
+### 5. Quotes
 
 ```
 Bad programming is easy. Even Dummies can learn it in 21days.
