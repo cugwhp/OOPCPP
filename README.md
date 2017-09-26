@@ -1,10 +1,12 @@
-# OOPCPP
+OOPCPP
+====
 This is the resource about the course of Orient Object Programming Language C++.
 There are course lecture, exercises, example code and reference books.
 
-[TOC]
+## 0. Introduction
 
-## 0. Preview
+### Lecture
+- [绪论1](./02.%20PPT/Fall/C%2B%2B_%E7%BB%AA%E8%AE%BA1.pptx)
 
 [Inspire Students to coding](https://code.org/educate/resources/inspire)
 
