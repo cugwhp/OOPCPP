@@ -38,4 +38,4 @@ everyone can experience the extreme satisfaction that comes with it.
                                       by Matthias Felleisen
 ```
 ---
-[***Return 教学内容目录***](../../README.md) [下一章 Ch2.C++语言特性](../Ch2-C%2B%2B%E8%AF%AD%E8%A8%80%E6%A6%82%E8%BF%B0/Ch2Readme.md)
+[***Return 教学内容目录***](../../README.md) 			[下一章 C++语言特性](../Ch2-C%2B%2B%E8%AF%AD%E8%A8%80%E6%A6%82%E8%BF%B0/Ch2Readme.md)
