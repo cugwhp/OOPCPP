@@ -6,8 +6,8 @@ There are lectures, exercises, example code and reference books. I will update i
 Any questions or problems in c++ programming language, please contact me with [email](cugwhp@qq.com) .
 ---
 # 教学内容列表
-## [第一章 绪论](/02.%20PPT/Ch1-%E7%BB%AA%E8%AE%BA/%E7%BB%AA%E8%AE%BA.md)
-## [第二章 C++语言概述](/02.%20PPT/Ch2-C%2B%2B%E8%AF%AD%E8%A8%80%E6%A6%82%E8%BF%B0/Ch2.md)
+## [第一章 绪论](/02.%20PPT/Ch1-%E7%BB%AA%E8%AE%BA/Ch1Readme.md)
+## [第二章 C++语言概述](/02.%20PPT/Ch2-C%2B%2B%E8%AF%AD%E8%A8%80%E6%A6%82%E8%BF%B0/Ch2Readme.md)
 ## 第三章 C++简单程序设计[]()
 ## 实习一 C++程序构成与IDE的使用及Debug
 ## 第四章 函数
