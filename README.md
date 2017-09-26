@@ -19,11 +19,9 @@ Any question or problem in c++ programming language, please contact me with [ema
 - **Books**
   - C++经典——[C++ Primer](https://book.douban.com/subject/1767741/)、[C++程序设计语言](https://book.douban.com/subject/4604591/)
 - **Web sites**
-  - 网络公开课
-    - [面向对象程序设计-C++ - 网易云课堂](http://study.163.com/course/courseMain.htm?courseId=271005)、[Learn C++](www.learncpp.com)
-  - 论坛 Forum、[CSDN-中国软件开发者论坛](www.csdn.net)、[CODE.ORG](www.code.org)、[知乎](www.zhihu.com)、[StackOverFlow](www.stackoverlow.com)
-  - Web Search
-    - [Google](www.google.com.hk) www.codeproject.com www.codeguru.com
+  - 网络公开课: [面向对象程序设计-C++ - 网易云课堂](http://study.163.com/course/courseMain.htm?courseId=271005)、[Learn C++](www.learncpp.com)
+  - 论坛(Forum)：[CSDN-中国软件开发者论坛](www.csdn.net)、[CODE.ORG](www.code.org)、[知乎](www.zhihu.com)、[StackOverFlow](www.stackoverlow.com)
+  - Web Search：[Google](www.google.com.hk)、[codeproject](www.codeproject.com)、 [codeguru](www.codeguru.com)
 
 ### 3. Exercises
 
