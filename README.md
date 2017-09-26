@@ -53,8 +53,8 @@ int main()		//主函数
 
 ```
 Bad programming is easy. Even Dummies can learn it in 21days.
-Good programming requires thought, but everyone can do it and everyone can experience the extreme satisfaction that comes with it.				
-																		by Matthias Felleisen
+Good programming requires thought, but everyone can do it and 
+everyone can experience the extreme satisfaction that comes with it.														by Matthias Felleisen
 ```
 
 ---
