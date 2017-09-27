@@ -7,8 +7,8 @@ OPPCPP
 > Any questions or problems in c++ programming language, please contact me with <cugwhp@qq.com>.
 
 # 教学内容列表
-## [第一章 绪论](https://github.com/cugwhp/OOPCPP/blob/master/docs/PDFs/Ch1-%E7%BB%AA%E8%AE%BA/Ch1Readme.md)
-## [第二章 C++语言概述](https://github.com/cugwhp/OOPCPP/blob/master/docs/PDFs/Ch2-C%2B%2B%E8%AF%AD%E8%A8%80%E6%A6%82%E8%BF%B0/Ch2Readme.md)
+## [第一章 绪论](./Ch1_Introduction.md)
+## [第二章 C++语言概述](/Ch2_C++Basic.md)
 ## 第三章 C++简单程序设计
 ## 实习一 C++程序构成与IDE的使用及Debug
 ## 第四章 函数
