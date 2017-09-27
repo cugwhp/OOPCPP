@@ -7,6 +7,6 @@ Any questions or problems in c++ programming language, please contact me with <c
 
 ---
 # WebSite
-- 查看下载教学内容访问[OOPCPP](https://cugwhp.github.io/OOPCPP/)
+- 查看教学资料访问[OOPCPP](https://cugwhp.github.io/OOPCPP/)
 
 **Enjoy it.**
