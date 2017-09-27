@@ -21,4 +21,4 @@ OPPCPP
 ## 总复习
 
 # Download All
-- [Download All](./PDFs/)
+- [Download All](./docs/PDFs/)
