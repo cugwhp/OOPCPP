@@ -1,4 +1,7 @@
-#Introduction
+[返回主目录](https://cugwhp.github.io/OOPCPP/)
+---
+
+# Introduction
 
 ## 1. Lecture
 - [绪论1——如何学习编程](https://github.com/cugwhp/OOPCPP/blob/master/docs/PDFs/C%2B%2B1%E4%B8%BA%E4%BD%95%E8%A6%81%E5%AD%A6%E4%B9%A0%E7%BC%96%E7%A8%8B.pdf)
@@ -35,4 +38,4 @@ everyone can experience the extreme satisfaction that comes with it.
                                       by Matthias Felleisen
 ```
 ---
-[***下一章 C++语言特性***](./Ch2_C++Basic.md)
+[返回主目录](https://cugwhp.github.io/OOPCPP/) | [***下一章 C++语言特性***](./Ch2_C++Basic.md)
