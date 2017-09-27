@@ -1,7 +1,7 @@
 # Introduction
 
 ## 1. Lecture
-- [绪论1——如何学习编程](https://github.com/cugwhp/OOPCPP/blob/master/docs/PDFs/C%2B%2B1%E4%B8%BA%E4%BD%95%E8%A6%81%E5%AD%A6%E4%B9%A0%E7%BC%96%E7%A8%8B.pdf)
+- [绪论1——如何学习编程](./PDFs/C%2B%2B1%E4%B8%BA%E4%BD%95%E8%A6%81%E5%AD%A6%E4%B9%A0%E7%BC%96%E7%A8%8B.pdf)
 - [绪论2——计算机基础知识](https://github.com/cugwhp/OOPCPP/blob/master/docs/PDFs/C%2B%2B1%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86.pdf)
 - [绪论3——信息的表示与存储](https://github.com/cugwhp/OOPCPP/blob/master/docs/PDFs/C%2B%2B1%E4%BF%A1%E6%81%AF%E7%9A%84%E8%A1%A8%E7%A4%BA%E4%B8%8E%E5%AD%98%E5%82%A8.pdf)
 
