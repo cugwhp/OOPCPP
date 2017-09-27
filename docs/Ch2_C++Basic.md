@@ -11,4 +11,4 @@
 	## 5. Quotes
 	
 ---
-[***上一章 绪论***](./Ch1_Introduction.md)
+[返回主目录](https://cugwhp.github.io/OOPCPP/) | [***上一章 绪论***](./Ch1_Introduction.md)
