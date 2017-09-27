@@ -1,6 +1,3 @@
-[返回主目录](https://cugwhp.github.io/OOPCPP/)
----
-
 # Introduction
 
 ## 1. Lecture
