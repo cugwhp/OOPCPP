@@ -2,3 +2,11 @@
 ~*.*
 #*.doc
 #*.docx
+
+#过滤编译中间结果
+*.ncb
+*.o
+*.exe
+*.user
+*.opt
+*.plg
