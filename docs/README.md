@@ -1,5 +1,3 @@
-OPPCPP
-===
 
 > Welcome, fresh students !
 > This is the resource about the course of Orient Object Programming Language C++.
