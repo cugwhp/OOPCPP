@@ -19,6 +19,7 @@
 
 ## 4. Sample code
 ```c++
+// The first program - Hello World.
 #include <iostream>
 int main()		//主函数
 {

@@ -3,6 +3,8 @@
 - [C++语言概述](./PDFs/c%2B%2B2.pdf)
 
 ## 2. References
+- IDE
+	- [CodeBlocks](http://www.codeblocks.org/downloads/binaries#windows)
 
 ## 3. Exercises
 
