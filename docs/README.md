@@ -1,9 +1,12 @@
+```
 Welcome, fresh students !
 
 This is the resource about the course of Orient Object Programming Language C++.
 There are lectures, exercises, example code and reference books. I will update it before every teaching.
 
 Have any questions or problems in c++ programming language, please contact me with <cugwhp@qq.com>.
+```
+---
 
 # 教学大纲
 ## [第一章 绪论](./Ch1_Introduction.md)
