@@ -1,4 +1,3 @@
-
 > Welcome, fresh students !
 > This is the resource about the course of Orient Object Programming Language C++.
 > There are lectures, exercises, example code and reference books. I will update it before every teaching.
