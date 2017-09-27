@@ -35,4 +35,5 @@ everyone can experience the extreme satisfaction that comes with it.
                                       by Matthias Felleisen
 ```
 ---
-[返回主目录](https://cugwhp.github.io/OOPCPP/) | [***下一章 C++语言特性***](./Ch2_C++Basic.md)
+> [返回主目录](https://cugwhp.github.io/OOPCPP/) | [***下一章 C++语言特性***](./Ch2_C++Basic.md)
+---
