@@ -1,0 +1,20 @@
+# depslib dependency file v1.0
+1479108488 source:e:\code\ch4\4_9\main.cpp
+	<iostream>
+	"Point.h"
+	"Rectangle.h"
+
+1479108639 e:\code\ch4\4_9\point.h
+
+1479109932 e:\code\ch4\4_9\rectangle.h
+	"Point.h"
+	<cmath>
+
+1479108652 source:e:\code\ch4\4_9\point.cpp
+	"Point.h"
+
+1479108671 source:e:\code\ch4\4_9\rectangle.cpp
+	"Rectangle.h"
+	<iostream>
+	<cmath>
+
