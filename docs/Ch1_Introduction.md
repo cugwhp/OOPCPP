@@ -1,7 +1,7 @@
 Introduction
 ===
 
-[***Return 教学内容目录***](../../README.md)
+[***Return 教学内容目录***](./README.md)
 
 # 1. Lecture
 - [绪论1——如何学习编程](./PDFs/C%2B%2B_%E7%BB%AA%E8%AE%BA1.pdf)
@@ -38,4 +38,4 @@ everyone can experience the extreme satisfaction that comes with it.
                                       by Matthias Felleisen
 ```
 ---
-[***Return 教学内容目录***](../../README.md) 			[***下一章 C++语言特性***](./Ch2_C++Basic.md)
+[***Return 教学内容目录***](./README.md) 			[***下一章 C++语言特性***](./Ch2_C++Basic.md)
