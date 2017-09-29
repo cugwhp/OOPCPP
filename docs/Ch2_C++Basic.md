@@ -4,8 +4,9 @@
 
 ## 2. References
 - IDE
-	- [CodeBlocks](http://www.codeblocks.org/downloads/binaries#windows)
+	[Windows下几款免费C/C++开发工具简介](http://www.cnblogs.com/xusw/p/3617572.html)
 
+		
 ## 3. Exercises
 
 ## 4. Sample code
