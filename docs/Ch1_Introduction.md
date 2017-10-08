@@ -16,7 +16,7 @@
 ## 3. Exercises
 - 你的***编程小目标***
 - Watch video [Inspire Students to coding](https://code.org/educate/resources/inspire)
-
+- Readings [编码规范](./Reference/)
 ## 4. Sample code
 ```c++
 // The first program - Hello World.
