@@ -1,0 +1,12 @@
+# depslib dependency file v1.0
+1479102708 source:e:\code\ch4\4_20\complex.cpp
+	"Complex.h"
+	<cmath>
+
+1479102608 e:\code\ch4\4_20\complex.h
+	<iostream>
+
+1479102725 source:e:\code\ch4\4_20\main.cpp
+	<iostream>
+	"Complex.h"
+
