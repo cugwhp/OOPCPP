@@ -7,19 +7,27 @@
 
 ## 2. References
 - **Books**
-  - C++经典——[C++ Primer](https://book.douban.com/subject/1767741/),[download](./Reference/eBooks/C%2B%2BPrimer4th%E4%B8%AD%E6%96%87%E7%89%88.pdf)、[C++程序设计语言](https://book.douban.com/subject/4604591/)
+  - C++经典——[C++ Primer](https://book.douban.com/subject/1767741/) [PDF](./Reference/eBooks/C%2B%2BPrimer4th%E4%B8%AD%E6%96%87%E7%89%88.pdf)
+  - [C++程序设计语言](https://book.douban.com/subject/4604591/)
 
 - **编程规范**
   - [高质量编程指南-林锐](./Reference/%E7%BC%96%E7%A0%81%E8%A7%84%E8%8C%83/%E6%9E%97%E9%94%90%E3%80%8A%E9%AB%98%E8%B4%A8%E9%87%8FC%2B%2B%E7%BC%96%E7%A8%8B%E6%8C%87%E5%8D%97%E3%80%8B.pdf)
   - [编码规范](./Reference/%E7%BC%96%E7%A0%81%E8%A7%84%E8%8C%83/C%2B%2B%E7%BC%96%E7%A0%81%E8%A7%84%E8%8C%83-CSDN.pdf)
   - [Google编码规范](./Reference/%E7%BC%96%E7%A0%81%E8%A7%84%E8%8C%83/Google-C%2B%2B%E7%BC%96%E7%A0%81%E8%A7%84%E8%8C%83%E4%B8%AD%E6%96%87%E7%89%88.pdf)  
 
-- **Web sites**
-  - 网络公开课: [面向对象程序设计-C++ - 网易云课堂](http://study.163.com/course/courseMain.htm?courseId=271005)、[Learn C++](www.learncpp.com)
+- **网络公开课**
+  - [面向对象程序设计-C++ - 网易云课堂](http://study.163.com/course/courseMain.htm?courseId=271005)
+  - [Learn C++](www.learncpp.com)
 
-- 论坛(Forum)：[CSDN-中国软件开发者论坛](www.csdn.net)、[CODE.ORG](www.code.org)、[知乎](www.zhihu.com)、[StackOverFlow](www.stackoverlow.com)
-  - Web Search：[Google](www.google.com.hk)、[codeproject](www.codeproject.com)、 [codeguru](www.codeguru.com)
-
+- **论坛(Forum)**
+  - [CSDN-中国软件开发者论坛](www.csdn.net)
+  - [CODE.ORG](www.code.org)
+  - [StackOverFlow](www.stackoverlow.com)
+  - [知乎](www.zhihu.com)
+  - [codeproject](www.codeproject.com)
+  - [codeguru](www.codeguru.com)
+  - [Google](www.google.com.hk)
+  
 ## 3. Exercises
 - 你的***编程小目标***
 - Watch video [Inspire Students to coding](https://code.org/educate/resources/inspire)
