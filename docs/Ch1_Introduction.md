@@ -7,7 +7,10 @@
 
 ## 2. References
 - **Books**
-  - C++经典——[C++ Primer](https://book.douban.com/subject/1767741/)、[C++程序设计语言](https://book.douban.com/subject/4604591/)
+  - C++经典——[C++ Primer](https://book.douban.com/subject/1767741/),[download](./Reference/eBooks/C%2B%2BPrimer4th%E4%B8%AD%E6%96%87%E7%89%88.pdf)、[C++程序设计语言](https://book.douban.com/subject/4604591/)
+- **编程规范**
+  - [林锐文档]()
+  
 - **Web sites**
   - 网络公开课: [面向对象程序设计-C++ - 网易云课堂](http://study.163.com/course/courseMain.htm?courseId=271005)、[Learn C++](www.learncpp.com)
   - 论坛(Forum)：[CSDN-中国软件开发者论坛](www.csdn.net)、[CODE.ORG](www.code.org)、[知乎](www.zhihu.com)、[StackOverFlow](www.stackoverlow.com)
