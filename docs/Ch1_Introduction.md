@@ -7,7 +7,7 @@
 
 ## 2. References
 - **Books**
-  - C++经典——[C++ Primer](https://book.douban.com/subject/1767741/) [[DOWNLOAD PDF]](./Reference/eBooks/C%2B%2BPrimer4th%E4%B8%AD%E6%96%87%E7%89%88.pdf)
+  - C++经典——[C++ Primer](https://book.douban.com/subject/1767741/),[DOWNLOAD PDF](./Reference/eBooks/C%2B%2BPrimer4th%E4%B8%AD%E6%96%87%E7%89%88.pdf)
   - [C++程序设计语言](https://book.douban.com/subject/4604591/)
 
 - **编程规范**
