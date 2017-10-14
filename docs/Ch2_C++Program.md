@@ -1,6 +1,8 @@
 # 第二章 C++语言概述
 ## 1. Lecture
-- [C++语言概述](./PDFs/c%2B%2B2.pdf)
+- [输入输出 示例代码](..\04.Code\Ch2\io.md)
+- [循环结构 示例代码](..\04.Code\Ch2\loop.md)
+- [分支结构 示例代码](..\04.Code\Ch2\if.md)
 
 ## 2. References
 - IDE
@@ -30,14 +32,6 @@
 - C++ Primer **1.9/1.10/1.11/1.12**
 - C++ Primer **1.14/1.16/1.17**
 
-### 课后习题（教材）
-- **2-12，2-18，2-23, 2-25，2-27， 2-28， 3-31， 2-35**
-
-## 4. Sample code
-- [输入输出 示例代码]()
-- [循环结构 示例代码]()
-- [分支结构 示例代码]()
-
 ---
-> [返回主目录](https://cugwhp.github.io/OOPCPP/) | [***上一章 绪论***](./Ch1_Introduction.md)
+> [返回主目录](https://cugwhp.github.io/OOPCPP/) | [***上一章 绪论***](./Ch1_Introduction.md) | [***下一章 C++语言概述***](./Ch3_C++Basic.md) 
 ---
