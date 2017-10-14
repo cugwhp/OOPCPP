@@ -1,8 +1,8 @@
 # 第二章 C++程序设计入门
 ## 1. Lecture
-- [输入输出 示例代码](..\04.Code\Ch2\io.md)
-- [循环结构 示例代码](..\04.Code\Ch2\loop.md)
-- [分支结构 示例代码](..\04.Code\Ch2\if.md)
+- [输入输出 示例代码](../04.Code/Ch2/io.md)
+- [循环结构 示例代码](../04.Code/Ch2/loop.md)
+- [分支结构 示例代码](../04.Code/Ch2/if.md)
 
 ## 2. References
 - IDE
