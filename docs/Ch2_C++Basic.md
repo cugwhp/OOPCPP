@@ -10,8 +10,9 @@
   - [Windowns Setups](http://sourceforge.net/projects/codeblocks/files/Binaries/16.01/Windows/codeblocks-16.01mingw-nosetup.zip)
   - [CodeBlocks安装及使用](http://blog.csdn.net/wang1127502020/article/details/50008973)
   - [CodeBlocks使用教程](http://download.csdn.net/download/l81372500/10001537)
-  
+
 ## 3. Exercises
+### 3.1 了解main函数
 - C++程序包含的基本要素：main(), return, { }等
 - 编译与执行程序
 - 通过命令行运行编译程序(**了解**)
@@ -29,11 +30,14 @@
 - C++ Primer **1.9/1.10/1.11/1.12**
 - C++ Primer **1.14/1.16/1.17**
 
-### 3.5 class sample code
-```c++
-```
-## 4. Quotes
-	
+### 课后习题（教材）
+- **2-12，2-18，2-23, 2-25，2-27， 2-28， 3-31， 2-35**
+
+## 4. Sample code
+- [输入输出 示例代码]()
+- [循环结构 示例代码]()
+- [分支结构 示例代码]()
+
 ---
 > [返回主目录](https://cugwhp.github.io/OOPCPP/) | [***上一章 绪论***](./Ch1_Introduction.md)
 ---
