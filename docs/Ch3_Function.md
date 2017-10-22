@@ -42,10 +42,7 @@ int main()
 // 判断是否为闰年
 bool IsLeapYear(int nYear)
 { 
-	if ((nYear%400==0) || (nYear%4==0 && nYear%100!=0))
-		return true;
-	else
-		return false;
+	return ((nYear%400==0) || (nYear%4==0 && nYear%100!=0));
 }
 
 int main()
