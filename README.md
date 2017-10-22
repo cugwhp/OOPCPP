@@ -1,7 +1,7 @@
 OOPCPP
 ====
 Welcome, fresh students !
-This is the resource about the course of Orient Object Programming Language C++.
+This is the resource about the course of Object Oriented Programming Language with C++.
 There are lectures, exercises, example code and reference books. I will update it before every teaching.
 Any questions or problems in c++ programming language, please contact me with <cugwhp@qq.com>.
 

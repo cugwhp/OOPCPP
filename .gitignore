@@ -10,3 +10,5 @@
 *.user
 *.opt
 *.plg
+bin
+obj
