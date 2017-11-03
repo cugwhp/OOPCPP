@@ -15,5 +15,6 @@ bin
 obj
 Debug
 Relase
-.layout
-.depend
+*.layout
+*.depend
+*.cbp
