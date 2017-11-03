@@ -13,3 +13,5 @@
 *.plg
 bin
 obj
+Debug
+Relase
