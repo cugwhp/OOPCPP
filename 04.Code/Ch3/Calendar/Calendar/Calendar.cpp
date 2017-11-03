@@ -19,6 +19,8 @@ using namespace std;
 // 输出日历
 void PrintCalendar(int nYear, int nMonth)
 {
+	cout.fill('0');
+
     cout << "        " << setw(4) << nYear << "-" << setw(2) << nMonth << " Calendar " << endl;
     cout << "|-----------------------------|" << endl;
     cout << "| Sun Mon Tue Wed Thu Fri Sat |" << endl;
@@ -83,7 +85,7 @@ int GetMonthDays(int nYear, int nMonth)
         case 8:
         case 10:
         case 12:
-            return 32;
+            return 31;
 
         // 2月，考虑闰年
         case 2:
