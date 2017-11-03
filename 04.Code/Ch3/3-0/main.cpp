@@ -5,8 +5,42 @@
 
 using namespace std;
 
+// ½»»»2¸öÊı
+void swap2(int a, int b)
+{
+    int t = a;
+
+    a = b;
+    b = t;
+
+    for (int i=0, int sum=0; i<9; i++)
+    {
+        sum += i;
+    }
+    cout << sum << endl;
+
+    return;
+}
+
 int main()
 {
+    int     m,n;
+
+    m = 10;
+    n = 100;
+
+    {
+        int m = n;
+        cout << m << endl;
+    }
+    cout << m << endl;
+
+    swap2(m, n);
+    cout << m << "\t" << n << endl;
+
+    return 0;
+
+
     string  strTxt = "CUG";
     strTxt.c_str();
 

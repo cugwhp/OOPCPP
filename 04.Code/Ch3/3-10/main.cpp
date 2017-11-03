@@ -8,9 +8,9 @@ void hanoi(int, char, char, char);
 int main()
 {
     int m;
-    cout << "Enter the number of diskes: ";
+    cout << "Enter the number of disks: ";
     cin >> m;
-    cout << "the steps to moving " << m << " diskes:" << endl;
+    cout << "the steps to moving " << m << " disks:" << endl;
     hanoi(m,'A','B','C');
     return 0;
 }
