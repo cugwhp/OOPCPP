@@ -54,6 +54,7 @@ CPoint operator* (const CPoint& p1, const CPoint& p2)
 	return CPoint(p1.m_nX*p2.m_nX, p1.m_nY*p2.m_nY);
 }
 
+/*
 CPoint& operator++ (CPoint& pt)
 {
 	pt.m_nX++;
@@ -67,3 +68,4 @@ CPoint& operator(CPoint& pt)++
 	++pt.m_nY;
 	return pt;
 }
+*/

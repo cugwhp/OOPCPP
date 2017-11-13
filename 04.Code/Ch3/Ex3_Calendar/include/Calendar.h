@@ -9,7 +9,7 @@ enum eWeekday
 };
 
 const int   MAX_MONTH = 12;     //最大月份
-const eWeekday WD_ERA = MON;    //公元元年星期一
+const eWeekday WD_ERA = SAT;    //公元元年星期一
 
 
 /*          输出日历

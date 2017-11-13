@@ -83,7 +83,7 @@ int GetMonthDays(int nYear, int nMonth)
         case 8:
         case 10:
         case 12:
-            return 32;
+            return 31;
 
         // 2ÔÂ£¬¿¼ÂÇÈòÄê
         case 2:

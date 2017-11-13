@@ -10,7 +10,13 @@ int main()
 	double	c;
 	
 	CTriangle	oTriangle;
-	
+	CTriangle	t1(3.,4.,5.);
+	CTriangle	t2;
+	CTriangle	t3(t1);
+
+	t2 = t1;
+
+
 	cout << "Input 3 length of triangle : " << endl;
 	cin >> a >> b >> c;
 

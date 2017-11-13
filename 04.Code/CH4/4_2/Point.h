@@ -18,8 +18,9 @@ public:
 	friend CPoint operator+(const CPoint& p1, const CPoint& p2);
 	friend CPoint operator- (const CPoint& p1, const CPoint& p2);
 	friend CPoint operator* (const CPoint& p1, const CPoint& p2);
-	friend CPoint operator++ (CPoint& pt);
-	friend CPoint operator(CPoint& pt)++;
+//	friend CPoint operator++ (CPoint& pt);
+//	friend CPoint operator(CPoint& pt)++;
+
 private:
 	int		m_nX;
 	int		m_nY;

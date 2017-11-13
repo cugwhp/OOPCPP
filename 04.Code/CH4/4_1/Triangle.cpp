@@ -5,6 +5,31 @@
 using namespace std;
 
 const double EPLISON = 1.0e-12;
+/*
+CTriangle::CTriangle()
+{
+	cout << "CTriangle()" << endl;
+}
+*/
+
+CTriangle::CTriangle(double a, double b, double c)
+{
+	this->a = a;
+	this->b = b;
+	this->c = c;
+}
+
+CTriangle::CTriangle(const CTriangle& t)
+{
+	a = t.a;
+	b = t.b;
+	c = t.c;
+}
+
+CTriangle::~CTriangle()
+{
+
+}
 
 double
 CTriangle::GetPerimeter()

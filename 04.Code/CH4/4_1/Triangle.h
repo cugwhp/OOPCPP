@@ -22,13 +22,17 @@ public:
 class CTriangle : public CShape
 {
 public:
+	CTriangle(double a=0., double b=0., double c=0.);
+	CTriangle(const CTriangle& t);
+	~CTriangle();
+public:
 	bool Set(double a0, double b0, double c0);
 	double	GetPerimeter();
 	double	GetArea();
 
 protected:
 	bool IsValidTriangle(double a0, double b0, double c0);
-	bool IsValidTriangle();
+	virtual bool IsValidTriangle();
 
 private:
 	double	a, b, c;
