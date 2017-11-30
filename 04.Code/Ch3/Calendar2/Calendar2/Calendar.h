@@ -1,0 +1,34 @@
+////////////////////////////////////////////////////////////////////////////
+// 文件功能：
+// 日期：
+// 作者：
+//////////////////////////////////////////////////////////////////////////
+
+#ifndef _CANLEDAR_H_
+#define _CANLEDAR_H_
+
+//////////////////////////////////////////////////////////////////////////
+// 功能：打印日历
+// 输入参数：int nYear - 年
+//			 int nMonth - 月
+// 返回值：void - 无
+//////////////////////////////////////////////////////////////////////////
+void PrintCalendar(int nYear, int nMonth);
+
+// 定义星期枚举变量
+enum eWeekday
+{
+	SUN, MON, TUE, WED, THR, FRI, SAT
+};
+
+eWeekday GetWeekday(int nYear, int nMonth, int nDay);
+
+int GetMonthDays(int nYear, int nMonth);
+
+// 判断闰年
+inline bool IsLeapYear(int nYear)
+{
+	return ((nYear%4==0 && nYear%100!=0) || nYear%400==0);
+}
+
+#endif//#ifndef _CANLEDAR_H_
