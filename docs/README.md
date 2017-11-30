@@ -21,14 +21,13 @@
 ## [实习5 数组、指针、字符串的使用](./Ex5_Array.md)
 ## 总复习
 
----
-# [**实习报告模板**](./PDFs/.doc)
+## [**课件下载**](https://github.com/cugwhp/OOPCPP/tree/master/docs/PDFs)
 
 ---
-# [**课内实践项目**](./Project_Title.md)
+# 实习
+- [**实习报告模板**](./Projects/PDFs/.doc)
+- [**课内实践项目**](./Project_Title.md)
 
 ---
-# [**课件下载**](https://github.com/cugwhp/OOPCPP/tree/master/docs/PDFs)
-
----
-# [**课程设计**](./CourseDesign.md)
+# 课程设计
+- [**课程设计**](./CourseDesign.md)
