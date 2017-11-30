@@ -35,5 +35,5 @@
 
 ---
 # **课程设计**
-- [课程设计题目](./CourseDesign.md)
-- [课设时间安排](./CourseDesignSchedule.md)
+## [课程设计题目](./CourseDesign.md)
+## [课设时间安排](./CourseDesignSchedule.md)
