@@ -22,9 +22,13 @@
 ## 总复习
 
 ---
-# **项目**
-- 课内小实践-[项目列表](./Project_Title.md)
+# [**实习报告模板**](./PDFs/.doc)
 
 ---
-# **下载课件**
-- [Download All PDFs](https://github.com/cugwhp/OOPCPP/tree/master/docs/PDFs)
+# [**课内实践项目**](./Project_Title.md)
+
+---
+# [**课件下载**](https://github.com/cugwhp/OOPCPP/tree/master/docs/PDFs)
+
+---
+# [**课程设计**](./CourseDesign.md)
