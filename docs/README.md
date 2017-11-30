@@ -25,9 +25,9 @@
 
 ---
 # 实习
-- [**实习报告模板**](./Projects/RSImage/%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1%E6%8A%A5%E5%91%8A%E6%A8%A1%E6%9D%BF.doc)
-- [**课内实践项目**](./Project_Title.md)
+## [**实习报告模板**](./Projects/RSImage/%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1%E6%8A%A5%E5%91%8A%E6%A8%A1%E6%9D%BF.doc)
+## [**课内实践项目**](./Project_Title.md)
 
 ---
 # 课程设计
-- [**课程设计**](./CourseDesign.md)
+## [**课程设计**](./CourseDesign.md)
