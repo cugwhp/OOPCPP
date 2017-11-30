@@ -28,8 +28,12 @@
 ---
 # **项目**
 - 课内小实践-[项目列表](./Project_Title.md)
-- [课程设计](./CourseDesign.md)
 
 ---
 # **下载课件**
 - [Download All PDFs](https://github.com/cugwhp/OOPCPP/tree/master/docs/PDFs)
+
+---
+# **课程设计**
+- [课程设计题目](./CourseDesign.md)
+- [课设时间安排](./CourseDesignSchedule.md)
