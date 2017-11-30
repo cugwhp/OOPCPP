@@ -1,38 +1,27 @@
 #include <iostream>
-#include "Point.h"
-using namespace std;
+#include <iomanip>
 
-class Point;
+using namespace std;
 
 int main()
 {
-    Point   pt(10, 20);
+    int   a[] = {0, 1, 2, 3, 4, 5};
+    int     b[2][3] = {{1,2,3},{4,5,6}};
 
-    int     a = 10, c = 20;
+//    int*    p = b;
+    int     (*p)[3] = b;
 
-    int&    b = a;
+    cout << b << endl;
+    cout << b[0] << endl;
+    cout << b[1] << endl;
+    for (int i=0; i<2; i++)
+    {
+        for (int j=0; j<3; j++)
+        {
+            cout << &b[i][j] << "\t";
+        }
+        cout << endl;
+    }
 
- //   b = c;  // a=c
-
-    const int& d = a;
- //   a = c;
-
-    a = c;
-// error: assignment of read-only reference 'd'|
-
-    cout << pt << endl;
-
-    operator<<(cout, pt);
-
-//    cout << "Hello world!" << endl;
     return 0;
-}
-
-// error: 'Test' was not declared in this scope|
-
-
-void Test()
-{
-    cout << "Test" << endl;
-    return;
 }
