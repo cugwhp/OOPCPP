@@ -1,6 +1,6 @@
 # 计算机高级语言课程设计
 
-## [课设时间安排]
+## 课设时间安排
 课程设计1.5周。其机房和时间安排如下：
 课时间：下午：<u>14:00--17:00PM</u>   晚上：<u>18:30-21:30PM</u>
 
@@ -17,7 +17,7 @@
 
 ---
 
-## [课程设计]
+## 课程设计
 ### [课设题目](./CourseDesignSubject.md)
 ### [测试数据](https://github.com/cugwhp/OOPCPP/tree/master/docs/Projects/RSImage/Data/)
 ### [遥感图像显示工具-FWTools](https://github.com/cugwhp/OOPCPP/tree/master/docs/Projects/RSImage/FWTools) [Download](http://home.gdal.org/fwtools/FWTools247.exe)
