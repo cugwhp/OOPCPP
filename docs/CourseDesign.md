@@ -108,7 +108,7 @@
 **程序流程：**1）输入滤波核；2）执行图像卷积。
 
 ## 课设报告要求
-- [课设模板]()
+- [课设模板](./RSImage//%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1%E6%8A%A5%E5%91%8A%E6%A8%A1%E6%9D%BF.doc)
 
 ## 附录
 - [The Basic of Remote Sensing Image](./RSImage/Basic_RS_Image.pdf)
