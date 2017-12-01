@@ -3,14 +3,29 @@
 
 using namespace std;
 
+template<class T>
+void Swap(T& a, T& b)
+{
+    a = a+b;
+    b = a-b;
+    a = a-b;
+    return;
+}
 int main()
 {
+    int     a=10, b=100;
+
+    cout << a << "\t" << b << endl;
+    Swap(a, b);
+    cout << a << "\t" << b << endl;
+    return 0;
+
     X       x;
     Y       y;
     y.g(&x);
 
-    int a;
-    int b;
+//    int a;
+//    int b;
     char    cOper;
     int (*pFun)(int, int);
 
