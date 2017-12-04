@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RSCmd", "RSCmd\RSCmd.vcproj", "{0673D402-B840-4E29-8082-9EA96543CC1A}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RSProc", "RSProc\RSProc.vcproj", "{2D5B19BF-B9E8-4C77-9071-671F6009B962}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0673D402-B840-4E29-8082-9EA96543CC1A}.Debug|Win32.ActiveCfg = Debug|Win32
+		{0673D402-B840-4E29-8082-9EA96543CC1A}.Debug|Win32.Build.0 = Debug|Win32
+		{0673D402-B840-4E29-8082-9EA96543CC1A}.Release|Win32.ActiveCfg = Release|Win32
+		{0673D402-B840-4E29-8082-9EA96543CC1A}.Release|Win32.Build.0 = Release|Win32
+		{2D5B19BF-B9E8-4C77-9071-671F6009B962}.Debug|Win32.ActiveCfg = Debug|Win32
+		{2D5B19BF-B9E8-4C77-9071-671F6009B962}.Debug|Win32.Build.0 = Debug|Win32
+		{2D5B19BF-B9E8-4C77-9071-671F6009B962}.Release|Win32.ActiveCfg = Release|Win32
+		{2D5B19BF-B9E8-4C77-9071-671F6009B962}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

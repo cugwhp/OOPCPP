@@ -313,7 +313,7 @@ void main()
 
   ​	(4) 算术表达式的优先级高于条件表达式，所以先算x%2结果为0，0?”odd”:”even”结果为”even”。本题完成判断一个数是奇数还是偶数，若该数为奇数，则表达式的值为”odd”，为偶数，则表达式的值为”even”。答案为：”odd”。
 
- 
+
 
 - 例题9:下列程序运行结果为：_______________。
 
@@ -445,7 +445,7 @@ void main()
 
 10.  若char x=97;,则变量x包含几个字符（ ）。
 
-     (a)1个        (b)2个      (c)4个       (d)8个
+    (a)1个        (b)2个      (c)4个       (d)8个
 
 二、填空题
 
@@ -470,19 +470,15 @@ Void main()
 	cin >> a >> b;
 	a = _________;	//a+b
 	b = _________;	//a-b -> a+b-b = a
-	a = _________;	//(a-b
+	a = _________;	//a-b
 	cout << a << ’\t’ << b <<endl;
 }
 
 ```
 
+10. 大多数C++程序都要包含头文件__________。该文件中包含了所有输入/输出流操作所需的基本信息。当使用带参数的操作时，程序中必须包含头文件__________。
 
 
- 
-
-\10. 大多数C++程序都要包含头文件__________。该文件中包含了所有输入/输出流操作所需的基本信息。当使用带参数的操作时，程序中必须包含头文件__________。
-
- 
 
 三、编程题
 
@@ -496,25 +492,7 @@ Void main()
 
 一、选择题
 
-1． d
-
-2． a
-
-3． b
-
-4． b
-
-5． c
-
-6． a
-
-7． b
-
-8． c
-
-9． d
-
-10． a
+1-5． d a b b c	6-10. a b c d a
 
 二、填空题
 
@@ -536,93 +514,70 @@ Void main()
 
 9． a+b      a-b      a-b
 
-10． iomanip.h      iostream.h
+10． iomanip      iostream
 
 三、编程题
 
 1．
 
-\#include<iostream.h>
+```c++
+#include <iostream>
+using namespace std;
 
 void main()
-
 {
-
    int num,var1,var2,var3;
-
    cout<<"请输入一个三位数："<<endl;
-
    cin>>num;
-
-   if(num>999||num<100)     //用于检查输入数据的合法性
-
-​            cout<<"您的输入有误!"<<endl;
-
-   else
-
-   {
-
-​            var1=num/100;
-
-​            var2=(num-var1*100)/10;
-
-​            var3=num%10;
-
-​            cout<<"百位数为："<<var1<<endl
-
-​                      <<"十位数为："<<var2<<endl
-
-​                      <<"个位数为："<<var3<<endl;
-
+	if(num>999||num<100)     //用于检查输入数据的合法性
+		cout<<"您的输入有误!"<<endl;
+	else
+	{
+		var1=num/100;
+        var2=(num-var1*100)/10;
+        var3=num%10;
+        cout<<"百位数为："<<var1<<endl
+		<<"十位数为："<<var2<<endl
+		<<"个位数为："<<var3<<endl;
    }
-
 }
+```
+
+
 
 2．
 
-\#include<iostream.h>
-
-\#include<iomanip.h>
+```c++
+#include <iostream>
+#include <iomanip>
+using namespace std;
 
 void main()
+{ 	
+	int		array[10];
+	enum	month{Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec};
+	char*	p;
+	
+	cout<<"The size of charis:"<<sizeof(char)<<endl		
+		<<"The size of int is:"<<sizeof(int)<<endl		
+		<<"The size of short int is:"<<sizeof(short int)<<endl		
+		<<"The size of long int is:"<<sizeof(long int)<<endl		
+		<<"The size of float is:"<<sizeof(float)<<endl		
+		<<"The size of double is:"<<sizeof(double)<<endl		
+		<<"The size of long double is:"<<sizeof(long double)<<endl		
+		<<"The size of signed int is:"<<sizeof(int)<<endl		
+		<<"The size of unsigned int is:"<<sizeof(unsigned)<<endl		
+		<<"The size of array is:"<<sizeof(array)<<endl		
+		<<"The size of month is:"<<sizeof(month)<<endl		
+		<<"The size of p is:"<<sizeof(p)<<endl;
+}
+```
 
-{ 
 
-​          int array[10];
-
-​          enummonth{Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec};
-
-​          char*p;
-
-​           cout<<"The size of charis:"<<sizeof(char)<<endl
-
-​                <<"Thesize of int is:"<<sizeof(int)<<endl
-
-​                <<"Thesize of short int is:"<<sizeof(short int)<<endl
-
-​              <<"The size of long int is:"<<sizeof(longint)<<endl
-
-​              <<"Thesize of float is:"<<sizeof(float)<<endl
-
-​              <<"Thesize of double is:"<<sizeof(double)<<endl
-
-​                    <<"The size oflong double is:"<<sizeof(long double)<<endl
-
-​                    <<"The size ofsigned int is:"<<sizeof(int)<<endl
-
-​                    <<"The size ofunsigned int is:"<<sizeof(unsigned)<<endl
-
-​                    <<"The size ofarray is:"<<sizeof(array)<<endl
-
-​                    <<"The size ofmonth is:"<<sizeof(month)<<endl
-
-​                             <<"Thesize of p is:"<<sizeof(p)<<endl;
-
-​           }
 
 # 第3章C++程序的流程控制
 
-【内容提要】
+##【内容提要】
 
 顺序控制语句
 
@@ -630,49 +585,53 @@ void main()
 
 循环控制语句
 
-跳转语句
+跳转语句 
 
- 
+##【重点与难点】
 
-【重点与难点】
-
-3.1 顺序控制语句
+## 3.1 顺序控制语句
 
 指按照语句在程序中出现的先后次序一条一条的顺次执行。包含声明语句，表达式语句，输入输出语句等。
 
-3.1.1 表达式语句
+### 3.1.1 表达式语句
 
 ​    任何一个表达式（上一章中给出了详细介绍）后面加上一个分号就构成了表达式语句（没有分号的不是语句）。常见的表达式语句有以下几种：空语句、赋值语句、函数调用语句等。
 
-![*](./pic/\clip_image006.png)        空语句：指只有一个分号而没有表达式的语句，它不作任何操作和运算。
+​	- 空语句：指只有一个分号而没有表达式的语句，它不作任何操作和运算。格式为：  ； 
 
-​           格式为：  ； 
+​          空语句被用在程序的语法上要求一条语句而逻辑上却不需要的时候。
 
-​           空语句被用在程序的语法上要求一条语句而逻辑上却不需要的时候。
+​	- 函数调用语句：是由函数调用表达式加一个语句结束标志（分号“；”）构成的语句。函数的定义和使用请参见第五章中的详细介绍。
 
-![*](./pic/\clip_image006.png)        函数调用语句：是由函数调用表达式加一个语句结束标志（分号“；”）构成的语句。函数的定义和使用请参见第五章中的详细介绍。
-
-3.1.2 输入/输出语句
+### 3.1.2 输入/输出语句
 
 ​    C++程序没有输入/输出语句，它的输入/输出功能由函数（scanf、printf）或流控制来实现。printf和scanf是标准的输入输出函数，主要在C程序设计中使用，其声明包含在头文件stdio.h中。在C++中，I/O流完全取代了它们，使用I/O流输入输出时，必须包含头文件iostream.h。
 
-​    从键盘输入语句格式为： cin>>表达式1[>>表达式2>>…]；
+​    从键盘输入语句格式为：
 
-​    向屏幕输出语句格式为： cout<<表达式1[<<表达式2<<…]；
+```c++
+ cin >> 表达式1[ >> 表达式2 >> …];
+```
 
-​    注意：连续输入多项数据时应键入空白字符（包括空格键、回车键和Tab键）将相邻的两项数据分开。而连续输出时，cout不会在相邻数据项间加分隔符，为了增强显示效果，用户可通过控制符自定义显示宽度，换行等（部分控制符在iomanip.h头文件中声明）。
+​    向屏幕输出语句格式为：
 
-3.1.3 复合语句
+```c++
+ cout << 表达式1[ << 表达式2 << …];
+```
+
+​    注意：连续输入多项数据时应键入空白字符（包括空格键、回车键和Tab键）将相邻的两项数据分开。而连续输出时，cout不会在相邻数据项间加分隔符，为了增强显示效果，用户可通过控制符自定义显示宽度，换行等（部分控制符在iomanip头文件中声明）。
+
+### 3.1.3 复合语句
 
    C++语言允许把一组语句用一对花括号括起来，构成一个复合语句。复合语句被视为一个独立的单元它可以出现在程序中任何单个语句可以出现的地方复合语句不需要用分号作为结束。注意空语句；和空复合语句 { } 是等价的。
 
  
 
-3.2 选择控制语句
+# 3.2 选择控制语句
 
 ​    针对于不同情况采用不同的处理方式的问题，用选择结构来实现。选择语句包含：if语句和switch语句。
 
-3.2.1 if语句
+### 3.2.1 if语句
 
 ![*](./pic/\clip_image007.png)        if语句：
 
@@ -698,25 +657,23 @@ void main()
 
 说明：
 
-①if语句有时可以用条件表达式替代。
+​	①if语句有时可以用条件表达式替代。
 
-②if语句支持多种形式的嵌套使用，但一般嵌套层次不超过三层。另外约定else总是与它上边最近的一个if配对。为了防止语法或逻辑错误的发生，建议在较复杂的情形中使用花括号区分。
+​	②if语句支持多种形式的嵌套使用，但一般嵌套层次不超过三层。另外约定else总是与它上边最近的一个if配对。为了防止语法或逻辑错误的发生，建议在较复杂的情形中使用花括号区分。
 
-3.2.2 switch语句
+### 3.2.2 switch语句
 
-​    格式：switch(<表达式>){
+​    格式：
 
-case <常量表达式1>：<语句序列1>
-
-case <常量表达式2>：<语句序列2>
-
+```c++
+switch(<表达式>){
+case <常量表达式1>：<语句序列1>;break;
+case <常量表达式2>：<语句序列2>;break;
 …
-
-case <常量表达式n>：<语句序列n>
-
-[default：<语句序列n+1>]
-
+case <常量表达式n>：<语句序列n>;break;
+[default：<语句序列n+1>];break;
 }
+```
 
    作用：计算<表达式>判断它与哪个<常量表达式>匹配，执行第一个相匹配的<常量表达式>后的语句，直到遇到break转去执行switch语句以外的语句；如果均不匹配则执行default后定义的语句（在default省略的情形中，直接执行switch语句以外的语句）。
 
@@ -724,301 +681,290 @@ case <常量表达式n>：<语句序列n>
 
 ​    ①switch语句中的<表达式>的值只能是整型、字符型或枚举型表达式。
 
-②switch语句中，case和其后的<常量表达式>间必须有空格否则会产生逻辑错误。case后的<常量表达式>的值是互不相同的，且它的类型与switch后的<表达式>的类型一致。
+​	②switch语句中，case和其后的<常量表达式>间必须有空格否则会产生逻辑错误。case后的<常量表达式>的值是互不相同的，且它的类型与switch后的<表达式>的类型一致。
 
-③通常情况下，每个case分支语句结束后都要加一个break语句来结束switch语句。但在要表示一个范围，或描述一类对象时（如A,B,C都属于合格，D属于不合格）有可能几条case分支语句后才有一个break语句。
+​	③通常情况下，每个case分支语句结束后都要加一个break语句来结束switch语句。但在要表示一个范围，或描述一类对象时（如A,B,C都属于合格，D属于不合格）有可能几条case分支语句后才有一个break语句。
 
-④switch语句与嵌套的if语句都可以用于处理多分支选择的问题。
+​	④switch语句与嵌套的if语句都可以用于处理多分支选择的问题。
 
  
 
-3.3 循环控制语句
+## 3.3 循环控制语句
 
-对于同一个语句或同一组语句序列需要重复多次，则采用循环结构。C++提供了三种循环控制语句：while语句，do…while语句，for语句。
+​	对于同一个语句或同一组语句序列需要重复多次，则采用循环结构。C++提供了三种循环控制语句：while语句，do…while语句，for语句。
 
-3.3.1 while语句
+### 3.3.1 while语句
 
 ​    格式：while(<条件表达式>)
 
 ​               <语句>
 
-作用：判断<条件表达式>是否为真，若为真则执行<语句>，然后重复判断，直到<条件表达式>为假时跳出while循环执行其后的语句。
+​	作用：判断<条件表达式>是否为真，若为真则执行<语句>，然后重复判断，直到<条件表达式>为假时跳出while循环执行其后的语句。
 
 说明：
 
-①这里的<语句>可以是单条语句也可以是复合语句。
+​	① 这里的<语句>可以是单条语句也可以是复合语句。
 
-②当<条件表达式>在循环开始就不满足，则不执行while循环也就是说while循环有可能一次都不执行。
+​	② 当<条件表达式>在循环开始就不满足，则不执行while循环也就是说while循环有可能一次都不执行。
 
-3.3.2 do…while语句
+### 3.3.2 do…while语句
 
-​    格式： do{
+​    格式：
 
-​              <语句>
-
-​             }while(<条件表达式>)；
+```c++
+do{
+	<语句>
+}while(<条件表达式>)；
+```
 
 ​    作用：当流程到达do后，立即执行循环体语句，然后再对条件表达式进行判断。若<条件表达式>的值为真，则重复执行循环体语句，直到<条件表达式>为假时退出循环，执行do…while循环后的语句。
 
 ​    说明：这种循环中<语句>至少执行一次，当条件在循环开始时就不满足时这种做法是危险的，所以应尽量使用while语句而避免使用do…while语句。
 
-3.3.3 for语句
+### 3.3.3 for语句
 
-​    格式：for(<表达式1>；<表达式2>；<表达式3>)
+- 格式：
 
-​             <语句>
+```c++
+for(<表达式1>；<表达式2>；<表达式3>)
+             <语句>
+```
 
-作用：<表达式1>可以称为初始化表达式，一般用于对循环变量进行初始化或赋初值；<表达式2>可以称为条件表达式，当它的判断条件为真时，就执行循环体<语句>，否则终止循环，退出for循环；<表达式3>可以称为修正表达式，一般用于在每次循环体执行之后，对循环变量进行修改操作。
+- 作用：
 
-说明：
+<表达式1>可以称为初始化表达式，一般用于对循环变量进行初始化或赋初值；<表达式2>可以称为条件表达式，当它的判断条件为真时，就执行循环体<语句>，否则终止循环，退出for循环；<表达式3>可以称为修正表达式，一般用于在每次循环体执行之后，对循环变量进行修改操作。
 
-①这里的<语句>可以是一条语句也可以是复合语句。
+- 说明：
 
-②for循环中三个表达式可能省略一个、两个或三个都省略，但它们之间分号在三种情况下都不可以省略。
+  ①这里的<语句>可以是一条语句也可以是复合语句。
 
- 
+  ②for循环中三个表达式可能省略一个、两个或三个都省略，但它们之间分号在三种情况下都不可以省略。
 
-3.4 跳转语句
 
-3.4.1 break语句
 
-​    格式：break；
+## 3.4 跳转语句
 
-​    作用：结束当前正在执行的循环（for、while、do…while）或多路分支（switch）程序结构，转而执行这些结构后面的语句。
+### 3.4.1 break语句
 
-​    说明：在循环结构中使用时，如果有多层循环，只跳出其所在的最近的循环层。
+- 格式：
 
-3.4.2 continue语句
+```c++
+break;
+```
 
-​    格式：continue；
+- 作用：
 
-   作用：结束当前正在执行的这一次循环（for、while、do…while），接着执行下一次循环。即跳过循环体中尚未执行的语句，接着进行下一次是否执行循环语句的判定。
+  结束当前正在执行的循环（for、while、do…while）或多路分支（switch）程序结构，转而执行这些结构后面的语句。
 
- 
+- 说明：
 
-【典型例题】     
+  在循环结构中使用时，如果有多层循环，只跳出其所在的最近的循环层。
+
+### 3.4.2 continue语句
+
+- 格式：
+
+```c++
+continue;
+```
+
+- 作用：
+
+  结束当前正在执行的这一次循环（for、while、do…while），接着执行下一次循环。即跳过循环体中尚未执行的语句，接着进行下一次是否执行循环语句的判定。
+
+
+
+##【典型例题】     
 
 例题1：下列程序的运行结果为__________。
 
-​       #include<iostream.h>
+```c++
+#include <iostream>
+using namespace std;
 
-​       void main( )
+void main( )
+{
+	char c=’@’ ;
+	if (c>='A' && c<='Z')  cout<<"是大写字母 " ;
+	else if (c>='a' && c<='z')  cout<<"是小写字母";
+	else  cout<<"是其它字符";
+}
+```
 
-​       {
+- 解答：
 
-​        char c=’@’ ;
+  本题主要考查if语句的嵌套使用方法。首先判断字符变量c是否满足c>='A'&& c<='Z'，如果满足则输出"是大写字母 "；否则判断c是否满足c>='a' && c<='z'，如果满足则输出"是小写字母"否则输出"是其它字符"。else总是与离它最近的前一个if配对。
 
-​        if (c>='A' && c<='Z')  cout<<"是大写字母 " ;
+  **答案为：是其它字符。**
 
-​        else if (c>='a' && c<='z')  cout<<"是小写字母";
 
-​            else  cout<<"是其它字符";
-
-​        }
-
-解答：
-
-本题主要考查if语句的嵌套使用方法。首先判断字符变量c是否满足c>='A'&& c<='Z'，如果满足则输出"是大写字母 "；否则判断c是否满足c>='a' && c<='z'，如果满足则输出"是小写字母"否则输出"是其它字符"。else总是与离它最近的前一个if配对。
-
-答案为：是其它字符。
 
 例题2：已定义：char grade;  ，若成绩为A、B、C时输出合格，成绩为D时输出不合格，其他情况提示重新输入。要完成以上功能，则下列switch语句正确的是（  ）。
 
-(a)  switch(grade){
+(a)  
 
- case  ‘A’:
-
- case  ‘B’:
-
- case  ‘C’: cout<<”合格”;break;
-
- case  ‘D’: cout<<”不合格”;break;
-
- default: cout<<”请重新输入：”;
-
+```c++
+switch(grade){
+ case  'A':
+ case  'B':
+ case  'C': cout<<”合格”;break;
+ case  'D': cout<<”不合格”;break;	 
+ default: cout<<”请重新输入：”;	 
 }
+```
 
-(b)  switch(grade){
+(b)  
 
- case  ‘A’:
-
- case  ‘B’:
-
- case  ‘C’: cout<<”合格”;
-
- case  ‘D’: cout<<”不合格”;
-
- default:cout<<”请重新输入：”;
-
+```c++
+switch(grade){
+ case  'A':
+ case  'B':
+ case  'C': cout<<”合格”;
+ case  'D': cout<<”不合格”;	 
+ default: cout<<”请重新输入：”;	 
 }
+```
 
-(c)  switch(grade){
+(c) 
 
- case‘A’, ‘B’, ‘C’: cout<<”合格”;break;
-
- case ‘D’: cout<<”不合格”;break;
-
-  default:cout<<”请重新输入：”;
-
+```c++
+switch(grade){
+  case  'A','B','C': cout<<”合格”;break;
+ case  'D': cout<<”不合格”;break;	 
+ default: cout<<”请重新输入：”;	 
 }
+```
 
-(d)  switch(grade){
+(d)  
 
+```c++
+switch(grade){
  case  A:
-
  case  B:
-
- case  C: cout<<”合格”;break;
-
- case  D: cout<<”不合格”;break;
-
-  default:cout<<”请重新输入：”;
-
+ case  C: cout<<”合格”;
+ case  D: cout<<”不合格”;	 
+ default: cout<<”请重新输入：”;	 
 }
+```
 
-解答：
+- 解答：
 
-本题主要考查switch语句的使用。在switch语句执行过程中，找到第一个相匹配的表达式后，转去执行该case后的语句，直到遇到break语句后跳出switch语句执行其后的语句。对于选项b，若grade的值为A则执行结果为“合格不合格请重新输入”，不满足本题的要求；switch语句多个case分支不能简写为多个表达式之间用逗号隔开的一个case分支，选项c错误；case后的表达式只能是整型、字符型或枚举型常量表达式，选项d中case后的A、B、C、D是变量。答案为：a。
+  本题主要考查switch语句的使用。在switch语句执行过程中，找到第一个相匹配的表达式后，转去执行该case后的语句，直到遇到break语句后跳出switch语句执行其后的语句。对于选项b，若grade的值为A则执行结果为“合格不合格请重新输入”，不满足本题的要求；switch语句多个case分支不能简写为多个表达式之间用逗号隔开的一个case分支，选项c错误；case后的表达式只能是整型、字符型或枚举型常量表达式，选项d中case后的A、B、C、D是变量。答案为：a。
 
- 
+
 
 例题3：找出并改正下列程序段中的错误：
 
+```c++
 (1) if(x>0);-------------①
-
- y=x+1;-------------②
-
+y=x+1;-------------②
 else;----------------③
-
-   y=x-1;-------------④
+y=x-1;-------------④
 
 (2) While(i) --------------------①
-
 { cout<<i<<endl; ----------②
-
-​    i--;}--------------------③
+  i--;}--------------------③
 
 (3) int i=1,sum; --------①
-
 while(i<=100)  ------②
-
 { sum+=i; -----------③
-
-​    i++;}-------------④
+  i++;}-------------④
 
 (4) int i=1,sum=0;-------------①
-
 do{ -----------------------②
+sum+=i; -----------------③
+i++;}while(i<=100) ------④
+```
 
-   sum+=i; -----------------③
+- 解答：
 
-   i++;}while(i<=100) ------④
+  本题中包含了初学者在编程中容易犯的一些错误，提醒读者注意。
 
-解答：
+  (1) 本题考查对if语句的语法结构的掌握。本题的错误在于在if和else后不应加分号。答案为：将①、③句末的分号去掉。
 
-本题中包含了初学者在编程中容易犯的一些错误，提醒读者注意。
+  (2) C++是大小写敏感的语言。答案为：将①中While改为while。
 
-(1)本题考查对if语句的语法结构的掌握。本题的错误在于在if和else后不应加分号。答案为：将①、③句末的分号去掉。
+  (3) 本题目的是完成1到100求和，结果放在sum中，但是sum在参与运算前应该首先对其赋值。答案为：将①改为 int i=1,sum=0;
 
-(2)C++是大小写敏感的语言。答案为：将①中While改为while。
+  (4) 本题主要考查对do…while的语法结构的掌握以及与while结构进行对比区别两者在作用和语法上的不同。答案为：将第④行while后加分号即while(i<=100);
 
-(3)本题目的是完成1到100求和，结果放在sum中，但是sum在参与运算前应该首先对其赋值。答案为：将①改为 int i=1,sum=0;
 
-(4)本题主要考查对do…while的语法结构的掌握以及与while结构进行对比区别两者在作用和语法上的不同。答案为：将第④行while后加分号即while(i<=100);
 
- 
-
-例题4：循环语句for(inti=0;i<=5&&!i;i++) cout<<i<<endl;执行循环次数为（  ）。
+例题4：循环语句for(int i =0; i<=5 && !i; i++) cout << i << endl;执行循环次数为（  ）。
 
 ​      (a) 1次      (b)3次     (c) 5次      (d)6次
 
-解答：
+- 解答：
 
-本题考查对for循环的理解以及表达式运算。执行for循环i的初值为0，第一次循环时表达式0<=5&&!0结果为1所以执行循环体输出0；然后i自加为1，计算表达式1<=5&&!1结果为0，所以退出循环。答案为：a。
+  本题考查对for循环的理解以及表达式运算。执行for循环i的初值为0，第一次循环时表达式0<=5&&!0结果为1所以执行循环体输出0；然后i自加为1，计算表达式1<=5&&!1结果为0，所以退出循环。答案为：a。
 
- 
+
 
 例题5：程序段：
 
-inti,sum=0;
+```c++
+int	i,sum=0;
+for(i=1; i<=100; sum+=i,i++);
+```
 
-for(i=1;i<=100;sum+=i,i++);
+​	与上边程序段不等价的是（  ）。
 
-与上边程序段不等价的是（  ）。
-
-(a) int sum=0,i=1;
-
+```c++
+(a) 
+int sum=0,i=1;
 do{
+	sum+=i++;
+}while(i<=100);
 
- sum+=i++;
-
- }while(i<=100);
-
-(b) int i=1,sum=0;
-
+(b) 
+int i=1,sum=0;
 while(i<=100)
-
 {           
-
-  sum+=i++;
-
+	sum+=i++;
 }
 
-(c) int i=1,sum=0;
-
+(c) 
+int i=1,sum=0;
 while(1)
-
-{
-
-if(i>100)
-
-  break;
-
-sum+=i++;
-
+{	
+	if(i>100)
+		break;
+	sum+=i++;
 }
 
-(d) int i,sum=0;
-
+(d) 
+int i,sum=0;
 for(i=1;i<=100;i++,sum+=i);
+```
 
-解答：
+- 解答：
 
-本题主要考查对各种循环结构的以及它们之间转换关系的理解。本题中的程序段是求解1到100的和，循环结束后i的值为101，sum的值为5050。选项a、b分别用do…while和while循环完成求解1到100的和；选项c是永真循环，通过break语句退出循环，其作用也是求解1到100的和；选项d中i先自加然后求和，其作用为求解2到101的和，循环结束后i的值为101，sum的值为5150。答案为：d。
+  本题主要考查对各种循环结构的以及它们之间转换关系的理解。本题中的程序段是求解1到100的和，循环结束后i的值为101，sum的值为5050。选项a、b分别用do…while和while循环完成求解1到100的和；选项c是永真循环，通过break语句退出循环，其作用也是求解1到100的和；选项d中i先自加然后求和，其作用为求解2到101的和，循环结束后i的值为101，sum的值为5150。答案为：d。
 
- 
+
 
 例题6：运行下列程序的结果为（1）____________________。（2）___________________。
 
 （1）
 
-\#include<iostream.h>
+```c++
+#include <iostream>
+using namespace std;
 
 void main()
-
 {
-
   int x,y,cmultiple;
-
   cout<<"输入两个整数:";
-
   cin>>x>>y;
-
   cmultiple=x;
-
   while(1)
-
   {
-
-   if(cmultiple%y==0)break;
-
-​    cmultiple+=x;
-
+   	if(cmultiple%y==0)break;
+   	cmultiple+=x;
    }
-
   cout<<"最小公倍数:"<<cmultiple<<endl;
-
 }
+```
 
 输入：24
 
@@ -1026,239 +972,170 @@ void main()
 
 （2）
 
-\#include<iostream.h>
+```c++
+#include <iostream>
+using namespace std;
 
 void main()
-
 {
-
-  int x,y,var1;
-
-  cout<<"输入两个整数：";
-
-  cin>>x>>y;
-
- if(x<y)var1=x,x=y,y=var1;
-
-  var1=x%y;
-
-  while(var1)
-
-   {
-
-   x=y;y=var1;var1=x%y;
-
-​    }
-
-   cout<<"最大公约数:"<<y<<endl;
-
+	int x,y,var1;
+	
+	cout<<"输入两个整数：";
+	cin>>x>>y;
+	if(x<y)var1=x,x=y,y=var1;
+	var1=x%y;
+	while(var1)
+	{	  
+		x=y;y=var1;var1=x%y;
+		
+	}
+	cout<<"最大公约数:"<<y<<endl;
 }
+```
 
 输入：24
 
 7
 
-解答：
+- 解答：
 
-本题考查理解程序的能力。(1)中求解两个数x,y的最小公倍数思路为若x能够被y整除则x就是这两个数的最小公倍数，否则判断x的整数倍是否能被y整除，直到x的某个倍数可以被y整除，则该数即为这两个数的最小公倍数。(2)中求解两个数x,y的最大公约数思路为用两个数中较大的数作为被除数，较小的数作为除数，如果能够整除则较小的数就是这两个数的最大公约数，否则，将较小的数作为新的被除数，将两个数的模作为除数，重复以上工作直到模为0，则这个除数就是x和y的最大公约数。
+  本题考查理解程序的能力。(1)中求解两个数x,y的最小公倍数思路为若x能够被y整除则x就是这两个数的最小公倍数，否则判断x的整数倍是否能被y整除，直到x的某个倍数可以被y整除，则该数即为这两个数的最小公倍数。(2)中求解两个数x,y的最大公约数思路为用两个数中较大的数作为被除数，较小的数作为除数，如果能够整除则较小的数就是这两个数的最大公约数，否则，将较小的数作为新的被除数，将两个数的模作为除数，重复以上工作直到模为0，则这个除数就是x和y的最大公约数。
 
-答案为：(1) 最小公倍数:168   (2) 最大公约数:1
+  答案为：(1) 最小公倍数:168   (2) 最大公约数:1
 
- 
 
-例题7：以下程序的功能是输出1到100之间每位数的乘积大于每位数的和的数，如对数字12有1*2<1+2，所以不输出这个数；对数字23有2*3>2+3所以输出这个数。请填空。
 
-\#include<iostream.h>
+例题7：以下程序的功能是输出1到100之间每位数的乘积大于每位数的和的数，如对数字12有1\*2<1+2，所以不输出这个数；对数字23有2\*3>2+3所以输出这个数。请填空。
+
+```c++
+#include <iostream>
+using namespace std;
 
 void main()
-
-{
-
-​     int num,product=1,sum=0,n;
-
-​     for(num=1;num<=100;num++)
-
-​     {
-
-​       product=1;sum=0;
-
-​        ________①__n=num ______;
-
-​        while(_____②__n___)
-
-​        {
-
-​           product*=n%10;sum+=n%10;
-
-​           _______③__n/=10____;
-
-​        }
-
-​        if(product>sum) cout<<num<<endl;
-
-​     }
-
+{	
+	int num,product=1,sum=0,n;	
+	for(num=1;num<=100;num++)		
+	{		
+		product=1;sum=0;		
+        __①n=num __;	
+		
+        while(_②n_)			
+        {			
+			product*=n%10;sum+=n%10;			
+			___③n/=10__;			
+        }
+		
+        if(product>sum) cout<<num<<endl;		
+	}	
 }
+```
 
-解答：
+- 解答：
 
-本题中变量num用于表示1到100的整数，变量product用于存放每位数的乘积，变量sum用于存放每位数的和，变量n用于存放求解每位数的中间结果。外层for循环用于控制判断1到100的数，内层while循环用于计算每位数的积与每位数的和，if语句用于判断该数的每位数的乘积是否大于每位数的和，若满足此条件，则输出这个数。在①处要对n赋值，最初它是num的副本而后用于存放计算每位数的中间结果；②处为退出while循环的条件，当当前这个数的每位数都被取出，则内层循环结束；③改变循环变量的语句，使得循环在某种情况下可以结束，这里取n除10的商，直到商为0时结束内层循环。
+  本题中变量num用于表示1到100的整数，变量product用于存放每位数的乘积，变量sum用于存放每位数的和，变量n用于存放求解每位数的中间结果。外层for循环用于控制判断1到100的数，内层while循环用于计算每位数的积与每位数的和，if语句用于判断该数的每位数的乘积是否大于每位数的和，若满足此条件，则输出这个数。在①处要对n赋值，最初它是num的副本而后用于存放计算每位数的中间结果；②处为退出while循环的条件，当当前这个数的每位数都被取出，则内层循环结束；③改变循环变量的语句，使得循环在某种情况下可以结束，这里取n除10的商，直到商为0时结束内层循环。
 
-答案为：① ②  ③
+- 答案为：① ②  ③
 
- 
 
- 
 
 例题8：以下程序的功能是判断一个数是否为素数。请填空。
 
-\#include<iostream.h>
-
+```c++
+#include <iostream>
+using namespace std;
 void main()
-
-{
-
-​     int num;
-
-​     cout<<"输入一个正整数：";
-
-​     _________①________;
-
-​     int isprime=1;
-
-​     for(int i=2;i<=num-1;i++)
-
-​        if(________②________)
-
-​        {
-
-​           isprime=0;
-
-​           ______③______;
-
-​        }
-
-​     if(isprime)
-
-​       cout<<num<<" 是一个素数。"<<endl;
-
-​     else
-
-​       cout<<num<<" 不是一个素数。"<<endl;
-
+{	
+	int num;	
+	cout<<"输入一个正整数：";	
+	__①_;
+	
+	int isprime=1;	
+	for(int i=2;i<=num-1;i++)		
+        if(__②__)			
+        {			
+			isprime=0;			
+			__③__;			
+        }
+		
+	if(isprime)			
+		cout<<num<<" 是一个素数。"<<endl;
+	else			
+		cout<<num<<" 不是一个素数。"<<endl;	
 }
+```
 
-解答： 
+- 解答： 
 
-本题中变量num存放要判断的数，变量isprime用于记录该数是否为素数，当isprime为1时即该数为素数，否则为合数。判断思路为如果num能被2到num-1的任意一个数整除则该数不是素数。①处需要输入待判断的数，②处为判断条件，当检测到2到num-1中第一个能整除num的数时则可判断出该数不是素数，此时退出循环，故③为退出语句。
+  本题中变量num存放要判断的数，变量isprime用于记录该数是否为素数，当isprime为1时即该数为素数，否则为合数。判断思路为如果num能被2到num-1的任意一个数整除则该数不是素数。①处需要输入待判断的数，②处为判断条件，当检测到2到num-1中第一个能整除num的数时则可判断出该数不是素数，此时退出循环，故③为退出语句。
 
-答案为： ①cin>>num    ②num%i==0    ③break
+- 答案为： ①cin>>num    ②num%i==0    ③break
 
- 
+
 
 例题9：编写一个程序，输入一个正整数，判断它是否能被3，5，7同时整除。
 
-解答：
+- 解答：
 
 参考程序如下
 
-\#include<iostream.h>
+```c++
+#include <iostream>
+using namespace std;
 
 void main()
-
-{
-
-​     int num;
-
-​     cout<<"请输入一个正整数：";
-
-​     cin>>num;
-
-​     if(num<0) 
-
-​       cout<<"输入有误!";
-
-​     else
-
-​        if(num%3==0&&num%5==0&&num%7==0)
-
-​           cout<<num<<" 能被3、5、7同时整除。"<<endl;
-
-​        else
-
-​           cout<<num<<" 不能被3、5、7同时整除。"<<endl;
-
- 
-
+{	
+	int num;	
+	cout<<"请输入一个正整数：";	
+	cin>>num;
+	
+	if(num<0)		
+		cout<<"输入有误!";	
+	else if(num%3==0&&num%5==0&&num%7==0)
+		cout<<num<<" 能被3、5、7同时整除。"<<endl;
+	else
+		cout<<num<<" 不能被3、5、7同时整除。"<<endl;
 }
+```
 
- 
+
 
 例题10：编写一个程序，让用户输入年和月，然后判断该月有多少天。
 
-解答：
+- 解答：
 
-算法思想：判断某年某月有多少天，每个月的天数有四种可能：1、3、5、7、8、10、12月为31天，4、6、9、11月为30天，闰年的2月有29天，不是闰年则2月为28天。因为每月的天数有多种可能，我们选择用switch语句解决本题。程序流程是首先输入要判断的年月，然后判断该年月应有多少天，最后输出结果。
+  算法思想：判断某年某月有多少天，每个月的天数有四种可能：1、3、5、7、8、10、12月为31天，4、6、9、11月为30天，闰年的2月有29天，不是闰年则2月为28天。因为每月的天数有多种可能，我们选择用switch语句解决本题。程序流程是首先输入要判断的年月，然后判断该年月应有多少天，最后输出结果。
 
-参考程序如下：
+- 参考程序如下：
 
-\#include<iostream.h>
+```c++
+#include <iostream>
+using namespace std;
 
 void main()
-
 {
-
-  int year,month,days,leap;
-
-  cout<<"请输入年月:";
-
- cin>>year>>month;
-
-  switch(month)
-
-  {
-
-   case 1:
-
-   case 3:
-
-   case 5:
-
-   case 7:
-
-   case 8:
-
-   case 10:
-
-   case12:days=31;break;
-
-   case 4:
-
-   case 6:
-
-   case 9:
-
-   case11:days=30;break;
-
-   case2:if(year%400==0)
-
-​           leap=1;
-
-​        else if(year%4==0&&year%100!=0)
-
-​                   leap=1;
-
-​              else leap=0;
-
-​        if(leap)  days=29;
-
-​        else    days=28;
-
+	int year,month,days,leap;	
+	cout<<"请输入年月:";	
+	cin>>year>>month;	
+	switch(month)		
+	{		
+	case 1:		
+	case 3:		
+	case 5:		
+	case 7:		
+	case 8:
+	case 10:
+	case 12: days=31;break;
+	case 4:
+	case 6:
+	case 9:
+	case 11: days=30;break; 
+	case 2:
+		days = ((year%4==0 && year%100!=0) || (year%400==0))? 29 : 28;	break;	  
+	}
+	
+	cout<<year<<"年"<<month<<"月的天数为:"<<days<<endl;	
 }
-
-   cout<<year<<"年"<<month<<"月的天数为:"<<days<<endl;
-
-}
+```
 
  
 
@@ -1270,81 +1147,60 @@ void main()
 
 ![img](./pic/\clip_image008.png)        
 
-假设f(n)表示第n年的母牛数，已知f(0)=0,f(1)=2,f(2)=3,f(3)=4,推得在第n年时应有f(n-3)头母牛生育出f(n-3)头母牛，所以第n年共有f(n-1)+f(n-3)头母牛。据此得出数学表达式：f(n)=f(n-1)+f(n-3)。在下边的参考程序中分别用变量sum、sum1、sum2、sum3表示f(n),f(n-1),f(n-2),f(n-3)其中n从4变化到10。
+假设$f(n)$表示第$n$年的母牛数，已知$f(0)=0,f(1)=2,f(2)=3,f(3)=4,$推得在第$n$年时应有$f(n-3)$头母牛生育出$f(n-3)$头母牛，所以第$n$年共有$f(n-1)+f(n-3)$头母牛。据此得出数学表达式：$f(n)=f(n-1)+f(n-3)$。在下边的参考程序中分别用变量$sum、sum1、sum2、sum3$表示$f(n),f(n-1),f(n-2),f(n-3)$其中$n$从4变化到10。
 
- 
+- 参考程序如下：
 
-参考程序如下：
-
-\#include<iostream.h>
+```c++
+#include <iostream>
+using namespace std;
 
 void main()
-
 {
-
-​    int sum1=2,sum2=3,sum3=4,sum=0,n=10;
-
-​    for(inti=4;i<=n;i++)
-
-​    {
-
-​       sum=sum1+sum3;
-
-​       sum1=sum2;
-
-​       sum2=sum3;
-
-​       sum3=sum;
-
-​    }
-
-​    cout<<"第十年有"<<sum<<"头牛!"<<endl;
-
+    int sum1=2,sum2=3,sum3=4,sum=0,n=10;
+    for(inti=4;i<=n;i++)
+    {
+       sum=sum1+sum3;
+       sum1=sum2;
+       sum2=sum3;
+       sum3=sum;
+    }
+    cout<<"第十年有"<<sum<<"头牛!"<<endl;
 }
+```
 
  
 
-例题12：计算![img](./pic/\clip_image009.png)当通项![img](./pic/\clip_image010.png)时停止计算。
+例题12：计算$e=1+\frac {1}{1!}+\frac{1}{2!}+...+\frac{1}{n!}+...$ ，当通项$\frac{1}{n!}<10^{-7}$ 时停止计算。
 
-解答：
+- 解答：
+- 算法思想：
 
-算法思想：
+本题主要考查学生对循环结构的运用以及对数学问题编程技巧的掌握。本题为有规律的若干项相加，所以采用循环结构处理。循环的条件是当$\frac{1}{n!}\ge10^{-7}$时继续运算直到这个条件不满足时就达到了题目要求的精度，则停止运算。循环体中完成三件事，首先是求出本次（第$i$次）循环中的$\frac{1}{i!}$的值，然后计算当前的$e$，最后完成循环变量增1的操作。在求解本题时主要注意计算中所采用的变量的数据类型以及如何完成运算精度的控制。
 
-本题主要考查学生对循环结构的运用以及对数学问题编程技巧的掌握。本题为有规律的若干项相加，所以采用循环结构处理。循环的条件是当![img](./pic/\clip_image011.png)时继续运算直到这个条件不满足时就达到了题目要求的精度，则停止运算。循环体中完成三件事，首先是求出本次（第i次）循环中的![img](./pic/\clip_image012.png)的值，然后计算当前的e，最后完成循环变量增1的操作。在求解本题时主要注意计算中所采用的变量的数据类型以及如何完成运算精度的控制。
+- 参考程序如下：
 
-参考程序如下：
-
-\#include <iostream.h>
+```c++
+#include <iostream>
+using namesapce std;
 
 int main()
-
 {
-
-​       double e=1.0;
-
-​       double x=1.0;
-
-​       int i=1;
-
-​      while(x>=1.0e-7)
-
-​       {
-
-​        x=x/i;
-
-​        e=e+x;
-
-​        i=i+1;
-
-​       }
-
-​       cout <<"e = " << e<<endl;
-
-​       return 0;
-
+       double e=1.0;
+       double x=1.0;
+       int i=1;
+      while(x>=1.0e-7)
+       {
+        x=x/i;
+        e=e+x;
+        i=i+1;
+       }
+       cout <<"e = " << e<<endl;
+       return 0;
 }
+```
 
-【习题】
+## 【习题】
 
 一、             选择题
 
@@ -1364,23 +1220,20 @@ while(!1)cout<<”ok!”;
 
 4．  运行下列程序结果为（  ）。
 
-\#include<iostream.h>
-
+```c++
+#include <iostream>
+using namespace std;
 void main()
-
 {
-
    int i;
-
    for (i=0;i<=10;i++){
-
-​       if (i%2) cout<<i;
-
-​       else continue;
-
+       if (i%2)
+         cout<<i;
+       else
+         continue;
    }
-
 }
+```
 
 (a)246810     (b)12345      (c)678910     (d)13579
 
@@ -1388,87 +1241,60 @@ void main()
 
 二、             填空题
 
-1．    结构化程序设计的三种基本结构是__________、__________、__________。
+1．结构化程序设计的三种基本结构是__________、__________、__________。
 
-2．    continue语句实现的作用是________________________________________。
+2．continue语句实现的作用是________________________________________。
 
 3．若输入”china 2008!”,运行下列程序的输出结果为___________________________。
 
-\#include <iostream.h>
-
-\#include <stdio.h>
+```c++
+#include <iostream>
+#include <stdio.h>
+using namespace std;
 
 void main( )
-
 {
-
-​    char c;
-
-​    int letters=0,digits=0,others=0;
-
-​    cout<<"Please input aline charaters"<<endl;
-
-​    while ((c=getchar( ))!='\n')
-
-​    {
-
-​        if(c>='a' && c<='z' || c>='A' && c<='Z' )
-
-​           letters++;
-
-​        else
-
-​           if (c>='0' && c<='9')
-
-​               digits++;
-
-​           else
-
-​               others++;
-
-​    }
-
+    char c;
+    int letters=0,digits=0,others=0;
+    cout<<"Please input aline charaters"<<endl;
+    while ((c=getchar( ))!='\n')
+    {
+        if(c>='a' && c<='z' || c>='A' && c<='Z' )
+           letters++;
+        else
+           if (c>='0' && c<='9')
+               digits++;
+           else
+               others++;
+    }
    cout<<"letters:"<<letters<<endl
-
-​       <<"digits"<<digits<<endl
-
-​       <<"others"<<others<<endl;
-
+       <<"digits"<<digits<<endl
+       <<"others"<<others<<endl;
 }
+```
 
-4．本程序完成1!+2！+……+18!的计算，请将程序补充完整。
 
-\#include<iostream.h>
 
-\#include<iomanip.h>
+4．本程序完成$1!+2！+……+18!$的计算，请将程序补充完整。
+
+```c++
+#include <iostream>
+#include <iomanip>
+using namespace std;
 
 void main()
-
 {
-
-​    double sum=0,fac=1;
-
-​    for(int i=1;i<=18;i++)
-
-​    {   
-
-​        ___________①____________
-
- 
-
-​       ____________②___________
-
-​    }
-
-​    cout<<"1!+2!+……+18!="
-
-​        <<setiosflags(ios::fixed)<<setprecision(0)
-
-​       <<sum<<setprecision(6)<<endl;
-
+    double sum=0,fac=1;
+    for(int i=1;i<=18;i++)
+    {   
+        ___①____
+       ____②___
+    }
+    cout<<"1!+2!+……+18!="
+        <<setiosflags(ios::fixed)<<setprecision(0)
+       <<sum<<setprecision(6)<<endl;
 }
-
- 
+```
 
 三、             编程题
 
@@ -1523,8 +1349,7 @@ A B C D E F G
 11.    打印九九乘法表。
 
 
-
-【参考答案】
+## 【参考答案】
 
 一、选择题
 
@@ -1552,11 +1377,7 @@ digits:4
 
 others:2
 
- 
-
-4．①fac*=i;  ②sum+=fac;
-
- 
+ 4．①fac*=i;  ②sum+=fac;
 
  
 
@@ -1564,455 +1385,328 @@ others:2
 
 1．
 
-\#include<iostream.h>
-
+```c++
+#include <iostream>
+using namespace std;
 void main()
-
 {
+  double grade;
+  char* degree;
+  cout<<"请输入学生成绩：";
+  cin>>grade;
+  if(grade>100 || grade<0)
+  {
+	cout<<"您的输入有误!"<<endl;
+    return;
+  }
+  else if (grade>=90)
+  	degree = "优秀";
+  else if (grade>=80)
+    degree="良好";
+  else if (grade>=70)
+    degree="中";
+  else if (grade>=60)
+    degree="及格";
+  else
+    degree="不及格";
 
-​      double grade;
-
-​      char* degree;
-
-​      cout<<"请输入学生成绩：";
-
-​      cin>>grade;
-
-​      if(grade>100||grade<0)
-
-​      {
-
-​             cout<<"您的输入有误!"<<endl;
-
-​             return;
-
-​      }
-
-​      else
-
-​             if(grade>=70)
-
-​                    if(grade<80)
-
-​                           degree="中";
-
-​                    else if(grade<90)
-
-​                                  degree="良好";
-
-​                            else
-
-​                                  degree="优秀";
-
-​             else if(grade>=60)
-
-​                       degree="及格";
-
-​                     else
-
-​                       degree="不及格";
-
- 
-
-​      cout<<"分数:"<<grade<<endl
-
-​             <<degree<<endl;
-
+  cout<<"分数:"<<grade<<endl
+    <<degree<<endl;
 }
+```
 
 2．
 
-\#include<iostream.h>
+```c++
+#include <iostream>
+using namespace std;
 
 void main()
-
 {
+	int num1,num2,num3,num;
+    cout<<"请输入三个整数：";
+    cin>>num1>>num2>>num3;
+    if(num1>num2)
+    {
+      um=num1;
+      num1=num2;
+      num2=num;
+    }
 
-​      int num1,num2,num3,num;
+  if(num1>num3)
+  {
+  	num=num1;
+    num1=num3;
+    num3=num;
+  }
 
-​      cout<<"请输入三个**整数**：";
+  if(num2>num3)
+  {
+    num=num2;
+    num2=num3;
+    num3=num;
+  }
 
-​      cin>>num1>>num2>>num3;
-
-​      if(num1>num2)
-
-​      {
-
-​             num=num1;
-
-​             num1=num2;
-
-​             num2=num;
-
-​      }
-
-​      if(num1>num3)
-
-​      {
-
-​             num=num1;
-
-​             num1=num3;
-
-​             num3=num;
-
-​      }
-
-​      if(num2>num3)
-
-​      {
-
-​             num=num2;
-
-​             num2=num3;
-
-​             num3=num;
-
-​      }
-
-​      cout<<"三个数按从小到大输出为："<<endl
-
-​             <<num1<<endl
-
-​             <<num2<<endl
-
-​             <<num3<<endl;
-
+  cout<<"三个数按从小到大输出为："<<endl
+  <<num1<<endl
+  <<num2<<endl
+  <<num3<<endl;
 }
+```
+
+
 
 3．
 
-\#include<iostream.h>
+```c++
+#include <iostream>
+using namespace std;
 
 void main()
-
 {
+	cout<<"在100～200中同时满足用3除余2，用5除余3和用7除余2的整数为："<<endl;
 
-​      cout<<"在100～200中同时满足用3除余2，用5除余3和用7除余2的整数为："<<endl;
-
-​      for(int i=100;i<=200;i++)
-
-​      {
-
-​             if(i%3==2&&i%5==3&&i%7==2)
-
-​                    cout<<i<<endl;
-
-​      }
-
+	for(int i=100;i<=200;i++)
+    {
+        if(i%3==2&&i%5==3&&i%7==2)
+            cout<<i<<endl;
+    }
 }
+```
+
+
 
 4．
 
-\#include<iostream.h>
-
-\#include<math.h>
-
-void main()
-
-{
-
-​      int x,y,z,sum;
-
-​      cout<<"100～999中的水仙花数为："<<endl;
-
-​      for(int i=100;i<=999;i++)
-
-​      {
-
-​             x=i/100;
-
-​             y=i%100/10;
-
-​             z=i%10;
-
-​             sum=pow(x,3)+pow(y,3)+pow(z,3);
-
-​             if(i==sum)
-
-​                    cout<<i<<endl;
-
-​      }
-
-}
-
-5．
-
-\#include<iostream.h>
+```c++
+#include <iostream>
+#include <cmath>
+using namespace std;
 
 void main()
-
 {
-
-​      int sum;
-
-​      cout<<"1000之内的所有完数为："<<endl;
-
-​      for(int i=1;i<=1000;i++)
-
-​      {
-
-​             sum=0;
-
-​             for(int j=1;j<=i/2;j++)
-
-​                    if(i%j==0)
-
-​                           sum+=j;
-
-​             if(i==sum)
-
-​                    cout<<i<<endl;
-
-​      }
-
+	int x,y,z,sum;
+	cout<<"100～999中的水仙花数为："<<endl;
+	for(int i=100;i<=999;i++)
+	{
+		x=i/100;
+		y=i%100/10;
+		z=i%10;
+		sum=pow(x,3)+pow(y,3)+pow(z,3);
+		if(i==sum)
+			cout<<i<<endl;
+	}
 }
+```
+
+
+
+5.
+
+```c++
+#include <iostream>
+using namespace std;
+
+void main()
+{	
+	int sum;	
+	cout<<"1000之内的所有完数为："<<endl;
+	
+	for(int i=1;i<=1000;i++)		
+	{		
+		sum=0;		
+		for(int j=1;j<=i/2;j++)			
+			if(i%j==0)				
+				sum+=j;
+			
+			if(i==sum)				
+				cout<<i<<endl;			
+	}	
+}
+```
+
+6.
+
+```c++
+#include <iostream>
+using namespace std;
+
+void main()
+{	
+	int i,j,n;
+	
+	cout<<"请输入上三角行数：";	
+	cin>>n;
+	
+	for(i=1;i<=n;i++)		
+	{		
+		for(j=1;j<=(n-i)*2;j++)			
+			cout<<' ';
+		
+		for(j=1;j<=2*i-1;j++)			
+			cout<<"* ";
+		
+		cout<<endl;		
+	}
+	
+	for(i=n-1;i>=1;i--)		
+	{		
+		for(j=1;j<=(n-i)*2;j++)			
+			cout<<' ';
+		
+		for(j=1;j<=2*i-1;j++)			
+			cout<<"* ";
+		
+		cout<<endl;		
+	}	
+}
+```
+
+7.
+
+```c++
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+void main()
+{
+	int i,j;	
+	char x;
+	
+	for(i=1;i<=4;i++)		
+	{		
+		x='A';		
+		for(j=1;j<=2*(4-i);j++)			
+			cout<<' ';
+		
+		for(j=1;j<=2*i-1;j++)			
+		{			
+			cout<<setw(2)<<x;			
+			x+=1;			
+		}
+		
+		cout<<endl;		
+	}	
+}
+```
+
+8.
+
+```c++
+#include <iostream>
+using namespace std;
+
+void main()
+{
+	int peach=1;
+	
+	for(int day=1;day<10;day++) //day表示n天前		
+		peach=2*(peach+1);
+	
+	cout<<"猴子第一天摘了"<<peach<<"个桃子！";	
+}
+```
+
+9.
+
+```c++
+#include <iostream>
+using namespace std;
+
+void main()
+{
+	char play1,play2;	
+	char* result;
+	
+	cout<<"请两位玩家顺序输入Ｓ（表示剪刀）或Ｒ（表示石头）或Ｐ（表示纸）：";
+	
+	cin>>play1>>play2;
+	
+	if((play1=='R'||play1=='S'||play1=='P')&&(play2=='R'||play2=='S'||play2=='P'))	
+	{		
+		switch(play1)			
+		{			
+		case 'S':			
+			if(play2=='R') result="玩家2赢！";			
+			else if(play2=='P') result="玩家1赢！";			
+			else result="平局！";			
+			break;
+			
+		case 'R':			
+			if(play2=='P') result="玩家2赢！";			
+			else if(play2=='S') result="玩家1赢！";			
+			else result="平局！";			
+			break;
+			
+		case 'P':			
+			if(play2=='S') result="玩家2赢！";			
+			else if(play2=='R') result="玩家1赢！";			
+			else result="平局！";			
+			break;			
+		}
+		
+		cout<<result<<endl;		
+	}
+	
+	else		
+		cout<<"输入有误!"<<endl;	
+}
+```
+
+10.
+
+```c++
+#include <iostream>
+using namespace std;
+
+void main()
+{
+	
+	int item,item1=1,item2=1;	
+	cout<<"菲波那切数列的前20项为："<<endl;	
+	cout<<item1<<endl		
+		<<item2<<endl;
+	
+	for(int i=3;i<=20;i++)		
+	{		
+		item=item1+item2;		
+		cout<<item<<endl;		
+		item1=item2;		
+		item2=item;		
+	}	
+}
+```
+
+11.
+
+```c++
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+void main()
+{	
+	cout<<setw(3)<<'*';	
+	for(int title=1;title<=9;title++)		
+		cout<<setw(3)<<title;	
+	cout<<endl;
+	
+	for(int row=1;row<=9;row++)		
+	{  		
+		cout<<setw(3)<<row;		
+		for(int line=1;line<=row;line++)			
+			cout<<setw(3)<<row*line;		
+		cout<<endl;		
+	}	
+}
+```
+
+
 
  
 
-6．
-
-\#include<iostream.h>
-
-void main()
-
-{
-
-​      int i,j,n;
-
-​      cout<<"请输入上三角行数：";
-
-​      cin>>n;
-
-​      for(i=1;i<=n;i++)
-
-​      {
-
-​             for(j=1;j<=(n-i)*2;j++)
-
-​                    cout<<' ';
-
-​             for(j=1;j<=2*i-1;j++)
-
-​                    cout<<"* ";
-
-​             cout<<endl;
-
-​      }
-
-​      for(i=n-1;i>=1;i--)
-
-​      {
-
-​             for(j=1;j<=(n-i)*2;j++)
-
-​                    cout<<' ';
-
-​             for(j=1;j<=2*i-1;j++)
-
-​                    cout<<"* ";
-
-​             cout<<endl;
-
-​      }
-
-}
-
-7．
-
-\#include<iostream.h>
-
-\#include<iomanip.h>
-
-void main()
-
-{
-
-​      int i,j;
-
-​      char x;
-
-​      for(i=1;i<=4;i++)
-
-​      {
-
-​             x='A';
-
-​             for(j=1;j<=2*(4-i);j++)
-
-​                    cout<<' ';
-
-​             for(j=1;j<=2*i-1;j++)
-
-​             {
-
-​                    cout<<setw(2)<<x;
-
-​                    x+=1;
-
-​             }
-
-​             cout<<endl;
-
-​      }
-
-}
-
-8．
-
-\#include<iostream.h>
-
-void main()
-
-{
-
-​      int peach=1;
-
-​      for(int day=1;day<10;day++) //day表示n天前
-
-​             peach=2*(peach+1);
-
-​      cout<<"猴子第一天摘了"<<peach<<"个桃子！";
-
-}
-
-9．
-
-\#include<iostream.h>
-
-void main()
-
-{
-
-​      char play1,play2;
-
-​      char* result;
-
-​      cout<<"请两位玩家顺序输入Ｓ（表示剪刀）或Ｒ（表示石头）或Ｐ（表示纸）：";
-
-​      cin>>play1>>play2;
-
-​      if((play1=='R'||play1=='S'||play1=='P')&&(play2=='R'||play2=='S'||play2=='P'))
-
-​      {
-
-​             switch(play1)
-
-​             {
-
-​             case 'S':
-
-​                    if(play2=='R') result="玩家2赢！";
-
-​                    else if(play2=='P') result="玩家1赢！";
-
-​                         else result="平局！";
-
-​                    break;
-
-​             case 'R':
-
-​                    if(play2=='P') result="玩家2赢！";
-
-​                    else if(play2=='S') result="玩家1赢！";
-
-​                         else result="平局！";
-
-​                    break;
-
-​             case 'P':
-
-​                    if(play2=='S') result="玩家2赢！";
-
-​                    else if(play2=='R') result="玩家1赢！";
-
-​                         else result="平局！";
-
-​                    break;
-
-​             }
-
-​             cout<<result<<endl;
-
-​      }
-
-​      else
-
-​             cout<<"输入有误!"<<endl;
-
-}
-
-10．
-
-\#include<iostream.h>
-
-void main()
-
-{
-
-​      int item,item1=1,item2=1;
-
-​      cout<<"菲波那切数列的前20项为："<<endl;
-
-​      cout<<item1<<endl
-
-​             <<item2<<endl;;
-
-​      for(int i=3;i<=20;i++)
-
-​      {
-
-​             item=item1+item2;
-
-​             cout<<item<<endl;
-
-​             item1=item2;
-
-​             item2=item;
-
-​      }
-
-}
-
-11．
-
-\#include<iostream.h>
-
-\#include<iomanip.h>
-
-void main()
-
-{
-
-​      cout<<setw(3)<<'*';
-
-​      for(int title=1;title<=9;title++)
-
-​             cout<<setw(3)<<title;
-
-​      cout<<endl;
-
-​      for(int row=1;row<=9;row++)
-
-​      {  
-
-​             cout<<setw(3)<<row;
-
-​             for(int line=1;line<=row;line++)
-
-​                    cout<<setw(3)<<row*line;
-
-​             cout<<endl;
-
-​      }
-
-}
-
- 
-
- 
-
-**第4章        ****数组******
+# **第4章        **数组
 
 【内容提要】
 
@@ -2998,7 +2692,7 @@ void main()
 
 }
 
-# 第4章 C++函数与程序结构
+# 第5章 C++函数与程序结构
 
 【内容提要】
 
@@ -4537,7 +4231,7 @@ void fun(char ch,int num)
 
 16.运行下列程序结果为____________________________。
 
- #include<iostream.h>
+include<iostream.h>
 
 void fun( );
 

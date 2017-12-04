@@ -97,6 +97,10 @@ SOURCE=.\Point.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\PolyLine.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\Shape.cpp
 # End Source File
 # End Group
@@ -110,6 +114,10 @@ SOURCE=.\Line.h
 # Begin Source File
 
 SOURCE=.\Point.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\PolyLine.h
 # End Source File
 # Begin Source File
 
