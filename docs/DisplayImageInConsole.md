@@ -72,10 +72,17 @@ void DisplayImage(CRSImage* pRSImg)
 
 ```c++
 // 在图像文件打开之后，就可以调用图像显示
-if (rsImg.IsOpen())
-	DisplayImage(&rsImg);
+...
+  case 'O':
+	...
+	rsImg.Open(...);
+	if (rsImg.IsOpen())
+		DisplayImage(&rsImg);
+	break;
 ```
 
-## 5. Thinking
+## 5. 效果
 
-你若有兴趣，可以修改DisplayImage的接口，实现图像的定制化显示，如：波段组合等。
+显示的效果图如下所示：![DisplayImageInConsole](./Png/DisplayImageInConsole.png)
+
+- 你若有兴趣，可以修改DisplayImage的接口，实现图像的定制化显示，如：波段组合等。
