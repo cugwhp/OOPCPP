@@ -16,7 +16,7 @@
 #include <iostream>
 #include <string>
 #include <sstream>
-#include "RSImage.h"
+#include "RS2DImage.h"
 
 using namespace std;
 
@@ -31,7 +31,7 @@ int main()
 	char			cCmd;
 	bool			bExit = false;
 	string			strParam;
-	CRSImage	rsImg;		//RSImage对象
+	CRS2DImage		rsImg;		//RSImage对象
 
 	//循环输入命令，直到输入'X'，退出程序
 	do {
