@@ -253,7 +253,7 @@ bool	CRS2DImage::InitBuffer(void)
 
     for (i=0; i<m_nBands; ++i)
     {
-        m_ppData[i] = new DataType[m_nLines*m_nBands];
+        m_ppData[i] = new DataType[m_nLines*m_nSamples];
         if (m_ppData[i] == NULL)   return false;      
     }
 
