@@ -14,6 +14,7 @@ CRSImage::CRSImage()
 
 CRSImage::CRSImage(const CRSImage& img)
 {
+
 }
 
 CRSImage::~CRSImage()
