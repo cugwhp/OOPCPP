@@ -23,21 +23,22 @@ class CRSImage
 public:
 	typedef unsigned char	DataType;	//typedef 定义数据类型别名
 
-	//构造/析构函数
+	//------------------- 构造/析构函数 -----------------------//
 	CRSImage();
 	CRSImage(const CRSImage& img);
 	~CRSImage();
 
-	// Operations
+	//-------------------------- Operations ------------------------------//
 	bool	Open(const char* lpstrPath);	//打开文件，传入文件路径，读取数据到内存变量
 	bool	Save(const char* lpstrPath);	//保持文件，传入文件路径，写数据到硬盘
 	void	Close();						//关闭图像，初始化变量
 	void	PrintInfo();					//打印信息
 	int		CalcStatistics();				//计算统计量，以波段为单位
-	int		Histogram();
-	void	Rotate(float fAngle);
-	void	Zoom(float fZoom);
-	void	Filter(double* dFilterKernel, int nSize);
+	int		Histogram();					//直方图
+	void	Rotate(float fAngle);			//旋转图像
+	void	Zoom(float fZoom);				//缩放图像
+	void	Filter(double* dFilterKernel, int nSize);	//图像滤波
+	void	Display(int nRedBand=0, int nGrnBand=1, int nBluBand=2);		//显示图像 Add by 2017.12.11
 
 	//--------------- 内联函数，获取图像属性值 --------------------//
 	inline int	GetBands() const {return m_nBands;}
