@@ -16,8 +16,6 @@
 ## [第六章 数组、指针、字符串](./Handout/Ch6_Array_Pointer_String.md)
 ## [实习5 数组、指针、字符串的使用](./Handout/Ex5_Array.md)
 ## 总复习
-
----
 ## [**课件下载**](https://github.com/cugwhp/OOPCPP/tree/master/docs/PDFs)
 
 ---
