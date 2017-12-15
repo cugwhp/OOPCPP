@@ -1,15 +1,6 @@
 #Top 4 Open Source Image Library
 简要介绍四大图像库：OpenCV/FreeImage/CImg/CxImage
 
-目录
-
-[1. OpenCV](#1.OpenCV)
-
-[2. CxImage](#2.CxImage)
-
-[3. CImg](#3.CImg)
-
-[4. FreeImg](#4.FreeImg)
 ___
 
 ##1.OpenCV
