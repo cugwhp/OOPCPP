@@ -3,17 +3,8 @@
 
 ___
 
-#Table of content
 
-[OpenCV](#1.OpenCV)
-
-[CxImage](#2.CxImage)
-
-[CImg](#3.CImg)
-
-[FreeImg](#4.FreeImg)
-
-##1.OpenCV
+## 1.OpenCV
 
 1.对OpenCV 的印象：功能十分的强大，而且支持目前先进的图像处理技术，体系十分完善，操作手册很详细，手册首先给大家补计算机视觉的知识，几乎涵盖了近10年内的主流算法；
 
@@ -26,7 +17,7 @@ ___
 但好歹该库是开放的，所以自己可以修改；而且支持CVS。另外该库用的是IPL矩阵库，速度奇快～～
 <http://sourceforge.net/projects/opencvlibrary/>
 
-##2.CxImage
+## 2.CxImage
 2.对CxImage 考察的印象：该开发包完全开放源代码，图像封装为一个类，功能极为强大，与Windows、MFC支持极好
 
 ，支持图像的多种操作（线性滤波、中值滤波、直方图操作、旋转缩放、区域选取、阈值处理、膨胀腐蚀、alpha混合等等）
@@ -39,7 +30,7 @@ ___
 <http://www.xdp.it/cximage.htm>
 
 
-##3.CImg
+## 3.CImg
 ### 3.1 Introduction
 
 [CImg](www.cimg.eu) is a convient and simple image process toolkit with C++ template library. 
@@ -112,7 +103,7 @@ int main()
 
 - 程序截图![image](http://cimg.eu/img/tutorial.jpg)
 
-##4.FreeImg
+## 4.FreeImg
 4.FreeImage ：C语言的体系，大量使用指针运算速度可以保证，内含先进的多种插值算法。
 另外独有的支持meta exif信息的读取。该库最大的特点就是比较简练，只把重点放在对各种格式图像的读取写入支持上，没有显示部分，实际编程的时候还是需要调用API函数进行显示。
 <http://freeimage.sourceforge.net/>
