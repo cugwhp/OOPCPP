@@ -33,6 +33,6 @@
 
 ---
 # 课程设计
-## [**课程设计**](./CourseDesgin/CourseDesgin.md)
+## [**课程设计**](./CourseDesgin/CourseDesign.md)
 
 Enjoy it.
