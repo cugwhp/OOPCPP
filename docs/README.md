@@ -35,6 +35,6 @@
 # [**课程设计**](./CourseDesign/CourseDesign.md)
 
 ---
-# [**问题讨论**](./Issues)
+# [**问题讨论**](./Issues/Issues.md)
 
 Enjoy it.
