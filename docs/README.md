@@ -7,14 +7,6 @@
 
 ---
 
-目录
-[教学大纲](#教学大纲)
-[上机实习](#上机实习)
-[课内实践](#课内实践项目列表)
-[课程设计](#课程设计)
-[问题讨论](#问题讨论)
-___
-
 # **教学大纲**
 ## [第一章 绪论](./Handout/Ch1_Introduction.md)
 ## [第二章 C++语言概述](./Handout/Ch2_C++Basic.md)
@@ -31,7 +23,7 @@ ___
 ## [实习2 函数的使用](./Exercise/Ex2_Function.md)
 ## [实习3 类与对象的应用实例](./Exercise/Ex3_CLASS.md)
 ## [实习4 多文件结构的C++程序](./Exercise/Ex4_Project.md)
-## [实习5 数组、指针、字符串的使用](./Handout/Ex5_Array.md)
+## [实习5 数组、指针、字符串的使用](./Exercise/Ex5_Array.md)
 ## [**实习报告模板**](./Projects/RSImage/%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1%E6%8A%A5%E5%91%8A%E6%A8%A1%E6%9D%BF.doc)
 
 ---
