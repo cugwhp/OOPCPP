@@ -1,11 +1,9 @@
-#Top 4 Open Source Image Library
+# Top 4 Open Source Image Library
+
 简要介绍四大图像库：OpenCV/FreeImage/CImg/CxImage
 
 ___
-
-
 ## 1.OpenCV
-
 1.对OpenCV 的印象：功能十分的强大，而且支持目前先进的图像处理技术，体系十分完善，操作手册很详细，手册首先给大家补计算机视觉的知识，几乎涵盖了近10年内的主流算法；
 
 然后将图像格式和矩阵运算，然后将各个算法的实现函数。
