@@ -45,7 +45,7 @@
   - 课后习题1-1/1-3/1-4
   - 课后习题1-9/1-10/1-11
 
->>>>>>> 939d71a7d84fa2ee4ed22a2803d0ceb3a85d66b4
+
 ## 4. Sample code
 ```c++
 // The first program - Hello World.
