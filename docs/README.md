@@ -5,7 +5,6 @@
 
 **Have any questions or problems in c++ programming language, please contact me with <cugwhp@qq.com>.**
 
-
 ---
 
 # **教学大纲**
@@ -18,6 +17,7 @@
 ## [实习5 数组、指针、字符串的使用](./Handout/Ex5_Array.md)
 ## 总复习
 
+---
 ## [**课件下载**](https://github.com/cugwhp/OOPCPP/tree/master/docs/PDFs)
 
 ---
