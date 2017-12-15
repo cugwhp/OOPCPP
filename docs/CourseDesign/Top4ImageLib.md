@@ -27,14 +27,80 @@
 <http://www.xdp.it/cximage.htm>
 
 
-## 3. CImg
-3. CImg ：就一个.h文件所以用起来很简明，但感觉功能上不如CxImage。
-  可以与CxImage配合使用，因为CImg提供了基于lapack的矩阵运算函数和完善的线性滤波卷积函数，同时CImg做像素运算还是很方便的。
-  另外，独有Display类可以方便的实现各种显示，包括显示图像、打字、画线等等。还有，该库有个基于光流的多尺度图像配准例子，很好。
+## 3. [CImg](www.cimg.eu)
+### 3.1 Introduction
 
-<http://cimg.sourceforge.net/>
+[CImg](www.cimg.eu) is a convient and simple image process toolkit with C++ template library. 
 
+[CImg](www.cimg.eu) has some strong alogrithm supported by LAPACK in image filtering, neighbor calculation, registration, etc. Moreover, it can display image, text, line, rectangle etc.
 
+There are some open source using [CImg](www.cimg.eu). 
+
+### 3.2 Compile
+
+Compile CImg is simple, only include <cimg.h> in your projects.
+
+CImg supports many image formats, such as jpeg, png, tiff etc by the 3rd library. If you want CImg supports the 3rd lirary, you need download the 3rd library, and compile CImg. The following is the CImg supports [libjpeg steps](https://stackoverflow.com/questions/46055720/cannot-load-any-image-with-cimg/46058914#46058914).
+
+Visit [Git](https://github.com/dtschump/CImg) to colne CImg code source.
+
+### 3.3 [Tutorial](http://cimg.eu/reference/group__cimg__tutorial.html)
+
+[Tutorial : Getting Started](http://cimg.eu/reference/group__cimg__tutorial.html)
+
+- sample code
+
+```c++
+// using JPEG, need prepare libjpeg
+#define XMD_H
+#define cimg_use_jpeg
+
+// using CImg
+#include "CImg.h"
+using namespace cimg_library;	//namespace
+
+// main function
+int main() 
+{
+  // define 2 image object, one for image data, the other for image profile
+  CImg image("lena.jpg"), visu(500,400,1,3,0);
+  
+  // define different color to draw plot
+  const unsigned char red[] = { 255,0,0 }, green[] = { 0,255,0 }, blue[] = { 0,0,255 };
+ 
+  // Blur the image, with a gaussian blur and a standard variation of 2.5.
+  image.blur(2.5);
+  
+  // Creation of two display windows, one for the input image image, and one for the image visu which will be display intensity profiles. By default, CImg displays handles events (mouse,keyboard,..). 
+  CImgDisplay main_disp(image,"Click a point"), draw_disp(visu,"Intensity profile");
+  
+  // event loop
+  while (!main_disp.is_closed() && !draw_disp.is_closed()) 
+  {
+    main_disp.wait();	//blank loop
+    if (main_disp.button() && main_disp.mouse_y()>=0) 
+    {
+      // click y position
+      const int y = main_disp.mouse_y();
+      
+      visu.fill(0);	// clear visu
+     
+      // get_crop(x,y,z,c) and draw_graph in visu(image)
+      visu.draw_graph(image.get_crop(0,y,0,0,image.width()-1,y,0,0),red,1,1,0,255,0);
+      visu.draw_graph(image.get_crop(0,y,0,1,image.width()-1,y,0,1),green,1,1,0,255,0); 
+      visu.draw_graph(image.getcrop(0, y,0,2,image.width()-1,y,0,2),blue,1,1,0,255, 0);
+     
+      //Display visu
+      draw_disp.display(visu);
+    }
+  }
+  return 0;
+}
+```
+
+- 程序截图![image](http://cimg.eu/img/tutorial.jpg)
+
+#1
 
 ## 4. FreeImg
 4.FreeImage ：C语言的体系，大量使用指针运算速度可以保证，内含先进的多种插值算法。
