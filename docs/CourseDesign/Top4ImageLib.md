@@ -32,7 +32,27 @@
   可以与CxImage配合使用，因为CImg提供了基于lapack的矩阵运算函数和完善的线性滤波卷积函数，同时CImg做像素运算还是很方便的。
   另外，独有Display类可以方便的实现各种显示，包括显示图像、打字、画线等等。还有，该库有个基于光流的多尺度图像配准例子，很好。
 
-<http://cimg.sourceforge.net/>
+<>
+
+### 3.1 Introduction
+
+CImg is a convenient image process toolkit with C++ template library. It is only one header with CImg.h, use it simply.
+
+CImg is a template class, and Includes: image display, draw text and graph etc.
+
+CImg supports several image  matrix algorithm by lapack，such as filter, rotate, crop, registeration etc.
+
+CImg supports many image format with 3rd library, such as jpeg,png,tif, etc.
+
+Okay, CImg is a very good source for who are learning image process.
+
+Web Site [CImg](http://cimg.eu/) or [Git](https://github.com/dtschump/CImg)
+
+### 3.2 Compile CImg
+
+https://stackoverflow.com/questions/46055720/cannot-load-any-image-with-cimg/46058914#46058914
+
+### 3.2 Using CImg 
 
 ## 4. FreeImg
 4.FreeImage ：C语言的体系，大量使用指针运算速度可以保证，内含先进的多种插值算法。
