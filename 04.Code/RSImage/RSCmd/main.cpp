@@ -16,6 +16,7 @@
 #include <iostream>
 #include <string>
 #include <sstream>
+#include <cmath>
 #include "RSImage.h"
 
 using namespace std;
@@ -26,6 +27,10 @@ void Usage();	//declaration forward
 // 主函数
 int main()
 {
+	cout << pow(2.0, 5) << endl;
+	cout <<(1<<5) <<endl;
+	return 0;
+
 	Usage();	//Command用法
 
 	char			cCmd;

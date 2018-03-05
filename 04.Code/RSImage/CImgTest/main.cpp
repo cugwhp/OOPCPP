@@ -3,12 +3,13 @@
 
 #include "CImg.h"
 using namespace cimg_library;
-
+#include <iostream>
 #include <string>
 using namespace std;
 
 int main()
 {
+
 	string	strImgPath = "C:\\Users\\Apple\\Pictures\\DSC_1097_small.JPG";
 	CImg<unsigned char>	image(strImgPath.c_str());
 	CImg<unsigned char>	visu(500, 400, 1, 3, 0);
@@ -35,6 +36,6 @@ int main()
 		}
 	}
 
-	
+
 	return 0;
 }
