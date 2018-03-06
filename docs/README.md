@@ -5,7 +5,12 @@
 
 **Have any questions or problems in c++ programming language, please contact me with <cugwhp@qq.com>.**
 
-- [教学大纲](#问题讨论)
+---
+# Table of Content
+- [教学大纲](#教学大纲)
+- [上机实习](#上机实习)
+- [课内实践](#课内实践)
+- [课程设计](#课程设计)
 ---
 
 # **教学大纲**
@@ -28,12 +33,9 @@
 ## [**实习报告模板**](./Projects/RSImage/%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1%E6%8A%A5%E5%91%8A%E6%A8%A1%E6%9D%BF.doc)
 
 ---
-# [**课内实践项目列表**](./Projects/Project_Title.md)
+# [**课内实践**](./Projects/Project_Title.md)
 
 ---
 # [**课程设计**](./CourseDesign/CourseDesign.md)
-
----
-# [**问题讨论**](./Issues/Issues.md)
 
 Enjoy it.
