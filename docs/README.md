@@ -5,6 +5,7 @@
 
 **Have any questions or problems in c++ programming language, please contact me with <cugwhp@qq.com>.**
 
+- [教学大纲](#问题讨论)
 ---
 
 # **教学大纲**
