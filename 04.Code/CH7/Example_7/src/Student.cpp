@@ -14,8 +14,8 @@ Student::~Student()
 void Student::Print(ostream& os)
 {
     Person::Print(os);
-    os << "Name:  " << GetName() << endl;
-    os << "Age:   " << GetAge() << endl;
+//    os << "Name:  " << GetName() << endl;
+//    os << "Age:   " << GetAge() << endl;
     os << "ID:    " << m_ulID << endl;
     os << "Score: " << m_nScore << endl;
 }

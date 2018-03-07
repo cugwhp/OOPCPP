@@ -11,6 +11,7 @@
 - [上机实习](#上机实习)
 - [课内实践](#课内实践)
 - [课程设计](#课程设计)
+
 ---
 
 # **教学大纲**
@@ -20,6 +21,8 @@
 ## [第四章 类与对象](./Handout/Ch4_Class.md)
 ## [第五章 数据的共享与保护](./Handout/Ch5_Scope.md)	
 ## [第六章 数组、指针、字符串](./Handout/Ch6_Array_Pointer_String.md)
+## [第七章 继承与派生](./Handout/Ch7_Inheritance.md)
+## [第八章 多态](./Handout/Ch8_Polymorphism.md)
 ## 总复习
 ## [**课件下载**](https://github.com/cugwhp/OOPCPP/tree/master/docs/PDFs)
 
