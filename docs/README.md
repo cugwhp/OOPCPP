@@ -33,6 +33,7 @@
 ## [实习3 类与对象的应用实例](./Exercise/Ex3_CLASS.md)
 ## [实习4 多文件结构的C++程序](./Exercise/Ex4_Project.md)
 ## [实习5 数组、指针、字符串的使用](./Exercise/Ex5_Array.md)
+## [实习6 继承与派生](./Exercise/Ex6_Inheritance.md)
 ## [**实习报告模板**](./Projects/RSImage/%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1%E6%8A%A5%E5%91%8A%E6%A8%A1%E6%9D%BF.doc)
 
 ---
