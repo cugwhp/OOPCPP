@@ -9,16 +9,16 @@
 
 ## 实习题目
 ### 题目1：实现Person、Student、CollegeStu的继承关系，完成Print功能。
-![继承关系图](../png/Ex6_1_Inheritance.png)
+![继承关系图](../Png/Ex6_1_Inheritance.png)
 
 ### 题目2：实现Item、BulkItem、DeductionItem的继承关系，实现TotalPrice功能，类图如下所示：
-![类关系图](../png/Ex6_2_Sell.png)
+![类关系图](../Png/Ex6_2_Sell.png)
 
 主函数实现功能说明：
 
 - 输入购买商品数量$n$，计算各种购买方式的总价，输出一种最优的购买方式。
 
-**提示**![三种情况下，总价-数量图](../png/Ex6_2_Total_Price.png)
+**提示**![三种情况下，总价-数量图](../Png/Ex6_2_Total_Price.png)
 
 ### 题目3：实现一个虚继承的例子，分析虚继承的目的。
 
