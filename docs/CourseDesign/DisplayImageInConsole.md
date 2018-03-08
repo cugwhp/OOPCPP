@@ -83,6 +83,6 @@ void DisplayImage(CRSImage* pRSImg)
 
 ## 5. 效果
 
-显示的效果图如下所示：![DisplayImageInConsole](./Png/DisplayImageInConsole.png)
+显示的效果图如下所示：![DisplayImageInConsole](../Png/DisplayImageInConsole.png)
 
 - 你若有兴趣，可以修改DisplayImage的接口，实现图像的定制化显示，如：波段组合等。
