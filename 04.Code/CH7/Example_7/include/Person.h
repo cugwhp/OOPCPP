@@ -14,7 +14,7 @@ class Person
         string  GetName() const {return m_strName; }
         int GetAge() const { return m_nAge; }
 
-        void Print(ostream& os);
+        virtual void Print(ostream& os) const;
     protected:
 
     private:

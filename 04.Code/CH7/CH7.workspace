@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_workspace_file>
+	<Workspace title="Workspace">
+		<Project filename="Example_7/Example_7.cbp" />
+		<Project filename="../../docs/Code/Ex6/Ex6_2_Sell/Ex6_2_Sell.cbp" />
+		<Project filename="Example_Lib/Example_Lib.cbp" />
+		<Project filename="Shape/Shape.cbp" />
+	</Workspace>
+</CodeBlocks_workspace_file>

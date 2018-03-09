@@ -12,7 +12,7 @@ class Student : public Person
         unsigned long   GetID() const { return m_ulID; }
         int GetScore() const { return m_nScore; }
 
-        void Print(ostream& os);
+        void Print(ostream& os) const;
     protected:
 
     private:
