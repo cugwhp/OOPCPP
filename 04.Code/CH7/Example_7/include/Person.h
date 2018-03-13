@@ -22,5 +22,6 @@ class Person
         int     m_nAge;
 };
 
+ostream& operator<<(ostream&os, const Person& onePerson);
 
 #endif // PERSON_H

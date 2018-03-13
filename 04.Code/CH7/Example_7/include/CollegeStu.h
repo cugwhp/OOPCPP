@@ -10,6 +10,7 @@ class CollegeStu : public Student
         virtual ~CollegeStu();
 
         string GetMajor() const { return m_strMajor; }
+        void Print(ostream& os) const;
     protected:
 
     private:

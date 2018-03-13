@@ -10,3 +10,10 @@ CollegeStu::~CollegeStu()
 {
     //dtor
 }
+
+void CollegeStu::Print(ostream& os) const
+{
+    Student::Print(os);
+
+    os << "Major: " << m_strMajor << endl;
+}
