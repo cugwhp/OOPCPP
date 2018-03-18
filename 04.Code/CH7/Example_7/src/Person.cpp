@@ -2,11 +2,13 @@
 
 Person::Person(string strName, int nAge) : m_strName(strName), m_nAge(nAge)
 {
+    cout << "Person constructor..." << endl;
     //ctor
 }
 
 Person::~Person()
 {
+    cout << "Person deconstructor..." << endl;
     //dtor
 }
 

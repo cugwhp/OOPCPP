@@ -4,11 +4,13 @@ Student::Student(string strName, int nAge,
                  unsigned long ulID, int nScore) :
     Person(strName, nAge), m_ulID(ulID), m_nScore(nScore)
 {
+    cout << "Student constructor..." << endl;
     //ctor
 }
 
 Student::~Student()
 {
+    cout << "Student deconstructor..." << endl;
     //dtor
 }
 

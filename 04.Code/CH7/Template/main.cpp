@@ -1,11 +1,8 @@
 #include <iostream>
-
-using namespace std;
-
-#include "Circle.h"
-#include "Rectangle.h"
 #include "Student.h"
 #include "Func.hpp"
+
+using namespace std;
 
 int main()
 {

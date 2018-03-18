@@ -5,5 +5,8 @@
 		<Project filename="../../docs/Code/Ex6/Ex6_2_Sell/Ex6_2_Sell.cbp" />
 		<Project filename="Example_Lib/Example_Lib.cbp" />
 		<Project filename="Shape/Shape.cbp" />
+		<Project filename="7_2/7_2.cbp" />
+		<Project filename="Template/Template.cbp" />
+		<Project filename="Ex7_Override/Ex7_Override.cbp" />
 	</Workspace>
 </CodeBlocks_workspace_file>

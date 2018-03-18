@@ -22,13 +22,17 @@
 using namespace std;
 
 
+
 void Usage();	//declaration forward
 
 // 主函数
 int main()
 {
-	cout << pow(2.0, 5) << endl;
-	cout <<(1<<5) <<endl;
+	Base	b1, b2;
+	if (b1<b2)
+		cout << "<" << endl;
+	else
+		cout << ">=" << endl;
 	return 0;
 
 	Usage();	//Command用法
