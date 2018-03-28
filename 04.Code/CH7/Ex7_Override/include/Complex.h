@@ -20,6 +20,8 @@ public:
     Complex& operator--();
     const Complex operator--(int);
 
+//    Complex operator+(const Complex& c2);
+
     //+-*/
     friend Complex operator+(const Complex& c1, const Complex& c2);
     friend Complex operator+=(Complex& c1, const Complex& c2);

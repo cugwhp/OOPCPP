@@ -1,24 +1,25 @@
 #ifndef FUNC_HPP_INCLUDED
 #define FUNC_HPP_INCLUDED
 
-template <class T>
-void sort(T* pAry, int n)
+template <typename T>
+void sort(T* pBeg, T* pEnd)
 {
-    if (pAry = 0L)
+    if (pBeg==0L || pEnd==0L || pBeg>pEnd)
         return;
 
-    T   tmp;
-    int i, j;
+    T*   p1;
+    T*   p2;
+    T    tmp;
 
-    for (i=0; i<n; ++i)
+    for (p1=pBeg; p1<pEnd; ++p1)
     {
-        for (j=i+1; j<n; ++j)
+        for (p2=p1+1; p2<pEnd; ++p2)
         {
-            if (pAry[i] < pAry[j])
+            if (*p1 < *p2)
             {
-                tmp = pAry[i];
-                pAry[i] = pAry[j];
-                pAry[j] = tmp;
+                tmp = *p1;
+                *p1 = *p2;
+                *p2 = tmp;
             }
         }
     }

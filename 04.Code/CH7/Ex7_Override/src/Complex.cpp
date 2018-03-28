@@ -137,3 +137,10 @@ ostream& operator<<(ostream& os, const Complex& c)
 
     return os;
 }
+
+/*
+Complex Complex::operator+(const Complex& c2)
+{
+    return (*this + c2);
+}
+*/

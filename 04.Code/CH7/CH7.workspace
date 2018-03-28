@@ -8,5 +8,6 @@
 		<Project filename="7_2/7_2.cbp" />
 		<Project filename="Template/Template.cbp" />
 		<Project filename="Ex7_Override/Ex7_Override.cbp" />
+		<Project filename="stl/stl.cbp" />
 	</Workspace>
 </CodeBlocks_workspace_file>

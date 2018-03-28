@@ -14,10 +14,22 @@ Student::~Student()
     //dtor
 }
 
-bool Student::operator<(const Student& s)
+bool operator<(const Student&s1, const Student& s2)
 {
-    if (m_ID<s.m_ID)
+    if (s1.m_ID<s2.m_ID)
         return true;
 
     return false;
+}
+
+ostream& operator<<(ostream& os, const Student& s)
+{
+    os << "ID: " << s.m_ID << "    Name: " << s.m_strName;
+
+    return os;
+}
+
+void sort(Student* pBeg, Student* pEnd)
+{
+    return;
 }
