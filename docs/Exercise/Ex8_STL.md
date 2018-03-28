@@ -13,10 +13,12 @@
 	
 ### 题目2：使用accumulate统计vector<int>容器对象的元素之和。
 	提示：
+	
 	```c++
-	#include <algorithm>
-	#include <numeric>
+		#include <algorithm>
+		#include <numeric>
 	```
+	
 	
 ### 题目3：查找某个字符串在另一个字符串中出现的次数。
 	提示：使用find_first_of函数。
@@ -34,6 +36,6 @@
 	思考：能否想出2种不同的实现途径。
 	
 ### 题目6：读入一个词典文件，实现一个简易的词典查询系统。
-	提示：词典文件[dictionary](./dictionary.txt)
+	提示：词典文件 [dictionary](./dictionary.txt)
 
 	
