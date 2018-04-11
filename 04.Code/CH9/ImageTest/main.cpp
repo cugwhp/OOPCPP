@@ -3,6 +3,9 @@
 #include <string>
 #include <vector>
 #include <list>
+#include <iterator>
+#include <algorithm>
+#include <numeric>
 using namespace std;
 
 struct Stu{
@@ -22,6 +25,15 @@ struct Stu{
 
 int main()
 {
+    // iostream_iterator
+    istream_iterator<int> int_it(cin);
+    istream_iterator<int> eof;
+    int     val = 0;
+    val = accumulate(int_it, eof, 0);
+    cout << val << endl;
+
+    return 0;
+
     int     a[] = {1,2,3,4,5};
     vector<int> v1(&a[0], &a[0]+5);
     list<int>   l1(&a[0], &a[0]+5);
@@ -64,7 +76,5 @@ int main()
    iter = set1.find(s1);
 
     s1 = "RS";
-    iter = set1.find(s1);
-
     return 0;
 }
