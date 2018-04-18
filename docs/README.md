@@ -35,7 +35,7 @@
 ## [第五章 数据的共享与保护](./Handout/Ch5_Scope.md)	
 ## [第六章 数组、指针、字符串](./Handout/Ch6_Array_Pointer_String.md)
 ## [第七章 继承与派生](./Handout/Ch7_Inheritance.md)
-## [第八章 多态](./Handout/Ch8_Polymorphism.md)
+## [第八章 多态](./Handout/Ch8_PolyMorphic.md)
 ## 总复习
 ## [**课件下载**](https://github.com/cugwhp/OOPCPP/tree/master/docs/PDFs)
 
