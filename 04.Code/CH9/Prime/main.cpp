@@ -3,6 +3,7 @@
 #include <algorithm>
 #include <vector>
 #include <list>
+#include <string>
 
 // 2-N之间的质数输出来
 
@@ -74,6 +75,8 @@ int main()
     cout << endl;
 
     list< vector<int> > lv;
+
+    string  str;
 
     return 0;
 }

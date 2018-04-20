@@ -25,6 +25,8 @@ struct Stu{
 
 int main()
 {
+    char    *pstr = "RS";
+
     // iostream_iterator
     istream_iterator<int> int_it(cin);
     istream_iterator<int> eof;

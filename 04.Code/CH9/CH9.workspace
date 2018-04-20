@@ -4,5 +4,6 @@
 		<Project filename="Prime/Prime.cbp" />
 		<Project filename="TextQuery/TextQuery.cbp" />
 		<Project filename="ImageTest/ImageTest.cbp" />
+		<Project filename="TextQuery2/TextQuery2.cbp" />
 	</Workspace>
 </CodeBlocks_workspace_file>

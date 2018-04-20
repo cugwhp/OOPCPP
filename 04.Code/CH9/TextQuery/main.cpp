@@ -13,8 +13,6 @@ using namespace std;
 //==========================================================//
 int main(int argc, char** argv)
 {	
-	//notepad.exe d:\1.txt
-
 	//判断输入参数合法性
 	if (argc < 2)
 	{
@@ -45,7 +43,7 @@ int main(int argc, char** argv)
 		cin >> str;
 
 		// "q" is quit
-		if (!cin || str=="q")
+		if (!cin || str=="!q")
 			break;
 
 		// 执行查询
