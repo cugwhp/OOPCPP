@@ -58,4 +58,6 @@
 ---
 # [**课程设计**](./CourseDesign/CourseDesign.md)
 
+# [**New课程设计**](./CourseDesign/CourseDesignNew.md)
+
 Enjoy it.
