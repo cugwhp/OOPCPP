@@ -28,13 +28,9 @@ Qt使用有2种，一种是QtCreator，一种是VS插件，这两种方式各有
 
 - [CMake](www.cmake.org)
 
-GUI方式生成各类编译器识别的makefile
+GUI方式生成各类编译器识别的makefile, [下载地址](https://cmake.org/files/v3.11/cmake-3.11.1-win64-x64.zip)
 
-Windows 下载地址<https://cmake.org/files/v3.11/cmake-3.11.1-win64-x64.zip>
-
-- OpenCV
-
-从<www.opencv.org>下载
+- [OpenCV下载](www.opencv.org)
 
 - [GDAL下载](http://download.osgeo.org/gdal)
 
