@@ -18,6 +18,7 @@ Qt使用有2种，一种是QtCreator，一种是VS插件，这两种方式各有
 
 - VS的优势是效率高，调试方便。具体设置见：
 [Set Qt for VS](https://blog.csdn.net/liang19890820/article/details/49874033)
+[Set Qt & VS](https://blog.csdn.net/pianzang5201/article/details/79721623)
 
 ## 4. Compile GDAL & OpenCV in MinGW
 ### 4.1 Download source code
