@@ -1,9 +1,16 @@
 # 计算机高级语言课程设计-2
 
+## 目录
+- [课设时间安排](#课设时间安排)
+- [课设要求](#课设要求)
+- [课设内容](#课设内容)
+- [附录](#附录)
+
 ## [课设时间安排](./CourseDesignScheduleNew.md)
 ---
 
-## 课程设计
+## 课设要求
+### 内容提要
 今年的课设，我们就在上学期课设的基础上，开发一个带界面的图像处理小程序。上学期的代码，可以复用，这学期新增如下功能即可：
 1. 图像的显示，用视图显示；
 2. 增加菜单，映射对应功能
@@ -11,14 +18,21 @@
 有关图像处理的功能，可以扩展。。
 附上上学期课设题目，本学期要求随后给
 
-## 课设报告要求
-### [课设模板](https://github.com/cugwhp/OOPCPP/tree/master/docs/Projects/RSImage/%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1%E6%8A%A5%E5%91%8A%E6%A8%A1%E6%9D%BF.doc)
+### 课设报告要求
+- [课设模板](https://github.com/cugwhp/OOPCPP/tree/master/docs/Projects/RSImage/%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1%E6%8A%A5%E5%91%8A%E6%A8%A1%E6%9D%BF.doc)
 
-## 课设内容讲解
-### [Day 1：构建框架](./CourseDesignD1_Frame.md)
-### [Day 2：文件读取](./CourseDesignD2_FileIO.md)
-### [Day 3：图像信息输出](./CourseDesignD3_Information.md)
+## 课设内容
+### [Day 1：构建框架](./D1_Frame.md)
+搭建Qt程序框架，具备菜单、视图等基本要素。
+
+### [Day 2：图像显示](./CourseDesignD2_FileIO.md)
+在CRSImage读取文件的基础上，扩展图像显示的功能。
+
+### [Day 3：图像信息输出](./D3_Information.md)
+制作对话框，显示图像的元数据信息。
+
 ### [Day 4：图像统计量计算](./CourseDesignD4_Calculate.md)
+
 ### [Day 5:  统计直方图](./CourseDesignD5_Histogram.md)
 ### [Day 6：文件保存](./CourseDesignD6_Save.md)
 ### [Day 7：图像缩放](./CourseDesignD7_Zoom.md)
