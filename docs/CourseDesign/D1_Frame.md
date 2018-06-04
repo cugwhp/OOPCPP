@@ -2,23 +2,28 @@
 本次实习的目标是掌握Qt的IDE开发环境、Qt开发的基本框架，学习Qt示例工程imageviewer，掌握GUI程序的基本要素：视图、菜单、工具栏等。
 
 ## 目录
-- [1. QtCreator](#1_QtCreator)
-- [2. 示例代码](#2_示例代码ImageViewer)
+- [1. VS Qt Plugin]()
+- [2. QtCreator](#1_QtCreator)
+- [3. 示例代码](#2_示例代码ImageViewer)
 
-## 1. QtCreator
+## 1. VS Qt Plugin
+Qt为VS安装了插件之后，VS菜单会出现Qt菜单项，界面如下：
+![VS_Qt_Plugin](../Pics/VS_QtPlugin.png)
+
+## 2. QtCreator
 QtCreator是类似VS的IDE开发环境。
 - Qt开发界面
 ![Qt开发界面](../Pics/Qt_face.png)
 
-## 2. 示例代码ImageViewer
-### 2.1 imageviewer GUI
+## 3. 示例代码ImageViewer
+### 3.1 imageviewer GUI
 
 ![imageviewer](../Pics/imageviewer.png)
 ```
 					示例代码界面图
 ```
 
-### 2.2 代码分析
+### 3.2 代码分析
 1. 工程组织
 
 ```c++
@@ -152,8 +157,8 @@ target.path = $$[QT_INSTALL_EXAMPLES]/widgets/widgets/imageviewer
 INSTALLS += target
 ```
 
-### 2.3 代码下载
+### 3.3 代码下载
 参见Qt [Image Viewer Example code download](../Code/imageviewer.rar)
 
-### 2.4 参考文档
+### 3.4 参考文档
 - 学习[Qt5基本教程](https://blog.csdn.net/Louis_815/article/details/54286544)1序----8.添加动作

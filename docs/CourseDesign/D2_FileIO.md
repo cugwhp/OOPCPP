@@ -7,6 +7,7 @@
 
 ## 1. CRSImage回顾
 以CRSImage的代码为例，之前我们的CRSImage类中，已经完成了图像文件的读取，读取的图像数据放置在一个三维的素组m_pppData中。
+
 ```c++
 class CRSImage
 {
@@ -41,16 +42,14 @@ protected:
 };
 ```
 
-## 2. 扩展ImageViewer对RSImage的支持
+## 2. 扩展ImageViewer对CRSImage的支持
 ### 2.1 图像显示代码分析
 分析iamgeviewer工程不难发现，图像显示的代码集中在imageviewer类中，所涉及的函数主要有：loadFile和setImage。
 
 - loadFile()
 loadFile函数的意思，显而易见是读取图像文件，我们分析代码发现，Qt提供了一个类QImageReader类，调用read()函数，可以返回一个QImage对象。然后将调用setImage()即完成了图像的显示。源代码如下：
-```c++
-//! [0]
-//! [2]
 
+```c++
 bool ImageViewer::loadFile(const QString &fileName)
 {
 	// QImageReader负责传入文件名，调用read，即返回QImage对象
@@ -64,7 +63,6 @@ bool ImageViewer::loadFile(const QString &fileName)
                                  .arg(QDir::toNativeSeparators(fileName), reader.errorString()));
         return false;
     }
-//! [2]
 
     setImage(newImage);	//绘制QImage
 
@@ -77,8 +75,10 @@ bool ImageViewer::loadFile(const QString &fileName)
     return true;
 }
 ```
+
 - setImage()
 setImage负责将QImage对象绘制在imageLabel上，代码如下：
+
 ```c++
 void ImageViewer::setImage(const QImage &newImage)
 {
@@ -97,8 +97,10 @@ void ImageViewer::setImage(const QImage &newImage)
         imageLabel->adjustSize();
 }
 ```
+
 ### 2.2 如何嵌入CRSImage
 从上面的分析可知，嵌入CRSImage的关键是，将CRSImage读入的图像数据（三维数组）转换为QImage。
+
 ```c++
 void CImageDisplayDlg::ShowRaster()  
 {  
