@@ -12,24 +12,27 @@ QtCreator是类似VS的IDE开发环境。
 
 ## 2. 示例代码ImageViewer
 ### 2.1 imageviewer GUI
+
 ![imageviewer](../Pics/imageviewer.png)
 ```
-								示例代码界面图
+					示例代码界面图
 ```
 
 ### 2.2 代码分析
 1. 工程组织
+
 ```c++
 // imageviewer.cpp - imageviewer 实现
 // imageviewer.h   - imageviewer 头文件
 // imageviewer.pro - 工程文件
 // main.cpp		   - 主程序main
 ```
+
 2. 代码分析
 - main.cpp
+
 ```c++
-/* main.cpp 是C++程序的唯一入口，定义了一个Qapplication对象，直至程序结束时返回。
-*/
+// main.cpp 是C++程序的唯一入口，定义了一个Qapplication对象，直至程序结束时返回。
 #include <QApplication>				//Qt Application
 #include <QCommandLineParser>		//Qt CommandLineParser， parse argv[]
 
@@ -62,6 +65,7 @@ int main(int argc, char *argv[])	//main function
 
 - imageviewer
   imageviewer的主要功能是负责图像的显示，以imageviewer.h为例说明。
+
 ```c++
 #ifndef IMAGEVIEWER_H
 #define IMAGEVIEWER_H
@@ -129,7 +133,6 @@ private:
     QAction *fitToWindowAct;
 };
 //! [0]
-
 #endif
 ```
 
