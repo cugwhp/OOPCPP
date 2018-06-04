@@ -20,3 +20,6 @@
 **功能描述：**点击菜单**关闭**，关闭当前打开的文件，图像窗口关闭。
 
 **程序流程：**释放图像数据存储空间，擦除图像窗口。
+
+---
+|[Home](https://cugwhp.github.io/OOPCPP/CourseDesign/CourseDesignNew.html#%E8%AF%BE%E8%AE%BE%E5%86%85%E5%AE%B9) | [Return](#功能列表)| [Prev](./D4_Statistics.md) |

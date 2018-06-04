@@ -37,3 +37,9 @@ Qt使用有2种，一种是QtCreator，一种是VS插件，这两种方式各有
 
 - Qt VS. VS
   [Set Qt & VS](https://blog.csdn.net/pianzang5201/article/details/79721623)
+
+
+
+___
+
+|[Home](https://cugwhp.github.io/OOPCPP/CourseDesign/CourseDesignNew.html#%E8%AF%BE%E8%AE%BE%E5%86%85%E5%AE%B9)  | [Return](#目录) | [Next](./D1_Frame.md) |

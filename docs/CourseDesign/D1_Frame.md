@@ -162,3 +162,6 @@ INSTALLS += target
 
 ### 3.4 参考文档
 - 学习[Qt5基本教程](https://blog.csdn.net/Louis_815/article/details/54286544)1序----8.添加动作
+
+---
+|[Home](https://cugwhp.github.io/OOPCPP/CourseDesign/CourseDesignNew.html#%E8%AF%BE%E8%AE%BE%E5%86%85%E5%AE%B9) | [Return](#目录)| [Prev](./D0_Preparation.md) | [Next](./D2_FileIO.md)|

@@ -131,3 +131,7 @@ void CImageDisplayDlg::ShowRaster()
     QImage QImg(pDataBuffer, iImageWidth, iImageHeight, QImage::Format_RGB888);  
 }  
 ```
+
+---
+
+|[Home](https://cugwhp.github.io/OOPCPP/CourseDesign/CourseDesignNew.html#%E8%AF%BE%E8%AE%BE%E5%86%85%E5%AE%B9) | [Return](#目录)| [Prev](./D1_Frame.md) | [Next](./D3_Information.md)|

@@ -15,6 +15,9 @@
 					Qt Widget Video
 ```
 
-- [对话框简介](https://www.devbean.net/2012/09/qt-study-road-2-dialogs-intro/)
-- [对话框数据传递](https://www.devbean.net/2012/09/qt-study-road-2-data-between-dialogs/)
-- [标准对话框 QMessageBox](https://www.devbean.net/2012/09/qt-study-road-2-standard-dialogs-qmessagebox/)
+- Qt入门-[对话框简介](https://www.devbean.net/2012/09/qt-study-road-2-dialogs-intro/)
+- Qt入门-[对话框数据传递](https://www.devbean.net/2012/09/qt-study-road-2-data-between-dialogs/)
+- Qt入门-[标准对话框 QMessageBox](https://www.devbean.net/2012/09/qt-study-road-2-standard-dialogs-qmessagebox/)
+
+---
+|[Home](https://cugwhp.github.io/OOPCPP/CourseDesign/CourseDesignNew.html#%E8%AF%BE%E8%AE%BE%E5%86%85%E5%AE%B9) | [Return](#实习要求)| [Prev](./D2_FileIO.md) | [Next](./D4_Statistics.md)|
