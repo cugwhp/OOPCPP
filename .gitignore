@@ -18,3 +18,4 @@ Relase
 *.layout
 *.depend
 *.cbp
+build*
