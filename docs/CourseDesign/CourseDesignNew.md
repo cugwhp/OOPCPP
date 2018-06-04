@@ -44,7 +44,7 @@ Qt的下载、安装、配置和帮助等
 ### [Day 1：构建框架](./D1_Frame.md)
 搭建Qt程序框架，具备菜单、视图等基本要素。
 
-### [Day 2：图像显示](./CourseDesignD2_FileIO.md)
+### [Day 2：图像显示](./D2_FileIO.md)
 在CRSImage读取文件的基础上，扩展图像显示的功能。
 
 ### [Day 3：图像信息输出](./D3_Information.md)

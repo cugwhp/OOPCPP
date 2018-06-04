@@ -6,7 +6,9 @@
 - [2. 示例代码](#2_示例代码ImageViewer)
 
 ## 1. QtCreator
-
+QtCreator是类似VS的IDE开发环境。
+- Qt开发界面
+![Qt开发界面](../Pics/Qt_face.png)
 
 ## 2. 示例代码ImageViewer
 ### 2.1 imageviewer GUI
