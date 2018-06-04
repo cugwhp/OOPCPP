@@ -137,6 +137,7 @@ private:
 ```
 
 - imageviewer project
+
 ```c++
 QT += widgets
 requires(qtConfig(filedialog))
