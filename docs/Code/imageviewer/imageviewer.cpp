@@ -85,12 +85,28 @@ bool ImageViewer::loadFile(const QString &fileName)
 {
     QImageReader reader(fileName);
     reader.setAutoTransform(true);
-    const QImage newImage = reader.read();
-    if (newImage.isNull()) {
-        QMessageBox::information(this, QGuiApplication::applicationDisplayName(),
-                                 tr("Cannot load %1: %2")
-                                 .arg(QDir::toNativeSeparators(fileName), reader.errorString()));
-        return false;
+    QImage newImage;
+
+    if (reader.canRead())
+    {
+        newImage = reader.read();
+        if (newImage.isNull()) {
+            QMessageBox::information(this, QGuiApplication::applicationDisplayName(),
+                                     tr("Cannot load %1: %2").arg(
+                                     QDir::toNativeSeparators(fileName), reader.errorString()));
+            return false;
+        }
+    }
+    else
+    {
+        if (!m_oRSImage.Open(fileName.toStdString().c_str()))
+        {
+            QMessageBox::information(this, QGuiApplication::applicationDisplayName(),
+                                     QDir::toNativeSeparators(fileName));
+            return false;
+        }
+
+        m_oRSImage.toQImage(newImage, 0, 1, 2);
     }
 //! [2]
 
@@ -103,6 +119,7 @@ bool ImageViewer::loadFile(const QString &fileName)
     statusBar()->showMessage(message);
     return true;
 }
+
 
 void ImageViewer::setImage(const QImage &newImage)
 {

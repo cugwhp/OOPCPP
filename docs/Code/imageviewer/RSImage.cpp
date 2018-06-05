@@ -345,6 +345,49 @@ bool	CRSImage::ReadImgData(const char* lpstrImgFilePath)
     return bFlag;
 }
 
+//////////////////////////////////////////////////////////////////////////
+// toQImage - Transform DataBuffer to QImage    						//
+// 返回值 - QImage														//
+//////////////////////////////////////////////////////////////////////////
+bool  CRSImage::toQImage(QImage& qImage, int iR, int iG, int iB)
+{
+    if (!this->IsOpen() || iR<0 || iG<0 || iB<0 ||
+        iR>=m_nBands || iG>=m_nBands || iB>=m_nBands ||
+        m_pppData == NULL)
+    {
+        return false;
+    }
+
+    int		iImageWidth = (m_nSamples*8+31) / 32 * 4;	//图像的宽度,按4字节对齐...
+
+    // 图像数据
+    unsigned char* pBuffer = new unsigned char[m_nLines*iImageWidth*3];
+    memset(pBuffer, 0, sizeof(unsigned char)*m_nLines*iImageWidth*3);
+
+    // 波段组合
+    int     i, j, k=0;
+    for (i=0; i<m_nLines; i++)
+    {
+        for (j=0; j<m_nSamples; j++)
+        {
+            pBuffer[k++] = m_pppData[iR][i][j];
+            pBuffer[k++] = m_pppData[iG][i][j];
+            pBuffer[k++] = m_pppData[iB][i][j];
+        }
+        for (;j<iImageWidth; j++)
+        {
+            pBuffer[k++]=0;
+            pBuffer[k++]=0;
+            pBuffer[k++]=0;
+        }
+    }
+
+
+    // 构建QImage对象
+    qImage = QImage(pBuffer, iImageWidth, m_nLines, QImage::Format_RGB888);
+
+    return true;
+}
 
 //////////////////////////////////////////////////////////////////////////
 // Display - 显示图像到控制台窗口										//

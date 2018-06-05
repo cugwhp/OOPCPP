@@ -14,6 +14,8 @@
 #define NULL 0
 #endif	//#ifndef NULL
 
+#include <QImage>
+
 // 数据存储方式枚举类型，BSQ-按波段间隔存储、BIL-按行为间隔存储、BIP-按像元间隔存储
 enum INTERLEAVE_TYPE {BSQ,BIP,BIL};
 
@@ -38,7 +40,8 @@ public:
 	void	Rotate(float fAngle);			//旋转图像
 	void	Zoom(float fZoom);				//缩放图像
 	void	Filter(double* dFilterKernel, int nSize);	//图像滤波
-//	void	Display(int nRedBand=0, int nGrnBand=1, int nBluBand=2);		//显示图像 Add by 2017.12.11
+//	void	Display(int nRedBand=0, int nGrnBand=1, int nBluBand=2);    //显示图像 Add by 2017.12.11
+    bool  toQImage(QImage& qImage, int iR=0, int iG=0, int iB=0); //Transform to QImage
 
 	//--------------- 内联函数，获取图像属性值 --------------------//
 	inline int	GetBands() const {return m_nBands;}

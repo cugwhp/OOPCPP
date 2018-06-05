@@ -56,6 +56,7 @@
 #ifndef QT_NO_PRINTER
 #include <QPrinter>
 #endif
+#include "RSImage.h"
 
 QT_BEGIN_NAMESPACE
 class QAction;
@@ -95,10 +96,14 @@ private:
     void scaleImage(double factor);
     void adjustScrollBar(QScrollBar *scrollBar, double factor);
 
+    QImage loadImageFile();
+    QImage loadRSImageFile();
+
     QImage image;
     QLabel *imageLabel;
     QScrollArea *scrollArea;
     double scaleFactor;
+    CRSImage    m_oRSImage;     //遥感图像数据对象
 
 #ifndef QT_NO_PRINTER
     QPrinter printer;
