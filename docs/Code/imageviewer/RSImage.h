@@ -15,9 +15,17 @@
 #endif	//#ifndef NULL
 
 #include <QImage>
+#include <QByteArray>
 
 // 数据存储方式枚举类型，BSQ-按波段间隔存储、BIL-按行为间隔存储、BIP-按像元间隔存储
 enum INTERLEAVE_TYPE {BSQ,BIP,BIL};
+
+typedef enum EnhanceDisplayType
+{
+  EDT_Normal = 0
+  , EDT_Linear = 1
+//  , EDT_Equalization = 2
+}EDT;
 
 // class CRSImage - Remote Sensing image
 class CRSImage
@@ -41,7 +49,10 @@ public:
 	void	Zoom(float fZoom);				//缩放图像
 	void	Filter(double* dFilterKernel, int nSize);	//图像滤波
 //	void	Display(int nRedBand=0, int nGrnBand=1, int nBluBand=2);    //显示图像 Add by 2017.12.11
-    bool  toQImage(QImage& qImage, int iR=0, int iG=0, int iB=0); //Transform to QImage
+    QImage  toQImage(int iR=0, int iG=0, int iB=0, EDT eDispType=EDT_Normal); //Transform to QImage
+
+    void    normalImage(int iR, int iG, int iB);
+    void    linearImage(int iR, int iG, int iB);
 
 	//--------------- 内联函数，获取图像属性值 --------------------//
 	inline int	GetBands() const {return m_nBands;}
@@ -64,6 +75,8 @@ protected:
 	int				m_nSamples;		//列数
 	INTERLEAVE_TYPE m_eInterleave;	//数据存储类型BSQ/BIL/BIP
 	short       m_nDataType;		//数据类型
+//    unsigned char*  m_pDispBuff;   //Display Buffer to QImage
+    QByteArray      m_aryDispBuff;  //Display Buffer to QImage
 };
 
 #endif	//#ifndef _RS_IMAGE_H_INC_

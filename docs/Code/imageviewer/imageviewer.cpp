@@ -75,6 +75,9 @@ ImageViewer::ImageViewer()
 
     createActions();
 
+    m_iRedBand = m_iGrnBand = m_iBluBand = 0;   //初始化波段显示
+    m_edtDispType = EDT_Linear;         //正常显示
+
     resize(QGuiApplication::primaryScreen()->availableSize() * 3 / 5);
 }
 
@@ -90,23 +93,30 @@ bool ImageViewer::loadFile(const QString &fileName)
     if (reader.canRead())
     {
         newImage = reader.read();
-        if (newImage.isNull()) {
-            QMessageBox::information(this, QGuiApplication::applicationDisplayName(),
-                                     tr("Cannot load %1: %2").arg(
-                                     QDir::toNativeSeparators(fileName), reader.errorString()));
-            return false;
-        }
     }
     else
     {
-        if (!m_oRSImage.Open(fileName.toStdString().c_str()))
+        if (m_oRSImage.Open(fileName.toStdString().c_str()))
         {
-            QMessageBox::information(this, QGuiApplication::applicationDisplayName(),
-                                     QDir::toNativeSeparators(fileName));
-            return false;
-        }
+            // 初始化波段显示列表
+            if (m_oRSImage.GetBands() >= 3)
+            {
+                m_iRedBand = 0;
+                m_iGrnBand = 1;
+                m_iBluBand = 2;
+            }
+            else
+            {
+                m_iRedBand = m_iGrnBand = m_iBluBand = 0;
+            }
 
-        m_oRSImage.toQImage(newImage, 0, 1, 2);
+            newImage = m_oRSImage.toQImage(m_iRedBand, m_iGrnBand, m_iBluBand, m_edtDispType).copy();
+        }
+    }
+    if (newImage.isNull()) {
+        QMessageBox::information(this, QGuiApplication::applicationDisplayName(),
+                                 tr("Cannot load %1").arg(QDir::toNativeSeparators(fileName)));
+        return false;
     }
 //! [2]
 
@@ -173,6 +183,12 @@ static void initializeImageFileDialog(QFileDialog &dialog, QFileDialog::AcceptMo
         mimeTypeFilters.append(mimeTypeName);
     mimeTypeFilters.sort();
     dialog.setMimeTypeFilters(mimeTypeFilters);
+
+    // 增加对遥感图像后缀名的支持。。。
+    QStringList nameFilters = dialog.nameFilters();
+    nameFilters << "所有图像文件 (*.img *.pix *.*)";
+    dialog.setNameFilters(nameFilters);
+
     dialog.selectMimeTypeFilter("image/jpeg");
     if (acceptMode == QFileDialog::AcceptSave)
         dialog.setDefaultSuffix("jpg");

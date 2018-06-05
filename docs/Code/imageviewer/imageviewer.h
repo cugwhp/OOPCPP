@@ -103,7 +103,10 @@ private:
     QLabel *imageLabel;
     QScrollArea *scrollArea;
     double scaleFactor;
+
     CRSImage    m_oRSImage;     //遥感图像数据对象
+    int     m_iRedBand, m_iGrnBand, m_iBluBand; //RGB组合
+    EDT         m_edtDispType;  //增强显示方式
 
 #ifndef QT_NO_PRINTER
     QPrinter printer;

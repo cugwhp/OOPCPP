@@ -7,14 +7,14 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
-#include "Windows.h"	//windows
+#include <cmath>
 
 using namespace std;
 
 
 // 前向声明，调用获取控制台窗口句柄
 // 因为是Win32全局函数，故使用extern "C"
-extern "C" HWND WINAPI GetConsoleWindow();
+//extern "C" HWND WINAPI GetConsoleWindow();
 
 /************************************************************************/
 /* 构造函数                                                             */
@@ -140,7 +140,7 @@ void	CRSImage::Close()
 		m_nBands = 0;
 		m_nLines = 0;
 		m_nSamples = 0;
-	}
+    }
 }
 
 /************************************************************************/
@@ -349,46 +349,107 @@ bool	CRSImage::ReadImgData(const char* lpstrImgFilePath)
 // toQImage - Transform DataBuffer to QImage    						//
 // 返回值 - QImage														//
 //////////////////////////////////////////////////////////////////////////
-bool  CRSImage::toQImage(QImage& qImage, int iR, int iG, int iB)
+QImage  CRSImage::toQImage(int iR, int iG, int iB, EDT eDispType)
 {
+    QImage      qImage;
+
     if (!this->IsOpen() || iR<0 || iG<0 || iB<0 ||
         iR>=m_nBands || iG>=m_nBands || iB>=m_nBands ||
         m_pppData == NULL)
     {
-        return false;
+        return qImage;
     }
 
-    int		iImageWidth = (m_nSamples*8+31) / 32 * 4;	//图像的宽度,按4字节对齐...
-
-    // 图像数据
-    unsigned char* pBuffer = new unsigned char[m_nLines*iImageWidth*3];
-    memset(pBuffer, 0, sizeof(unsigned char)*m_nLines*iImageWidth*3);
-
     // 波段组合
+    switch(eDispType)
+    {
+    case EDT_Normal:
+        normalImage(iR, iG, iB);
+        break;
+    case EDT_Linear:
+        linearImage(iR, iG, iB);
+        break;
+    default:
+        normalImage(iR, iG, iB);
+        break;
+    }
+
+    // 构建QImage对象
+    qImage = QImage((const unsigned char*)(m_aryDispBuff.data()),
+                    m_aryDispBuff.size()/(3L*m_nLines), m_nLines, QImage::Format_RGB888);
+
+    return qImage;
+}
+
+void CRSImage::normalImage(int iR, int iG, int iB)
+{
+    // 图像数据
+    int		iImageWidth = (m_nSamples*8+31) / 32 * 4;	//图像的宽度,按4字节对齐...
+    m_aryDispBuff.resize(m_nLines*iImageWidth*3);
+    m_aryDispBuff.fill(0);
+
     int     i, j, k=0;
     for (i=0; i<m_nLines; i++)
     {
         for (j=0; j<m_nSamples; j++)
         {
-            pBuffer[k++] = m_pppData[iR][i][j];
-            pBuffer[k++] = m_pppData[iG][i][j];
-            pBuffer[k++] = m_pppData[iB][i][j];
+            m_aryDispBuff[k++] = m_pppData[iR][i][j];
+            m_aryDispBuff[k++] = m_pppData[iG][i][j];
+            m_aryDispBuff[k++] = m_pppData[iB][i][j];
         }
         for (;j<iImageWidth; j++)
         {
-            pBuffer[k++]=0;
-            pBuffer[k++]=0;
-            pBuffer[k++]=0;
+            m_aryDispBuff[k++]=0;
+            m_aryDispBuff[k++]=0;
+            m_aryDispBuff[k++]=0;
+        }
+    }
+}
+
+void CRSImage::linearImage(int iR, int iG, int iB)
+{
+    // 图像数据
+    int		iImageWidth = (m_nSamples*8+31) / 32 * 4;	//图像的宽度,按4字节对齐...
+    m_aryDispBuff.resize(m_nLines*iImageWidth*3);
+    m_aryDispBuff.fill(0);
+
+    unsigned char     iMin[3], iMax[3];
+    int     i, j, k;
+
+    iMin[0] = iMax[0] = m_pppData[iR][0][0];
+    iMin[1] = iMax[1] = m_pppData[iG][0][0];
+    iMin[2] = iMax[2] = m_pppData[iB][0][0];
+    for (i=0; i<m_nLines; i++)
+    {
+        for (j=0; j<m_nSamples; j++)
+        {
+            iMin[0] = min(iMin[0], m_pppData[iR][i][j]);
+            iMin[1] = min(iMin[1], m_pppData[iG][i][j]);
+            iMin[2] = min(iMin[2], m_pppData[iB][i][j]);
+            iMax[0] = max(iMax[0], m_pppData[iR][i][j]);
+            iMax[1] = max(iMax[1], m_pppData[iG][i][j]);
+            iMax[2] = max(iMax[2], m_pppData[iB][i][j]);
         }
     }
 
+    k = 0;
+    for (i=0; i<m_nLines; i++)
+    {
+        for (j=0; j<m_nSamples; j++)
+        {
+            m_aryDispBuff[k++] = 255L*(m_pppData[iR][i][j] - iMin[0])/(iMax[0]-iMin[0]);
+            m_aryDispBuff[k++] = 255L*(m_pppData[iG][i][j] - iMin[1])/(iMax[1]-iMin[1]);
+            m_aryDispBuff[k++] = 255L*(m_pppData[iB][i][j] - iMin[2])/(iMax[2]-iMin[2]);
+        }
+        for (;j<iImageWidth; j++)
+        {
+            m_aryDispBuff[k++]=0;
+            m_aryDispBuff[k++]=0;
+            m_aryDispBuff[k++]=0;
+        }
+    }
 
-    // 构建QImage对象
-    qImage = QImage(pBuffer, iImageWidth, m_nLines, QImage::Format_RGB888);
-
-    return true;
 }
-
 //////////////////////////////////////////////////////////////////////////
 // Display - 显示图像到控制台窗口										//
 // 返回值 - void														//
