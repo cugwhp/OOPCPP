@@ -21,7 +21,8 @@ using namespace std;
 /************************************************************************/
 CRSImage::CRSImage()
 {
-	m_pppData = NULL;
+//	m_pppData = NULL;
+    m_ppData = NULL;
 	m_nBands = 0;
 	m_nLines = 0;
 	m_nSamples = 0;
@@ -111,36 +112,22 @@ bool	CRSImage::Save(const char* lpstrPath)
 /************************************************************************/
 void	CRSImage::Close()
 {
-	// 注意释放的顺序，与new的顺序是相反的
-	if (m_pppData != NULL)
-	{
-		int			i, j;
+    // 注意释放的顺序，与new的顺序是相反的
+    if (m_ppData)
+    {
+        for (int i=0; i<m_nBands; i++)
+        {
+            if (m_ppData[i])
+                delete[] m_ppData[i];
+        }
 
-		for (i=0; i<m_nBands; ++i)
-		{
-			for (j=0; j<m_nLines; ++j)
-			{
-			    if (0UL != m_pppData[i][j])
-                {
-                    delete[] m_pppData[i][j];
-                    m_pppData[i][j] = 0UL;
-                }
-			}
-
-			if (0UL != m_pppData[i])
-			{
-			    delete[] m_pppData[i];
-			    m_pppData[i] = 0UL;
-			}
-		}
-
-		delete[] m_pppData;	//delete 
-
-		m_pppData = NULL;
-		m_nBands = 0;
-		m_nLines = 0;
-		m_nSamples = 0;
+        delete[] m_ppData;
     }
+
+    m_ppData = NULL;
+    m_nBands = 0;
+    m_nLines = 0;
+    m_nSamples = 0;
 }
 
 /************************************************************************/
@@ -252,26 +239,14 @@ bool	CRSImage::ReadMetaData(const char* lpstrMetaFilePath)
 /************************************************************************/
 bool	CRSImage::InitBuffer(void)
 {
-    int     i, j;
+    int     i;
 
-    m_pppData = new DataType**[m_nBands];
-    if (m_pppData == NULL)  return false;
+    m_ppData = new DataType* [m_nBands];
+    if (m_ppData == NULL)   return false;
 
     for (i=0; i<m_nBands; i++)
-        m_pppData[i] = 0UL;
-
-    for (i=0; i<m_nBands; ++i)
     {
-        m_pppData[i] = new DataType*[m_nLines];
-        if (m_pppData[i] == NULL)   return false;
-
-        for (j=0; j<m_nLines; ++j)
-            m_pppData[i][j] = 0UL;
-
-        for (j=0; j<m_nLines; ++j)
-        {
-            m_pppData[i][j] = new DataType[m_nSamples];
-        }
+        m_ppData[i] = new DataType[m_nLines*m_nSamples];
     }
 
 	return true;
@@ -286,7 +261,7 @@ bool	CRSImage::ReadImgData(const char* lpstrImgFilePath)
     bool        bFlag = true;
     int         i, j;
     ifstream    ifs;				//文件流
-    int*        ptrBuff = NULL;
+    DataType*        ptrBuff = NULL;
     ifs.open(lpstrImgFilePath, ios::binary);	//按二进制文件打开
 
     if (ifs.is_open())	//判断是否打开成功
@@ -296,14 +271,11 @@ bool	CRSImage::ReadImgData(const char* lpstrImgFilePath)
         case BSQ:	//按波段排列，一个波段内按行优先
             for (i=0; i<m_nBands && !ifs.eof(); i++)
             {
-                for (j=0; j<m_nLines && !ifs.eof(); j++)
-                {
-                    ifs.read((char*)m_pppData[i][j], sizeof(DataType)*m_nSamples);
-                }
+                ifs.read((char*)m_ppData[i], sizeof(DataType)*m_nLines*m_nSamples);
             }
 
             // 判断是否读到了应有的行和列数
-            if (i<m_nBands || j<m_nLines)
+            if (i<m_nBands)
                 bFlag = false;
             break;
         case BIL:	//按行来排列，以行优先，依次按波段排列
@@ -311,7 +283,7 @@ bool	CRSImage::ReadImgData(const char* lpstrImgFilePath)
             {
                 for (j=0; j<m_nBands && !ifs.eof(); j++)
                 {
-                    ifs.read((char*)m_pppData[j][i], sizeof(DataType)*m_nSamples);
+                    ifs.read((char*)(m_ppData[j]+i*m_nSamples), sizeof(DataType)*m_nSamples);
                 }
             }
             // 数据是否完整
@@ -319,7 +291,7 @@ bool	CRSImage::ReadImgData(const char* lpstrImgFilePath)
                 bFlag = false;
             break;
         case BIP:	//按像元优先排列
-            ptrBuff = new int[m_nBands];
+            ptrBuff = new DataType[m_nBands];
             if (ptrBuff == NULL)
                 bFlag = false;
 
@@ -329,9 +301,10 @@ bool	CRSImage::ReadImgData(const char* lpstrImgFilePath)
 
                 for (j=0; j<m_nBands; j++)
                 {
-                    m_pppData[j][i/m_nLines][i%m_nLines] = ptrBuff[j];
+                    m_ppData[j][i] = ptrBuff[j];
                 }
             }
+            delete[] ptrBuff;
 
 			// 检查数据是否读完整
             if (i<m_nSamples*m_nLines)
@@ -354,8 +327,7 @@ QImage  CRSImage::toQImage(int iR, int iG, int iB, EDT eDispType)
     QImage      qImage;
 
     if (!this->IsOpen() || iR<0 || iG<0 || iB<0 ||
-        iR>=m_nBands || iG>=m_nBands || iB>=m_nBands ||
-        m_pppData == NULL)
+        iR>=m_nBands || iG>=m_nBands || iB>=m_nBands)
     {
         return qImage;
     }
@@ -376,7 +348,7 @@ QImage  CRSImage::toQImage(int iR, int iG, int iB, EDT eDispType)
 
     // 构建QImage对象
     qImage = QImage((const unsigned char*)(m_aryDispBuff.data()),
-                    m_aryDispBuff.size()/(3L*m_nLines), m_nLines, QImage::Format_RGB888);
+                    m_nSamples, m_nLines, QImage::Format_RGB888);
 
     return qImage;
 }
@@ -384,25 +356,20 @@ QImage  CRSImage::toQImage(int iR, int iG, int iB, EDT eDispType)
 void CRSImage::normalImage(int iR, int iG, int iB)
 {
     // 图像数据
-    int		iImageWidth = (m_nSamples*8+31) / 32 * 4;	//图像的宽度,按4字节对齐...
-    m_aryDispBuff.resize(m_nLines*iImageWidth*3);
+    int		iBytesLine = (m_nSamples*24+31) / 32 * 4;	//图像的line,按4字节对齐...
+    m_aryDispBuff.resize(m_nLines*iBytesLine);
     m_aryDispBuff.fill(0);
 
-    int     i, j, k=0;
+    int     i, j, n=0, k=0;
     for (i=0; i<m_nLines; i++)
     {
         for (j=0; j<m_nSamples; j++)
         {
-            m_aryDispBuff[k++] = m_pppData[iR][i][j];
-            m_aryDispBuff[k++] = m_pppData[iG][i][j];
-            m_aryDispBuff[k++] = m_pppData[iB][i][j];
+            m_aryDispBuff[k++] = m_ppData[iR][n];
+            m_aryDispBuff[k++] = m_ppData[iG][n];
+            m_aryDispBuff[k++] = m_ppData[iB][n++];
         }
-        for (;j<iImageWidth; j++)
-        {
-            m_aryDispBuff[k++]=0;
-            m_aryDispBuff[k++]=0;
-            m_aryDispBuff[k++]=0;
-        }
+        while(k%4) {k++;}   //4 bytes align
     }
 }
 
@@ -414,41 +381,32 @@ void CRSImage::linearImage(int iR, int iG, int iB)
     m_aryDispBuff.fill(0);
 
     unsigned char     iMin[3], iMax[3];
-    int     i, j, k;
+    int     i, j, k, n;
 
-    iMin[0] = iMax[0] = m_pppData[iR][0][0];
-    iMin[1] = iMax[1] = m_pppData[iG][0][0];
-    iMin[2] = iMax[2] = m_pppData[iB][0][0];
+    iMin[0] = iMax[0] = m_ppData[iR][0];
+    iMin[1] = iMax[1] = m_ppData[iG][0];
+    iMin[2] = iMax[2] = m_ppData[iB][0];
+    for (i=0; i<m_nLines*m_nSamples; i++)
+    {
+        iMin[0] = min(iMin[0], m_ppData[iR][i]);
+        iMin[1] = min(iMin[1], m_ppData[iG][i]);
+        iMin[2] = min(iMin[2], m_ppData[iB][i]);
+        iMax[0] = max(iMax[0], m_ppData[iR][i]);
+        iMax[1] = max(iMax[1], m_ppData[iG][i]);
+        iMax[2] = max(iMax[2], m_ppData[iB][i]);
+    }
+
+    n = k = 0;
     for (i=0; i<m_nLines; i++)
     {
         for (j=0; j<m_nSamples; j++)
         {
-            iMin[0] = min(iMin[0], m_pppData[iR][i][j]);
-            iMin[1] = min(iMin[1], m_pppData[iG][i][j]);
-            iMin[2] = min(iMin[2], m_pppData[iB][i][j]);
-            iMax[0] = max(iMax[0], m_pppData[iR][i][j]);
-            iMax[1] = max(iMax[1], m_pppData[iG][i][j]);
-            iMax[2] = max(iMax[2], m_pppData[iB][i][j]);
+            m_aryDispBuff[k++] = 255L*(m_ppData[iR][n] - iMin[0])/(iMax[0]-iMin[0]);
+            m_aryDispBuff[k++] = 255L*(m_ppData[iG][n] - iMin[1])/(iMax[1]-iMin[1]);
+            m_aryDispBuff[k++] = 255L*(m_ppData[iB][n] - iMin[2])/(iMax[2]-iMin[2]);
         }
+        while(k%4) {k++;}   //4 bytes align
     }
-
-    k = 0;
-    for (i=0; i<m_nLines; i++)
-    {
-        for (j=0; j<m_nSamples; j++)
-        {
-            m_aryDispBuff[k++] = 255L*(m_pppData[iR][i][j] - iMin[0])/(iMax[0]-iMin[0]);
-            m_aryDispBuff[k++] = 255L*(m_pppData[iG][i][j] - iMin[1])/(iMax[1]-iMin[1]);
-            m_aryDispBuff[k++] = 255L*(m_pppData[iB][i][j] - iMin[2])/(iMax[2]-iMin[2]);
-        }
-        for (;j<iImageWidth; j++)
-        {
-            m_aryDispBuff[k++]=0;
-            m_aryDispBuff[k++]=0;
-            m_aryDispBuff[k++]=0;
-        }
-    }
-
 }
 //////////////////////////////////////////////////////////////////////////
 // Display - 显示图像到控制台窗口										//

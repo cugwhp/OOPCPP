@@ -58,8 +58,9 @@ public:
 	inline int	GetBands() const {return m_nBands;}
 	inline int	GetLines() const {return m_nLines;}
 	inline int GetSamples() const {return m_nSamples;}
-	inline DataType*** GetDataBuffer() const {return m_pppData;}
-	inline bool	IsOpen() const { return (NULL != m_pppData ? true : false);}
+//	inline DataType*** GetDataBuffer() const {return m_pppData;}
+    inline DataType** GetDataBuffer() const {return m_ppData;}
+    inline bool	IsOpen() const { return (NULL != m_ppData ? true : false);}
 
 protected:
 	// 读文件
@@ -69,7 +70,8 @@ protected:
 
 protected:
 	//--------------------- 成员变量 --------------------------//
-	DataType***		m_pppData;		//指针记录三维数组首地址
+//	DataType***		m_pppData;		//指针记录三维数组首地址
+    DataType**      m_ppData;       //2D Image Matrix
 	int				m_nBands;		//波段数
 	int				m_nLines;		//行数
 	int				m_nSamples;		//列数

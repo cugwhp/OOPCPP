@@ -57,6 +57,7 @@
 #endif
 
 #include "imageviewer.h"
+#include "dialogdispopt.h"
 
 //! [0]
 ImageViewer::ImageViewer()
@@ -76,7 +77,7 @@ ImageViewer::ImageViewer()
     createActions();
 
     m_iRedBand = m_iGrnBand = m_iBluBand = 0;   //初始化波段显示
-    m_edtDispType = EDT_Linear;         //正常显示
+    m_edtDispType = EDT_Normal;         //正常显示
 
     resize(QGuiApplication::primaryScreen()->availableSize() * 3 / 5);
 }
@@ -356,6 +357,12 @@ void ImageViewer::createActions()
 
     QMenu *viewMenu = menuBar()->addMenu(tr("&View"));
 
+    displayOptionAct = viewMenu->addAction(tr("&Display Option"), this, &ImageViewer::displayOption);
+    displayOptionAct->setShortcut(tr("Ctrl+D"));
+    displayOptionAct->setEnabled(false);
+
+    viewMenu->addSeparator();
+
     zoomInAct = viewMenu->addAction(tr("Zoom &In (25%)"), this, &ImageViewer::zoomIn);
     zoomInAct->setShortcut(QKeySequence::ZoomIn);
     zoomInAct->setEnabled(false);
@@ -388,6 +395,7 @@ void ImageViewer::updateActions()
 {
     saveAsAct->setEnabled(!image.isNull());
     copyAct->setEnabled(!image.isNull());
+    displayOptionAct->setEnabled(!image.isNull());
     zoomInAct->setEnabled(!fitToWindowAct->isChecked());
     zoomOutAct->setEnabled(!fitToWindowAct->isChecked());
     normalSizeAct->setEnabled(!fitToWindowAct->isChecked());
@@ -418,3 +426,17 @@ void ImageViewer::adjustScrollBar(QScrollBar *scrollBar, double factor)
                             + ((factor - 1) * scrollBar->pageStep()/2)));
 }
 //! [26]
+
+//! [27]
+void ImageViewer::displayOption()
+//! [27] //! [28]
+{
+    DialogDispOpt   dlg;
+
+    if (dlg.exec() == QDialog::Accepted)
+    {
+        return;
+    }
+}
+//! [28]
+//

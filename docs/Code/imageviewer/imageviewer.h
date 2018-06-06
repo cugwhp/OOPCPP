@@ -87,6 +87,8 @@ private slots:
     void fitToWindow();
     void about();
 
+    void displayOption();
+
 private:
     void createActions();
     void createMenus();
@@ -119,6 +121,7 @@ private:
     QAction *zoomOutAct;
     QAction *normalSizeAct;
     QAction *fitToWindowAct;
+    QAction *displayOptionAct;    //显示
 };
 //! [0]
 
