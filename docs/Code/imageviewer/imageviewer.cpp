@@ -111,7 +111,7 @@ bool ImageViewer::loadFile(const QString &fileName)
                 m_iRedBand = m_iGrnBand = m_iBluBand = 0;
             }
 
-            newImage = m_oRSImage.toQImage(m_iRedBand, m_iGrnBand, m_iBluBand, m_edtDispType).copy();
+            newImage = m_oRSImage.toQImage(m_iRedBand, m_iGrnBand, m_iBluBand, m_edtDispType);
         }
     }
     if (newImage.isNull()) {
@@ -431,11 +431,26 @@ void ImageViewer::adjustScrollBar(QScrollBar *scrollBar, double factor)
 void ImageViewer::displayOption()
 //! [27] //! [28]
 {
-    DialogDispOpt   dlg;
+    int  rgb[] = {m_iRedBand, m_iGrnBand, m_iBluBand};
+    DialogDispOpt   dlg(m_oRSImage.GetBands(), rgb, m_edtDispType);
 
     if (dlg.exec() == QDialog::Accepted)
     {
-        return;
+        if (m_iRedBand!=dlg.r || m_iGrnBand!=dlg.g ||
+            m_iBluBand!=dlg.b || m_edtDispType!=EDT(dlg.dispType))
+        {
+            m_iRedBand=dlg.r;
+            m_iGrnBand=dlg.g;
+            m_iBluBand=dlg.b;
+            m_edtDispType = EDT(dlg.dispType);
+
+            QImage  newImage = m_oRSImage.toQImage(m_iRedBand, m_iGrnBand, m_iBluBand, m_edtDispType);
+            if (!newImage.isNull())
+            {
+                image = newImage;
+                imageLabel->setPixmap(QPixmap::fromImage(image));
+            }
+        }
     }
 }
 //! [28]

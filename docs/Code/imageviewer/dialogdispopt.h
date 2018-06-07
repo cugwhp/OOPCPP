@@ -12,8 +12,11 @@ class DialogDispOpt : public QDialog
     Q_OBJECT
 
 public:
-    explicit DialogDispOpt(QWidget *parent = 0);
+    explicit DialogDispOpt(int bands, int rgb[3], int dispType=0, QWidget *parent = 0);
     ~DialogDispOpt();
+
+    int     r, g, b;
+    int     dispType;
 
 private slots:
     void on_buttonBox_accepted();

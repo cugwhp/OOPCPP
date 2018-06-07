@@ -403,7 +403,7 @@ void CRSImage::linearImage(int iR, int iG, int iB)
         {
             m_aryDispBuff[k++] = 255L*(m_ppData[iR][n] - iMin[0])/(iMax[0]-iMin[0]);
             m_aryDispBuff[k++] = 255L*(m_ppData[iG][n] - iMin[1])/(iMax[1]-iMin[1]);
-            m_aryDispBuff[k++] = 255L*(m_ppData[iB][n] - iMin[2])/(iMax[2]-iMin[2]);
+            m_aryDispBuff[k++] = 255L*(m_ppData[iB][n++] - iMin[2])/(iMax[2]-iMin[2]);
         }
         while(k%4) {k++;}   //4 bytes align
     }
