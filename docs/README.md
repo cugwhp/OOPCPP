@@ -3,7 +3,7 @@
 **This is the resource about the course of Object Oriented Programming Language with C++.**
 **There are lectures, exercises, example code and reference books. I will update it before every teaching.**
 
-**Have any questions or problems in c++ programming language, please contact me with <cugwhp@qq.com>.**
+**Have any questions or problems about c++ programming language, please ask questions @<https://github.com/cugwhp/OOPCPP/issues>.**
 
 ---
 # Table of Content
@@ -45,6 +45,8 @@
 ---
 # [**课程设计**](./CourseDesign/CourseDesign.md)
 
-# [**New课程设计**](./CourseDesign/CourseDesignNew.md)
+# [**!!New课程设计**](./CourseDesign/CourseDesignNew.md)
+
+# [**课程讨论**](https://github.com/cugwhp/OOPCPP/issues)
 
 Enjoy it.
