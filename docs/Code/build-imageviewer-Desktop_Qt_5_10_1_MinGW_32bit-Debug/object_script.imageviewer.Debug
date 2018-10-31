@@ -1,0 +1,15 @@
+INPUT(
+./debug\imageviewer.o
+./debug\main.o
+./debug\RSImage.o
+./debug\dialogdispopt.o
+./debug\dialoginfo.o
+./debug\treeitem.o
+./debug\treemodel.o
+./debug\mainwindow.o
+./debug\moc_imageviewer.o
+./debug\moc_dialogdispopt.o
+./debug\moc_dialoginfo.o
+./debug\moc_treemodel.o
+./debug\moc_mainwindow.o
+);

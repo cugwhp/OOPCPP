@@ -1,0 +1,15 @@
+INPUT(
+./release\imageviewer.o
+./release\main.o
+./release\RSImage.o
+./release\dialogdispopt.o
+./release\dialoginfo.o
+./release\treeitem.o
+./release\treemodel.o
+./release\mainwindow.o
+./release\moc_imageviewer.o
+./release\moc_dialogdispopt.o
+./release\moc_dialoginfo.o
+./release\moc_treemodel.o
+./release\moc_mainwindow.o
+);
