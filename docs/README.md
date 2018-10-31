@@ -3,7 +3,7 @@
 **This is the resource about the course of Object Oriented Programming Language with C++.**
 **There are lectures, exercises, example code and reference books. I will update it before every teaching.**
 
-**Have any questions or problems in c++ programming language, please contact me with <cugwhp@qq.com>.**
+**Have any questions or problems about c++ programming language, please ask questions @<https://github.com/cugwhp/OOPCPP/issues>.**
 
 ---
 # Table of Content
@@ -14,19 +14,6 @@
 - [课堂讨论](https://github.com/cugwhp/OOPCPP/issues)
 
 ---
-
-# New Note！！！
-## 1. 课内上机时间安排
-|周次|时间|机房|
-|---|---|---|
-|第2周|周四晚| 102机房|
-|第3周|周二晚| 102机房|
-|第4周|周四晚| 102机房|
-|第5周|清明放假|N/A|
-|第6周|周四晚| 102机房|
-|第7周|周四晚| 102机房|
----
-
 # **教学大纲**
 ## [第一章 绪论](./Handout/Ch1_Introduction.md)
 ## [第二章 C++语言概述](./Handout/Ch2_C++Basic.md)
@@ -58,6 +45,8 @@
 ---
 # [**课程设计**](./CourseDesign/CourseDesign.md)
 
-# [**New课程设计**](./CourseDesign/CourseDesignNew.md)
+# [**!!New课程设计**](./CourseDesign/CourseDesignNew.md)
+
+# [**课程讨论**](https://github.com/cugwhp/OOPCPP/issues)
 
 Enjoy it.
