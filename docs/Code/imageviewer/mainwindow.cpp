@@ -1,53 +1,3 @@
-/****************************************************************************
-**
-** Copyright (C) 2016 The Qt Company Ltd.
-** Contact: https://www.qt.io/licensing/
-**
-** This file is part of the examples of the Qt Toolkit.
-**
-** $QT_BEGIN_LICENSE:BSD$
-** Commercial License Usage
-** Licensees holding valid commercial Qt licenses may use this file in
-** accordance with the commercial license agreement provided with the
-** Software or, alternatively, in accordance with the terms contained in
-** a written agreement between you and The Qt Company. For licensing terms
-** and conditions see https://www.qt.io/terms-conditions. For further
-** information use the contact form at https://www.qt.io/contact-us.
-**
-** BSD License Usage
-** Alternatively, you may use this file under the terms of the BSD license
-** as follows:
-**
-** "Redistribution and use in source and binary forms, with or without
-** modification, are permitted provided that the following conditions are
-** met:
-**   * Redistributions of source code must retain the above copyright
-**     notice, this list of conditions and the following disclaimer.
-**   * Redistributions in binary form must reproduce the above copyright
-**     notice, this list of conditions and the following disclaimer in
-**     the documentation and/or other materials provided with the
-**     distribution.
-**   * Neither the name of The Qt Company Ltd nor the names of its
-**     contributors may be used to endorse or promote products derived
-**     from this software without specific prior written permission.
-**
-**
-** THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-** "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-** LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-** A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
-** OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
-** SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-** LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
-** DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-** THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-** (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-** OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
-**
-** $QT_END_LICENSE$
-**
-****************************************************************************/
-
 #include <QtWidgets>
 #if defined(QT_PRINTSUPPORT_LIB)
 #include <QtPrintSupport/qtprintsupportglobal.h>
@@ -56,16 +6,20 @@
 #endif
 #endif
 
-#include "imageviewer.h"
+#include "mainwindow.h"
+#include "ui_mainwindow.h"
 #include "dialogdispopt.h"
 #include "dialoginfo.h"
 
-//! [0]
-ImageViewer::ImageViewer()
-   : imageLabel(new QLabel)
-   , scrollArea(new QScrollArea)
-   , scaleFactor(1)
+MainWindow::MainWindow(QWidget *parent) :
+    QMainWindow(parent),
+    ui(new Ui::MainWindow),
+    imageLabel(new QLabel),
+    scrollArea(new QScrollArea),
+    scaleFactor(1)
 {
+    ui->setupUi(this);    
+
     imageLabel->setBackgroundRole(QPalette::Base);
     imageLabel->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
     imageLabel->setScaledContents(true);
@@ -75,18 +29,19 @@ ImageViewer::ImageViewer()
     scrollArea->setVisible(false);
     setCentralWidget(scrollArea);
 
-    createActions();
-
     m_iRedBand = m_iGrnBand = m_iBluBand = 0;   //初始化波段显示
     m_edtDispType = EDT_Normal;         //正常显示
 
     resize(QGuiApplication::primaryScreen()->availableSize() * 3 / 5);
 }
 
-//! [0]
-//! [2]
+MainWindow::~MainWindow()
+{
+    delete ui;
+}
 
-bool ImageViewer::loadFile(const QString &fileName)
+//! [2]
+bool MainWindow::loadFile(const QString &fileName)
 {
     QImageReader reader(fileName);
     reader.setAutoTransform(true);
@@ -133,7 +88,7 @@ bool ImageViewer::loadFile(const QString &fileName)
 }
 
 
-void ImageViewer::setImage(const QImage &newImage)
+void MainWindow::setImage(const QImage &newImage)
 {
     image = newImage;
     imageLabel->setPixmap(QPixmap::fromImage(image));
@@ -141,17 +96,17 @@ void ImageViewer::setImage(const QImage &newImage)
     scaleFactor = 1.0;
 
     scrollArea->setVisible(true);
-    printAct->setEnabled(true);
-    fitToWindowAct->setEnabled(true);
+    ui->actionPrint->setEnabled(true);
+    ui->actionFit_to_Window->setEnabled(true);
     updateActions();
 
-    if (!fitToWindowAct->isChecked())
+    if (!ui->actionFit_to_Window->isChecked())
         imageLabel->adjustSize();
 }
 
 //! [4]
 
-bool ImageViewer::saveFile(const QString &fileName)
+bool MainWindow::saveFile(const QString &fileName)
 {
     QImageWriter writer(fileName);
 
@@ -196,7 +151,7 @@ static void initializeImageFileDialog(QFileDialog &dialog, QFileDialog::AcceptMo
         dialog.setDefaultSuffix("jpg");
 }
 
-void ImageViewer::open()
+void MainWindow::Open()
 {
     QFileDialog dialog(this, tr("Open File"));
     initializeImageFileDialog(dialog, QFileDialog::AcceptOpen);
@@ -205,7 +160,7 @@ void ImageViewer::open()
 }
 //! [1]
 
-void ImageViewer::saveAs()
+void MainWindow::saveAs()
 {
     QFileDialog dialog(this, tr("Save File As"));
     initializeImageFileDialog(dialog, QFileDialog::AcceptSave);
@@ -214,7 +169,7 @@ void ImageViewer::saveAs()
 }
 
 //! [5]
-void ImageViewer::print()
+void MainWindow::print()
 //! [5] //! [6]
 {
     Q_ASSERT(imageLabel->pixmap());
@@ -235,7 +190,7 @@ void ImageViewer::print()
 }
 //! [8]
 
-void ImageViewer::copy()
+void MainWindow::copy()
 {
 #ifndef QT_NO_CLIPBOARD
     QGuiApplication::clipboard()->setImage(image);
@@ -256,7 +211,7 @@ static QImage clipboardImage()
 }
 #endif // !QT_NO_CLIPBOARD
 
-void ImageViewer::paste()
+void MainWindow::paste()
 {
 #ifndef QT_NO_CLIPBOARD
     const QImage newImage = clipboardImage();
@@ -273,19 +228,19 @@ void ImageViewer::paste()
 }
 
 //! [9]
-void ImageViewer::zoomIn()
+void MainWindow::zoomIn()
 //! [9] //! [10]
 {
     scaleImage(1.25);
 }
 
-void ImageViewer::zoomOut()
+void MainWindow::zoomOut()
 {
     scaleImage(0.8);
 }
 
 //! [10] //! [11]
-void ImageViewer::normalSize()
+void MainWindow::normalSize()
 //! [11] //! [12]
 {
     imageLabel->adjustSize();
@@ -294,10 +249,10 @@ void ImageViewer::normalSize()
 //! [12]
 
 //! [13]
-void ImageViewer::fitToWindow()
+void MainWindow::fitToWindow()
 //! [13] //! [14]
 {
-    bool fitToWindow = fitToWindowAct->isChecked();
+    bool fitToWindow = ui->actionFit_to_Window->isChecked();
     scrollArea->setWidgetResizable(fitToWindow);
     if (!fitToWindow)
         normalSize();
@@ -307,7 +262,7 @@ void ImageViewer::fitToWindow()
 
 
 //! [15]
-void ImageViewer::about()
+void MainWindow::about()
 //! [15] //! [16]
 {
     QMessageBox::about(this, tr("About Image Viewer"),
@@ -326,90 +281,22 @@ void ImageViewer::about()
 }
 //! [16]
 
-//! [17]
-void ImageViewer::createActions()
-//! [17] //! [18]
-{
-    QMenu *fileMenu = menuBar()->addMenu(tr("&File"));
-
-    QAction *openAct = fileMenu->addAction(tr("&Open..."), this, &ImageViewer::open);
-    openAct->setShortcut(QKeySequence::Open);
-
-    saveAsAct = fileMenu->addAction(tr("&Save As..."), this, &ImageViewer::saveAs);
-    saveAsAct->setEnabled(false);
-
-    printAct = fileMenu->addAction(tr("&Print..."), this, &ImageViewer::print);
-    printAct->setShortcut(QKeySequence::Print);
-    printAct->setEnabled(false);
-
-    fileMenu->addSeparator();
-
-    QAction *exitAct = fileMenu->addAction(tr("E&xit"), this, &QWidget::close);
-    exitAct->setShortcut(tr("Ctrl+Q"));
-
-    QMenu *editMenu = menuBar()->addMenu(tr("&Edit"));
-
-    copyAct = editMenu->addAction(tr("&Copy"), this, &ImageViewer::copy);
-    copyAct->setShortcut(QKeySequence::Copy);
-    copyAct->setEnabled(false);
-
-    QAction *pasteAct = editMenu->addAction(tr("&Paste"), this, &ImageViewer::paste);
-    pasteAct->setShortcut(QKeySequence::Paste);
-
-    QMenu *viewMenu = menuBar()->addMenu(tr("&View"));
-
-    imageInfoOptionAct = viewMenu->addAction(tr("I&mage Information"), this, &ImageViewer::imageInformation);
-    imageInfoOptionAct->setShortcut(tr("Ctrl+m"));
-    imageInfoOptionAct->setEnabled(false);
-
-    displayOptionAct = viewMenu->addAction(tr("&Display Option"), this, &ImageViewer::displayOption);
-    displayOptionAct->setShortcut(tr("Ctrl+D"));
-    displayOptionAct->setEnabled(false);
-
-    viewMenu->addSeparator();
-
-    zoomInAct = viewMenu->addAction(tr("Zoom &In (25%)"), this, &ImageViewer::zoomIn);
-    zoomInAct->setShortcut(QKeySequence::ZoomIn);
-    zoomInAct->setEnabled(false);
-
-    zoomOutAct = viewMenu->addAction(tr("Zoom &Out (25%)"), this, &ImageViewer::zoomOut);
-    zoomOutAct->setShortcut(QKeySequence::ZoomOut);
-    zoomOutAct->setEnabled(false);
-
-    normalSizeAct = viewMenu->addAction(tr("&Normal Size"), this, &ImageViewer::normalSize);
-    normalSizeAct->setShortcut(tr("Ctrl+S"));
-    normalSizeAct->setEnabled(false);
-
-    viewMenu->addSeparator();
-
-    fitToWindowAct = viewMenu->addAction(tr("&Fit to Window"), this, &ImageViewer::fitToWindow);
-    fitToWindowAct->setEnabled(false);
-    fitToWindowAct->setCheckable(true);
-    fitToWindowAct->setShortcut(tr("Ctrl+F"));
-
-    QMenu *helpMenu = menuBar()->addMenu(tr("&Help"));
-
-    helpMenu->addAction(tr("&About"), this, &ImageViewer::about);
-    helpMenu->addAction(tr("About &Qt"), &QApplication::aboutQt);
-}
-//! [18]
-
 //! [21]
-void ImageViewer::updateActions()
+void MainWindow::updateActions()
 //! [21] //! [22]
 {
-    saveAsAct->setEnabled(!image.isNull());
-    copyAct->setEnabled(!image.isNull());
-    displayOptionAct->setEnabled(!image.isNull());
-    imageInfoOptionAct->setEnabled(!image.isNull());
-    zoomInAct->setEnabled(!fitToWindowAct->isChecked());
-    zoomOutAct->setEnabled(!fitToWindowAct->isChecked());
-    normalSizeAct->setEnabled(!fitToWindowAct->isChecked());
+    ui->actionSave_As->setEnabled(!image.isNull());
+    ui->actionCopy->setEnabled(!image.isNull());
+    ui->actionDisplay_Option->setEnabled(!image.isNull());
+    ui->actionImage_Information->setEnabled(!image.isNull());
+    ui->actionZoom_In->setEnabled(!ui->actionFit_to_Window->isChecked());
+    ui->actionZoom_Out->setEnabled(!ui->actionFit_to_Window->isChecked());
+    ui->actionNormal_Size->setEnabled(!ui->actionFit_to_Window->isChecked());
 }
 //! [22]
 
 //! [23]
-void ImageViewer::scaleImage(double factor)
+void MainWindow::scaleImage(double factor)
 //! [23] //! [24]
 {
     Q_ASSERT(imageLabel->pixmap());
@@ -419,13 +306,13 @@ void ImageViewer::scaleImage(double factor)
     adjustScrollBar(scrollArea->horizontalScrollBar(), factor);
     adjustScrollBar(scrollArea->verticalScrollBar(), factor);
 
-    zoomInAct->setEnabled(scaleFactor < 3.0);
-    zoomOutAct->setEnabled(scaleFactor > 0.333);
+    ui->actionZoom_In->setEnabled(scaleFactor < 3.0);
+    ui->actionZoom_Out->setEnabled(scaleFactor > 0.333);
 }
 //! [24]
 
 //! [25]
-void ImageViewer::adjustScrollBar(QScrollBar *scrollBar, double factor)
+void MainWindow::adjustScrollBar(QScrollBar *scrollBar, double factor)
 //! [25] //! [26]
 {
     scrollBar->setValue(int(factor * scrollBar->value()
@@ -434,7 +321,7 @@ void ImageViewer::adjustScrollBar(QScrollBar *scrollBar, double factor)
 //! [26]
 
 //! [27]
-void ImageViewer::displayOption()
+void MainWindow::displayOption()
 //! [27] //! [28]
 {
     int  rgb[] = {m_iRedBand, m_iGrnBand, m_iBluBand};
@@ -463,7 +350,7 @@ void ImageViewer::displayOption()
 //
 
 //! [29]
-void ImageViewer::imageInformation()
+void MainWindow::imageInformation()
 //! [29] //! [30]
 {
    DialogInfo   dlgInfo(this);

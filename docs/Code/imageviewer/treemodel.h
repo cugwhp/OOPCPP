@@ -48,35 +48,39 @@
 **
 ****************************************************************************/
 
-#include <QApplication>
-#include <QCommandLineParser>
+#ifndef TREEMODEL_H
+#define TREEMODEL_H
 
-#include "imageviewer.h"
-#include "mainwindow.h"
+#include <QAbstractItemModel>
+#include <QModelIndex>
+#include <QVariant>
 
-int main(int argc, char *argv[])
+class TreeItem;
+
+//! [0]
+class TreeModel : public QAbstractItemModel
 {
-    QApplication app(argc, argv);
-    QGuiApplication::setApplicationDisplayName(ImageViewer::tr("Image Viewer"));
-    QCommandLineParser commandLineParser;
-    commandLineParser.addHelpOption();
-    commandLineParser.addPositionalArgument(ImageViewer::tr("[file]"), ImageViewer::tr("Image file to open."));
-    commandLineParser.process(QCoreApplication::arguments());
-/*
-    ImageViewer imageViewer;
-    if (!commandLineParser.positionalArguments().isEmpty()
-        && !imageViewer.loadFile(commandLineParser.positionalArguments().front())) {
-        return -1;
-    }
-    imageViewer.show();
-*/
-    MainWindow  mainWnd;
-    if (!commandLineParser.positionalArguments().isEmpty()
-        && !mainWnd.loadFile(commandLineParser.positionalArguments().front()))
-    {
-        return -1;
-    }
-    mainWnd.show();
+    Q_OBJECT
 
-    return app.exec();
-}
+public:
+    explicit TreeModel(const QString &data, QObject *parent = 0);
+    ~TreeModel();
+
+    QVariant data(const QModelIndex &index, int role) const override;
+    Qt::ItemFlags flags(const QModelIndex &index) const override;
+    QVariant headerData(int section, Qt::Orientation orientation,
+                        int role = Qt::DisplayRole) const override;
+    QModelIndex index(int row, int column,
+                      const QModelIndex &parent = QModelIndex()) const override;
+    QModelIndex parent(const QModelIndex &index) const override;
+    int rowCount(const QModelIndex &parent = QModelIndex()) const override;
+    int columnCount(const QModelIndex &parent = QModelIndex()) const override;
+
+private:
+    void setupModelData(const QStringList &lines, TreeItem *parent);
+
+    TreeItem *rootItem;
+};
+//! [0]
+
+#endif // TREEMODEL_H

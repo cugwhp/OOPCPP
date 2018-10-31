@@ -48,35 +48,33 @@
 **
 ****************************************************************************/
 
-#include <QApplication>
-#include <QCommandLineParser>
+#ifndef TREEITEM_H
+#define TREEITEM_H
 
-#include "imageviewer.h"
-#include "mainwindow.h"
+#include <QList>
+#include <QVariant>
 
-int main(int argc, char *argv[])
+//! [0]
+class TreeItem
 {
-    QApplication app(argc, argv);
-    QGuiApplication::setApplicationDisplayName(ImageViewer::tr("Image Viewer"));
-    QCommandLineParser commandLineParser;
-    commandLineParser.addHelpOption();
-    commandLineParser.addPositionalArgument(ImageViewer::tr("[file]"), ImageViewer::tr("Image file to open."));
-    commandLineParser.process(QCoreApplication::arguments());
-/*
-    ImageViewer imageViewer;
-    if (!commandLineParser.positionalArguments().isEmpty()
-        && !imageViewer.loadFile(commandLineParser.positionalArguments().front())) {
-        return -1;
-    }
-    imageViewer.show();
-*/
-    MainWindow  mainWnd;
-    if (!commandLineParser.positionalArguments().isEmpty()
-        && !mainWnd.loadFile(commandLineParser.positionalArguments().front()))
-    {
-        return -1;
-    }
-    mainWnd.show();
+public:
+    explicit TreeItem(const QList<QVariant> &data, TreeItem *parentItem = 0);
+    ~TreeItem();
 
-    return app.exec();
-}
+    void appendChild(TreeItem *child);
+
+    TreeItem *child(int row);
+    int childCount() const;
+    int columnCount() const;
+    QVariant data(int column) const;
+    int row() const;
+    TreeItem *parentItem();
+
+private:
+    QList<TreeItem*> m_childItems;
+    QList<QVariant> m_itemData;
+    TreeItem *m_parentItem;
+};
+//! [0]
+
+#endif // TREEITEM_H
