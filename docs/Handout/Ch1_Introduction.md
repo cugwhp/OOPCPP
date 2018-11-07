@@ -8,13 +8,12 @@
 - [绪论5——信息的表示与存储](./PDFs/C%2B%2B1%E4%BF%A1%E6%81%AF%E7%9A%84%E8%A1%A8%E7%A4%BA%E4%B8%8E%E5%AD%98%E5%82%A8.pdf)
 
 ## 2. References
-- [**Learning&Teaching C++**](https://github.com/cugwhp/cpplinks/blob/master/learning_teaching.md)
-
 - **Books**
   - [C++ Primer](https://book.douban.com/subject/1767741/)--[PDF](./Reference/eBooks/C%2B%2BPrimer4th%E4%B8%AD%E6%96%87%E7%89%88.pdf)
   - [C++程序设计语言](https://book.douban.com/subject/4604591/)
 
 - **编程规范**
+
   - [Google编码规范](./Reference/%E7%BC%96%E7%A0%81%E8%A7%84%E8%8C%83/Google-C%2B%2B%E7%BC%96%E7%A0%81%E8%A7%84%E8%8C%83%E4%B8%AD%E6%96%87%E7%89%88.pdf)  
 
 - **网络公开课**
@@ -48,7 +47,7 @@
 #include <iostream>
 int main()		//主函数
 {
-  std::cout << "Hello World." << endl;
+  std::cout << "Hello World." << std::endl;
   return 0;
 }
 ```
