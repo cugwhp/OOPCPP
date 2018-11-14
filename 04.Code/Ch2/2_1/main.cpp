@@ -11,6 +11,8 @@ int main()
     i = 3.14;
     double  pi = i;
     unsigned char   c = -1;
+    \]
+    """"""""""""""""""""""""""
     unsigned char   c2 = 256;
 
     // unsigned and signed
