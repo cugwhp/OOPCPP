@@ -88,6 +88,7 @@ private slots:
     void about();
 
     void displayOption();
+    void imageInformation();
 
 private:
     void createActions();
@@ -122,6 +123,7 @@ private:
     QAction *normalSizeAct;
     QAction *fitToWindowAct;
     QAction *displayOptionAct;    //显示
+    QAction *imageInfoOptionAct;    //
 };
 //! [0]
 

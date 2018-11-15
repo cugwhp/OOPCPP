@@ -52,6 +52,7 @@
 #include <QCommandLineParser>
 
 #include "imageviewer.h"
+#include "mainwindow.h"
 
 int main(int argc, char *argv[])
 {
@@ -61,11 +62,21 @@ int main(int argc, char *argv[])
     commandLineParser.addHelpOption();
     commandLineParser.addPositionalArgument(ImageViewer::tr("[file]"), ImageViewer::tr("Image file to open."));
     commandLineParser.process(QCoreApplication::arguments());
+/*
     ImageViewer imageViewer;
     if (!commandLineParser.positionalArguments().isEmpty()
         && !imageViewer.loadFile(commandLineParser.positionalArguments().front())) {
         return -1;
     }
     imageViewer.show();
+*/
+    MainWindow  mainWnd;
+    if (!commandLineParser.positionalArguments().isEmpty()
+        && !mainWnd.loadFile(commandLineParser.positionalArguments().front()))
+    {
+        return -1;
+    }
+    mainWnd.show();
+
     return app.exec();
 }

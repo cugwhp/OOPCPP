@@ -19,8 +19,14 @@ Relase
 *.depend
 *.cbp
 build*
+<<<<<<< HEAD
 *.zip
 docs/Reference/eBooks/C++ Primer第五版中文版习题集(全)/C++ Primer第五版中文版习题集上.pdf
 docs/Reference/eBooks/C++ Primer第五版中文版习题集(全)/C++ Primer第五版习题集完整版下.pdf
 docs/Reference/eBooks/C++程序设计原理与实践.pdf
 *.rar
+=======
+docs/Reference/eBooks/Primer c++ 第5版.pdf
+docs/Reference/eBooks/C++ Primer第五版中文版习题集(全).zip
+docs/Reference/eBooks/C++ Primer, Fifth Edition.pdf
+>>>>>>> e890e741092e9699af2f7ab9d14c27e7c36632b4

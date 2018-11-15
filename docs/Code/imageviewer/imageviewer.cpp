@@ -58,6 +58,7 @@
 
 #include "imageviewer.h"
 #include "dialogdispopt.h"
+#include "dialoginfo.h"
 
 //! [0]
 ImageViewer::ImageViewer()
@@ -357,6 +358,10 @@ void ImageViewer::createActions()
 
     QMenu *viewMenu = menuBar()->addMenu(tr("&View"));
 
+    imageInfoOptionAct = viewMenu->addAction(tr("I&mage Information"), this, &ImageViewer::imageInformation);
+    imageInfoOptionAct->setShortcut(tr("Ctrl+m"));
+    imageInfoOptionAct->setEnabled(false);
+
     displayOptionAct = viewMenu->addAction(tr("&Display Option"), this, &ImageViewer::displayOption);
     displayOptionAct->setShortcut(tr("Ctrl+D"));
     displayOptionAct->setEnabled(false);
@@ -396,6 +401,7 @@ void ImageViewer::updateActions()
     saveAsAct->setEnabled(!image.isNull());
     copyAct->setEnabled(!image.isNull());
     displayOptionAct->setEnabled(!image.isNull());
+    imageInfoOptionAct->setEnabled(!image.isNull());
     zoomInAct->setEnabled(!fitToWindowAct->isChecked());
     zoomOutAct->setEnabled(!fitToWindowAct->isChecked());
     normalSizeAct->setEnabled(!fitToWindowAct->isChecked());
@@ -455,3 +461,12 @@ void ImageViewer::displayOption()
 }
 //! [28]
 //
+
+//! [29]
+void ImageViewer::imageInformation()
+//! [29] //! [30]
+{
+   DialogInfo   dlgInfo(this);
+   dlgInfo.exec();
+}
+//! [30]
