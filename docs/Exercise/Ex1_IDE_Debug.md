@@ -3,29 +3,20 @@
 ## 实习内容
 
 ### 1. IDE环境
-- IDE
-  - [windows下几款免费C/C++开发工具简介](http://www.cnblogs.com/xusw/p/3617572.html)
-- CodeBlocks - Free
-  - [CodeBlocks Download](http://www.codeblocks.org/downloads/binaries)		
-  - [Windowns Setups](http://sourceforge.net/projects/codeblocks/files/Binaries/16.01/Windows/codeblocks-16.01mingw-nosetup.zip)
-  - [CodeBlocks安装及使用](http://blog.csdn.net/wang1127502020/article/details/50008973)
-  - [CodeBlocks使用教程](http://download.csdn.net/download/l81372500/10001537)
-- Editor
-	- [Notepad++](https://notepad-plus-plus.org/)
-	- [UltraEdit](www.ultraedit.com/)
-- 安装IDE开发环境
-- 了解IDE功能，查阅帮助手册
 
-### 2.创建简单的应用程序
-- 输入第二章的示例代码，完成：
-	- 编译
-	- 调试
+​	IDE的集成环境是生产程序的”加工厂“，因此熟练掌握IDE的使用，可以加快开发效率，保证开发质量。有关IDE的下载和说明，请参考：[IDE的安装](https://www.learncpp.com/cpp-tutorial/installing-an-integrated-development-environment-ide/)。
 
-### 3. 实践第3章作业程序
-- 要求程序符合编码规范
-- 运行正确
-- 单步跟踪调试
+​	同时，为了查看文档的方便，建议安装编辑器[Notepad++](https://notepad-plus-plus.org/)。
+
+### 2. 熟悉IDE环境
+​	工欲善其事必先利其器，IDE就是开发工具。掌握开发工具的基本操作，快捷键以及程序生产的整个过程，有助于提高开发效率。
+​	有关IDE的使用和调试，可以参考 [LearnCpp](www.learncpp.com)。[LearnCpp](www.learncpp.com)是一个自学C++非常好的学习网站，网站内容简洁、详尽而且准确，值得大家参考学习。尽管网站的内容是英文，但英文比较容易读懂，希望学有余力的同学以直接阅读英文为宜。如果大家想阅读中文，建议大家使用google Chorme浏览器，在网页处点击**[翻译为中文]**的选项，即可参考中文。但声明一点，翻译的中文有可能出现术语不正确的情况，要注意甄别。
+​		
+
+### 3.创建简单的应用程序
+[第一章练习题](./CH1_Exercise.pdf)
 
 ---
 > [返回主目录](https://cugwhp.github.io/OOPCPP/)
+
 ---
