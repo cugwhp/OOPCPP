@@ -9,5 +9,6 @@
 		<Project filename="Ex2-21/Ex2-21.cbp" />
 		<Project filename="Ex2-22/Ex2-22.cbp" />
 		<Project filename="Ex2-9/Ex2-9.cbp" />
+		<Project filename="../Ch2/2_3/2_3.cbp" />
 	</Workspace>
 </CodeBlocks_workspace_file>

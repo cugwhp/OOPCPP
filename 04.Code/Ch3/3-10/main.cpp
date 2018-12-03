@@ -15,21 +15,21 @@ int main()
     return 0;
 }
 
-void Move(char src, char dst)
+void Move(int n, char src, char dst)
 {
-    cout << "Move " << src << " -> " << dst << endl;
+    cout << "Move " << n << " from " << src << " -> " << dst << endl;
 }
 
 void hanoi(int n, char src, char med, char dst)
 {
     if (1 == n)
     {
-        Move(src, dst);
+        Move(n, src, dst);
     }
     else
     {
         hanoi(n-1, src, dst, med);
-        Move(src, dst);
+        Move(n, src, dst);
         hanoi(n-1, med, src, dst);
     }
 }
