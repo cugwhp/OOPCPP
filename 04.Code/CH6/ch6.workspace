@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_workspace_file>
+	<Workspace title="Workspace">
+		<Project filename="../CH4/4_9/4_9.cbp" />
+		<Project filename="6_1/6_1.cbp" />
+		<Project filename="6_11/6_11.cbp" />
+		<Project filename="6_16/6_16.cbp" />
+		<Project filename="6_2/6_2.cbp" />
+		<Project filename="6_5/6_5.cbp" />
+		<Project filename="6_7/6_7.cbp" />
+		<Project filename="6_8/6_8.cbp" />
+		<Project filename="Hw1/Hw1.cbp" />
+		<Project filename="Shape/Shape.cbp" />
+		<Project filename="Pointer/Pointer.cbp" />
+	</Workspace>
+</CodeBlocks_workspace_file>

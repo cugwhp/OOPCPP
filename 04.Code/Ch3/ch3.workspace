@@ -10,5 +10,6 @@
 		<Project filename="3-0/3-0.cbp" />
 		<Project filename="Ex3_Calendar/Ex3_Calendar.cbp" />
 		<Project filename="3_Leapyear/3_Leapyear.cbp" />
+		<Project filename="3_11/3_11.cbp" />
 	</Workspace>
 </CodeBlocks_workspace_file>

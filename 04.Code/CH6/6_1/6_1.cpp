@@ -6,7 +6,7 @@ int main()
 	int		A[10];
 	int		B[10];
 	int		i;
-	
+
 	for (i=0; i<10; i++)
 	{
 		A[i] = 2*i + 1;
@@ -18,6 +18,10 @@ int main()
 		cout << "A[" << i << "] = " << A[i] << "\t";
 		cout << "B[" << i << "]= " << B[i] << endl;
 	}
-	
+
+	for (auto j : A)
+    {
+        cout << j << endl;
+    }
 	return 0;
 }
