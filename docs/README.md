@@ -33,6 +33,7 @@
 ## [实习3 类与对象的应用实例](./Exercise/Ex3_CLASS.md)
 ## [实习4 多文件结构的C++程序](./Exercise/Ex4_Project.md)
 ## [实习5 数组、指针、字符串的使用](./Exercise/Ex5_Array.md)
+## [工程 Projects](./Exercise/Projects.md)
 ## [实习6 继承与派生](./Exercise/Ex6_Inheritance.md)
 ## [实习7 多态与操作符重载](./Exercise/Ex7_Polymorphism_override.md)
 ## [实习8 标准模板库-STL](./Exercise/Ex8_STL.md)
