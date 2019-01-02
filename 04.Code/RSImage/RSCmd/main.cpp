@@ -28,13 +28,6 @@ void Usage();	//declaration forward
 // 主函数
 int main()
 {
-	Base	b1, b2;
-	if (b1<b2)
-		cout << "<" << endl;
-	else
-		cout << ">=" << endl;
-	return 0;
-
 	Usage();	//Command用法
 
 	char			cCmd;
@@ -83,7 +76,7 @@ int main()
 
 		case 'H':	// Calculate Histogram
 		case 'h':
-			rsImg.Histogram();
+			rsImg.OnHistogram();
 			break;
 
 		case '?':	// Help
@@ -107,7 +100,7 @@ int main()
 
 		case 'F':	// Filter - 滤波
 		case 'f':
-			rsImg.Filter(NULL, 0);
+			rsImg.OnFilter();
 			break;
 		}
 	}while(!bExit);
@@ -124,6 +117,7 @@ void Usage()
 	cout << "############ Remote Sensing Image Process Tools.############\n";
 	cout << "# X – Exit Exit\t退出程序" << endl;
 	cout << "# O – Open \t打开影像文件" << endl;
+	cout << "# D – Display\t显示图像" << endl;
 	cout << "# I – Information\t输出当前图像的路径 ，行列值 、波段数 、数据类 数据类 型、排列方式等信息" << endl;
 	cout << "# C –Closed\t关闭当前图像" << endl;
 	cout << "# S – Statistics\t输出图像数据统计量 ，若文件未打开 ，输出提示" << endl;

@@ -34,10 +34,10 @@ public:
 	void	Close();						//关闭图像，初始化变量
 	void	PrintInfo();					//打印信息
 	int		CalcStatistics();				//计算统计量，以波段为单位
-	int		Histogram();					//直方图
+	void	OnHistogram();					//直方图
 	void	Rotate(float fAngle);			//旋转图像
 	void	Zoom(float fZoom);				//缩放图像
-	void	Filter(double* dFilterKernel, int nSize);	//图像滤波
+	void	OnFilter();						//图像滤波
 	void	Display(int nRedBand=0, int nGrnBand=1, int nBluBand=2);		//显示图像 Add by 2017.12.11
 
 	//--------------- 内联函数，获取图像属性值 --------------------//
@@ -53,6 +53,11 @@ protected:
 	bool	InitBuffer(void);								//初始化内存
 	bool	ReadImgData(const char* lpstrImgFilePath);		//读图像文件
 
+	//---------------- Histogram -----------------//
+	int CalcHistogram(int nBandIdx, int* pHistograms);
+	void DrawHistogram(int* pHistograms, int n);
+
+	void	Filter(double* dFilterKernel, int nSize);	//图像滤波
 protected:
 	//--------------------- 成员变量 --------------------------//
 	DataType***		m_pppData;		//指针记录三维数组首地址

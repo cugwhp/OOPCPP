@@ -7,6 +7,8 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include <cmath>
+#include <iomanip>
 #include "Windows.h"	//windows
 
 using namespace std;
@@ -148,17 +150,109 @@ void	CRSImage::Close()
 /************************************************************************/
 void	CRSImage::PrintInfo()
 {
+	if (!IsOpen())
+	{
+		cerr << "None Opened Image." << endl;
+		return;
+	}
+
+	cout << "Bands = " << m_nBands << endl;		//波段数
+	cout << "Lines = " << m_nLines << endl;		//行数
+	cout << "Samples = " << m_nSamples << endl;		//列数
+	switch(m_eInterleave)
+	{
+	case BSQ:
+		cout << "Interleave = BSQ" << endl;
+		break;
+	case BIL:
+		cout << "Interleave = BIL" << endl;
+		break;
+	case BIP:
+		cout << "Interleave = BIP" << endl;
+		break;
+	default:
+		break;
+	}
+
+	cout << "Data Type = " << m_nDataType << endl;		//数据类型
 }
 
 int		CRSImage::CalcStatistics()
 {
+	// Min, Max, Mean, Variance
+	if (!IsOpen())
+	{
+		cerr << "None Opened Image." << endl;
+		return -1;
+	}
+
+	int		i, j, k;
+	double*	dpMin = new double[m_nBands];
+	double*	dpMax = new double[m_nBands];
+	double*	dpMean = new double[m_nBands];
+	double*	dpVar = new double[m_nBands];
+
+	for (i=0; i<m_nBands; ++i)	//波段
+	{
+		dpMin[i] = m_pppData[i][0][0];
+		dpMax[i] = m_pppData[i][0][0];
+		dpMean[i] = 0.0f;
+		dpVar[i] = 0.0f;
+
+		for (j=0; j<m_nLines; ++j)	//行数
+		{
+			for (k=0; k<m_nSamples; ++k)	////列数
+			{
+				dpMin[i] = min(dpMin[i], m_pppData[i][j][k]);
+				dpMax[i] = max(dpMax[i], m_pppData[i][j][k]);
+				dpMean[i] += m_pppData[i][j][k];
+			}
+		}
+		dpMean[i] /= (1L*m_nLines*m_nSamples);	//Mean
+
+		// Variance
+		for (j=0; j<m_nLines; ++j)	//行数
+		{
+			for (k=0; k<m_nSamples; ++k)	////列数
+			{
+				dpVar[i] += pow(m_pppData[i][j][k]-dpMean[i],2);
+			}
+		}
+		dpVar[i] = sqrt(dpVar[i]/(m_nLines*m_nSamples-1L));
+	}
+
+	// Display Statistics
+	for (i=0; i<m_nBands; ++i)	//波段
+	{		
+		cout << "Statics of Band " << i+1 << endl;
+		cout << "Min = " << dpMin[i] << endl;
+		cout << "Max = " << dpMax[i] << endl;
+		cout << "Mean = " << dpMean[i] << endl;
+		cout << "Variance = " << dpVar[i] << endl;
+		cout << "###########################" << endl;
+	}
+
+	if (dpMin)	delete[] dpMin;
+	if (dpMax)	delete[] dpMax;
+	if (dpMean) delete[] dpMean;
+	if (dpVar)	delete[] dpVar;
 	return 0;
 }
 
-int		CRSImage::Histogram()
+void	CRSImage::OnHistogram()
 {
-	return 0;
+	int		nHistograms[256];
+	int		nCount;
+	int		i;
+	for (i=0; i<m_nBands; ++i)
+	{
+		cout << "############# Band " << i+1 << " Histograms ###########" << endl;
+		nCount = CalcHistogram(i, nHistograms);
+
+		DrawHistogram(nHistograms, nCount);
+	}
 }
+
 
 void	CRSImage::Rotate(float fAngle)
 {
@@ -168,9 +262,11 @@ void	CRSImage::Zoom(float fZoom)
 {
 }
 
-void	CRSImage::Filter(double* dFilterKernel, int nSize)
+void	CRSImage::OnFilter()
 {
+
 }
+
 
 /////////////////////////////////////////////////////////////////////
 // 读取元数据文件
@@ -343,6 +439,115 @@ bool	CRSImage::ReadImgData(const char* lpstrImgFilePath)
     }
 
     return bFlag;
+}
+
+//////////////////////////////////////////////////////////////////////////
+// CalcHistogram - 计算某个波段图像的直方图								//
+// Input:																//
+//	int nBandIdx - 图像波段，base 0										//
+//	int* pHistograms - 直方图数组										//
+// 返回值 - int 直方图数组的有效范围（0--Max）							//
+//////////////////////////////////////////////////////////////////////////
+int CRSImage::CalcHistogram(int nBandIdx, int* pHistograms)
+{
+	if (!IsOpen())
+	{
+		cerr << "Unable Open Image." << endl;
+		return 0;
+	}
+
+	if (nBandIdx<0 || nBandIdx>=m_nBands)
+	{
+		cerr << "Band Index is Invalid." << endl;
+		return 0;
+	}
+
+	if (pHistograms==NULL)
+	{
+		cerr << "Input Parameter is invalid." << endl;
+		return 0;
+	}
+
+	memset(pHistograms, 0, sizeof(int)*256);
+
+	int		i, j;
+	for (i=0; i<m_nLines; ++i)
+	{
+		for (j=0; j<m_nSamples; ++j)
+		{
+			pHistograms[m_pppData[nBandIdx][i][j]]++;
+		}
+	}
+
+	for (i=255; i>=0; --i)
+		if (pHistograms[i]>0)
+			break;
+	return i+1;
+}
+
+
+//////////////////////////////////////////////////////////////////////////
+// DrawHistogram - 绘制某个波段图像的直方图								//
+// Input:																//
+//	int* pHistograms - 直方图数组										//
+//	int n - 数组个数													//
+// 返回值 - void														//
+//////////////////////////////////////////////////////////////////////////
+void CRSImage::DrawHistogram(int* pHistograms, int n)
+{
+	int		i, j;
+	int		nMaxHistVal = 0;
+	for (i=0; i<n; ++i)
+		nMaxHistVal = max(nMaxHistVal, pHistograms[i]);
+
+	int		nYMax = (100L*nMaxHistVal)/(m_nLines*m_nSamples);
+	for (i=0; i<nYMax+2; ++i)
+	{
+		// 绘制纵轴
+		if (0 == i)
+		{
+			cout << "   A";
+		}
+		else
+		{
+			cout.unsetf(ios::left);
+			cout.fill(' ');
+			cout.width(2);
+			cout << (nYMax+1-i);
+			cout << "%|";
+		}
+
+		// 绘制 * 
+		for (j=0; j<n; ++j)
+		{
+			if ((100L*pHistograms[j])/(m_nLines*m_nSamples) == nYMax+2-i)
+				cout << "*";
+			else
+				cout << " ";
+		}
+		cout << endl;
+	}
+
+	// 绘制横轴
+	cout << "   ";
+	cout.setf(ios::left);
+	cout.fill('-');
+	for (j=0; j<n; ++j)
+	{
+		if (j%10==0)
+		{
+			cout.width(10);	
+			cout << j;
+		}
+	}
+	cout << "->" << endl;
+	
+	return;
+}
+
+
+void	CRSImage::Filter(double* dFilterKernel, int nSize)
+{
 }
 
 
