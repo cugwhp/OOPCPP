@@ -2,14 +2,14 @@ QT += widgets
 requires(qtConfig(filedialog))
 qtHaveModule(printsupport): QT += printsupport
 
-HEADERS       = imageviewer.h \
+HEADERS       = \
     RSImage.h \
     dialogdispopt.h \
     dialoginfo.h \
     treeitem.h \
     treemodel.h \
     mainwindow.h
-SOURCES       = imageviewer.cpp \
+SOURCES       = \
                 main.cpp \
     RSImage.cpp \
     dialogdispopt.cpp \

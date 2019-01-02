@@ -67,6 +67,7 @@ protected:
 	bool	ReadMetaData(const char* lpstrMetaFilePath);	//元数据文件
 	bool	InitBuffer(void);								//初始化内存
 	bool	ReadImgData(const char* lpstrImgFilePath);		//读图像文件
+    inline bool    isOpened() const {return m_bisOpened;}
 
 protected:
 	//--------------------- 成员变量 --------------------------//
@@ -76,9 +77,10 @@ protected:
 	int				m_nLines;		//行数
 	int				m_nSamples;		//列数
 	INTERLEAVE_TYPE m_eInterleave;	//数据存储类型BSQ/BIL/BIP
-	short       m_nDataType;		//数据类型
+    short           m_nDataType;		//数据类型
 //    unsigned char*  m_pDispBuff;   //Display Buffer to QImage
     QByteArray      m_aryDispBuff;  //Display Buffer to QImage
+    bool            m_bisOpened;    //Image Opened Flag.
 };
 
 #endif	//#ifndef _RS_IMAGE_H_INC_

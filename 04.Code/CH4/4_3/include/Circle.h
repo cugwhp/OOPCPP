@@ -8,16 +8,16 @@
 class Circle
 {
 public:
-	Circle(float r=0.0f);
+	Circle(float r=0.0f);   //Circle() and Circle(float)
+	Circle(const Circle& c);
 	~Circle();
 
 	float Perimeter() const;
 	float Area() const;
-
 protected:
-
 private:
 	float		radius;
+	int*        m_pAry;
 };
 
 #endif

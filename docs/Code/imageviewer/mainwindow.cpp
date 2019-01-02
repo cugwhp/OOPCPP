@@ -75,7 +75,7 @@ bool MainWindow::loadFile(const QString &fileName)
                                  tr("Cannot load %1").arg(QDir::toNativeSeparators(fileName)));
         return false;
     }
-//! [2]
+
 
     setImage(newImage);
 
@@ -86,7 +86,7 @@ bool MainWindow::loadFile(const QString &fileName)
     statusBar()->showMessage(message);
     return true;
 }
-
+//! [2]
 
 void MainWindow::setImage(const QImage &newImage)
 {
@@ -151,7 +151,7 @@ static void initializeImageFileDialog(QFileDialog &dialog, QFileDialog::AcceptMo
         dialog.setDefaultSuffix("jpg");
 }
 
-void MainWindow::Open()
+void MainWindow::actionOpen()
 {
     QFileDialog dialog(this, tr("Open File"));
     initializeImageFileDialog(dialog, QFileDialog::AcceptOpen);

@@ -22,10 +22,11 @@ using namespace std;
 CRSImage::CRSImage()
 {
 //	m_pppData = NULL;
-    m_ppData = NULL;
+    m_ppData = nullptr;
 	m_nBands = 0;
 	m_nLines = 0;
 	m_nSamples = 0;
+    m_bisOpened = false;
 }
 
 /************************************************************************/
@@ -63,7 +64,11 @@ bool	CRSImage::Open(const char* lpstrPath)
 	if (NULL == lpstrPath)
 		return false;
 
-	// 1. Read Meta Data
+    // Close image first if image is opened.
+    if (m_bisOpened)
+        Close();
+
+    // 1. Read Meta Data
 	string		strMetaFilePath = lpstrPath;	//元数据文件与数据文件同名，后缀为.hdr
 	int				pos = strMetaFilePath.rfind('.');
 	if (pos>=0)
@@ -95,6 +100,7 @@ bool	CRSImage::Open(const char* lpstrPath)
 		return false;
 	}
 
+    m_bisOpened = true;
 	return true;
 }
 
@@ -124,10 +130,11 @@ void	CRSImage::Close()
         delete[] m_ppData;
     }
 
-    m_ppData = NULL;
+    m_ppData = nullptr;
     m_nBands = 0;
     m_nLines = 0;
     m_nSamples = 0;
+    m_bisOpened = false;
 }
 
 /************************************************************************/
@@ -242,12 +249,14 @@ bool	CRSImage::InitBuffer(void)
     int     i;
 
     m_ppData = new DataType* [m_nBands];
-    if (m_ppData == NULL)   return false;
+    if (m_ppData == nullptr)   return false;
 
     for (i=0; i<m_nBands; i++)
     {
         m_ppData[i] = new DataType[m_nLines*m_nSamples];
+        if (m_ppData[i] == nullptr) break;
     }
+    if (i<m_nBands) return false;
 
 	return true;
 }

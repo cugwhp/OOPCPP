@@ -32,7 +32,7 @@ private:
     Ui::MainWindow *ui;
 
 private slots:
-    void Open();
+    void actionOpen();
     void saveAs();
     void print();
     void copy();
