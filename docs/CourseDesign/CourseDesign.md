@@ -41,4 +41,3 @@
 
 ## 附录
 ### [The Basic of Remote Sensing Image](../Projects/RSImage/Basic_RS_Image.pdf)
-### [Top 4 Open Source Image Lib](./Top4ImageLib.md)
