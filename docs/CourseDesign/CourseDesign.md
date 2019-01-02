@@ -40,5 +40,5 @@
 ### [New!!!图像显示!!!](./DisplayImageInConsole.md)
 
 ## 附录
-### [The Basic of Remote Sensing Image](https://github.com/cugwhp/OOPCPP/tree/master/docs/Projects/RSImage/Basic_RS_Image.pdf)
+### [The Basic of Remote Sensing Image](../Projects/RSImage/Basic_RS_Image.pdf)
 ### [Top 4 Open Source Image Lib](./Top4ImageLib.md)
