@@ -39,7 +39,7 @@
 ### [Day 6：文件保存](../CourseDesignD6_Save.md)
 ### [Day 7：图像缩放](../CourseDesignD7_Zoom.md)
 ### [Day 8：图像滤波](../CourseDesignD8_Filter.md)
-### [New!!!图像显示!!!](../DisplayImageInConsole.md)
+### [New!!!图像显示!!!](./DisplayImageInConsole.md)
 
 ## 附录
 ### [The Basic of Remote Sensing Image](../Projects/RSImage/Basic_RS_Image.pdf)
