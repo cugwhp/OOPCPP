@@ -23,6 +23,8 @@
 ## 课程设计
 ### [课设题目](./CourseDesignSubject.md)
 ### [测试数据](../docs/Projects/RSImage/Data/)
+### [程序可执行程序-修改RSCmd.exe1为RSCmd.exe](../docs/Projects/RSImage/RSCmd.exe1)
+### [课设程序使用说明](../docs/Projects/RSImage/RSCmdManual.pdf)
 ### [遥感图像显示工具-FWTools](../docs/Projects/RSImage/FWTools) [Download](http://home.gdal.org/fwtools/FWTools247.exe)
 
 ## 课设报告要求
