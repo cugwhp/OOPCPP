@@ -1,16 +1,16 @@
 /*############ Remote Sensing Image Process Tools.############
-# X ¨C Exit Exit ÍË³ö³ÌĞò
-# O ¨C Open ´ò¿ªÓ°ÏñÎÄ¼ş
-# D - Display ÏÔÊ¾Í¼Ïñ
-# I ¨C Information Êä³öµ±Ç°Í¼ÏñµÄÂ·¾¶ £¬ĞĞÁĞÖµ ¡¢²¨¶ÎÊı ¡¢Êı¾İÀà Êı¾İÀà ĞÍ¡¢ÅÅÁĞ·½Ê½µÈĞÅÏ¢
-# C ¨C Closed ¹Ø±Õµ±Ç°Í¼Ïñ
-# S ¨C Statistics Êä³öÍ¼ÏñÊı¾İÍ³¼ÆÁ¿ £¬ÈôÎÄ¼şÎ´´ò¿ª £¬Êä³öÌáÊ¾
-# H ¨C Histogram Êä³öÍ¼ÏñµÄÖ±·½
-# ? ¨C Help Êä³ö±¾ĞÅÏ¢
-# A ¨C Save as ÊäÈë±£´æµÄÎÄ¼şÂ·¾¶ £¬Êä³öÍ¼ÏñÎª¶ş½øÖÆÎÄ¼ş
-# R ¨C Rotate Í¼ÏñĞı×ª£¬ÊäÈë½Ç¶ÈÄæÊ±Õë
-# Z ¨C Zoom Í¼ÏñËõ·Å£¬ÊäÈë±ÈÀı³ß³ö
-# F - Filter ÊäÈëÂË²¨ºË£¬Êä³öÂË²¨ºóÍ¼Ïñ
+# X â€“ Exit Exit é€€å‡ºç¨‹åº
+# O â€“ Open æ‰“å¼€å½±åƒæ–‡ä»¶
+# D - Display æ˜¾ç¤ºå›¾åƒ
+# I â€“ Information è¾“å‡ºå½“å‰å›¾åƒçš„è·¯å¾„ ï¼Œè¡Œåˆ—å€¼ ã€æ³¢æ®µæ•° ã€æ•°æ®ç±» æ•°æ®ç±» å‹ã€æ’åˆ—æ–¹å¼ç­‰ä¿¡æ¯
+# C â€“ Closed å…³é—­å½“å‰å›¾åƒ
+# S â€“ Statistics è¾“å‡ºå›¾åƒæ•°æ®ç»Ÿè®¡é‡ ï¼Œè‹¥æ–‡ä»¶æœªæ‰“å¼€ ï¼Œè¾“å‡ºæç¤º
+# H â€“ Histogram è¾“å‡ºå›¾åƒçš„ç›´æ–¹
+# ? â€“ Help è¾“å‡ºæœ¬ä¿¡æ¯
+# A â€“ Save as è¾“å…¥ä¿å­˜çš„æ–‡ä»¶è·¯å¾„ ï¼Œè¾“å‡ºå›¾åƒä¸ºäºŒè¿›åˆ¶æ–‡ä»¶
+# R â€“ Rotate å›¾åƒæ—‹è½¬ï¼Œè¾“å…¥è§’åº¦é€†æ—¶é’ˆ
+# Z â€“ Zoom å›¾åƒç¼©æ”¾ï¼Œè¾“å…¥æ¯”ä¾‹å°ºå‡º
+# F - Filter è¾“å…¥æ»¤æ³¢æ ¸ï¼Œè¾“å‡ºæ»¤æ³¢åå›¾åƒ
 #################################################################*/
 
 #include <iostream>
@@ -25,20 +25,20 @@ using namespace std;
 
 void Usage();	//declaration forward
 
-// Ö÷º¯Êı
+// ä¸»å‡½æ•°
 int main()
 {
-	Usage();	//CommandÓÃ·¨
+	Usage();	//Commandç”¨æ³•
 
 	char			cCmd;
 	bool			bExit = false;
 	string			strParam;
-	CRSImage	rsImg;		//RSImage¶ÔÏó
+	CRSImage	rsImg;		//RSImageå¯¹è±¡
 
-	//Ñ­»·ÊäÈëÃüÁî£¬Ö±µ½ÊäÈë'X'£¬ÍË³ö³ÌĞò
+	//å¾ªç¯è¾“å…¥å‘½ä»¤ï¼Œç›´åˆ°è¾“å…¥'X'ï¼Œé€€å‡ºç¨‹åº
 	do {
 		cout << "Input a command: ";
-		cin >> cCmd;	//¶ÁÈëMenu
+		cin >> cCmd;	//è¯»å…¥Menu
 
 		switch(cCmd)
 		{
@@ -66,12 +66,12 @@ int main()
 
 		case 'D':
 		case 'd':
-			rsImg.Display();
+			rsImg.OnDisplay();
 			break;
 
 		case 'S':	// Calculate Statistics
 		case 's':
-			rsImg.CalcStatistics();
+			rsImg.OnStatistics();
 			break;
 
 		case 'H':	// Calculate Histogram
@@ -88,17 +88,17 @@ int main()
 			rsImg.Save(NULL);
 			break;
 
-		case 'R':	// Rotate-Ğı×ª
+		case 'R':	// Rotate-æ—‹è½¬
 		case 'r':
 			rsImg.Rotate(0.0f);
 			break;
 
-		case 'Z':	// Zoom-·Å´óËõĞ¡
+		case 'Z':	// Zoom-æ”¾å¤§ç¼©å°
 		case 'z':
 			rsImg.Zoom(0.0f);
 			break;
 
-		case 'F':	// Filter - ÂË²¨
+		case 'F':	// Filter - æ»¤æ³¢
 		case 'f':
 			rsImg.OnFilter();
 			break;
@@ -110,22 +110,22 @@ int main()
 
 
 //===================================================================
-// ²Ëµ¥ÌáÊ¾£¬ÃüÁîĞĞ
+// èœå•æç¤ºï¼Œå‘½ä»¤è¡Œ
 //===================================================================
 void Usage()
 {
 	cout << "############ Remote Sensing Image Process Tools.############\n";
-	cout << "# X ¨C Exit Exit\tÍË³ö³ÌĞò" << endl;
-	cout << "# O ¨C Open \t´ò¿ªÓ°ÏñÎÄ¼ş" << endl;
-	cout << "# D ¨C Display\tÏÔÊ¾Í¼Ïñ" << endl;
-	cout << "# I ¨C Information\tÊä³öµ±Ç°Í¼ÏñµÄÂ·¾¶ £¬ĞĞÁĞÖµ ¡¢²¨¶ÎÊı ¡¢Êı¾İÀà Êı¾İÀà ĞÍ¡¢ÅÅÁĞ·½Ê½µÈĞÅÏ¢" << endl;
-	cout << "# C ¨CClosed\t¹Ø±Õµ±Ç°Í¼Ïñ" << endl;
-	cout << "# S ¨C Statistics\tÊä³öÍ¼ÏñÊı¾İÍ³¼ÆÁ¿ £¬ÈôÎÄ¼şÎ´´ò¿ª £¬Êä³öÌáÊ¾" << endl;
-	cout << "# H ¨C Histogram\tÊä³öÍ¼ÏñµÄÖ±·½" << endl;
-	cout << "# ? ¨C Help\tÊä³ö±¾ĞÅÏ¢" << endl;
-	cout << "# A ¨C Save as\tÊäÈë±£´æµÄÎÄ¼şÂ·¾¶ £¬Êä³öÍ¼ÏñÎª¶ş½øÖÆÎÄ¼ş" << endl;
-	cout << "# R ¨C Rotate\tÍ¼ÏñĞı×ª£¬ÊäÈë½Ç¶ÈÄæÊ±Õë" << endl;
-	cout << "# Z ¨C Zoom\tÍ¼ÏñËõ·Å£¬ÊäÈë±ÈÀı³ß³ö" << endl;
-	cout << "# F - Filter\tÊäÈëÂË²¨ºË£¬Êä³öÂË²¨ºóÍ¼Ïñ" << endl;
+	cout << "# X â€“ Exit Exit\té€€å‡ºç¨‹åº" << endl;
+	cout << "# O â€“ Open \tæ‰“å¼€å½±åƒæ–‡ä»¶" << endl;
+	cout << "# D â€“ Display\tæ˜¾ç¤ºå›¾åƒ" << endl;
+	cout << "# I â€“ Information\tè¾“å‡ºå½“å‰å›¾åƒçš„è·¯å¾„ ï¼Œè¡Œåˆ—å€¼ ã€æ³¢æ®µæ•° ã€æ•°æ®ç±» æ•°æ®ç±» å‹ã€æ’åˆ—æ–¹å¼ç­‰ä¿¡æ¯" << endl;
+	cout << "# C â€“Closed\tå…³é—­å½“å‰å›¾åƒ" << endl;
+	cout << "# S â€“ Statistics\tè¾“å‡ºå›¾åƒæ•°æ®ç»Ÿè®¡é‡ ï¼Œè‹¥æ–‡ä»¶æœªæ‰“å¼€ ï¼Œè¾“å‡ºæç¤º" << endl;
+	cout << "# H â€“ Histogram\tè¾“å‡ºå›¾åƒçš„ç›´æ–¹" << endl;
+	cout << "# ? â€“ Help\tè¾“å‡ºæœ¬ä¿¡æ¯" << endl;
+	cout << "# A â€“ Save as\tè¾“å…¥ä¿å­˜çš„æ–‡ä»¶è·¯å¾„ ï¼Œè¾“å‡ºå›¾åƒä¸ºäºŒè¿›åˆ¶æ–‡ä»¶" << endl;
+	cout << "# R â€“ Rotate\tå›¾åƒæ—‹è½¬ï¼Œè¾“å…¥è§’åº¦é€†æ—¶é’ˆ" << endl;
+	cout << "# Z â€“ Zoom\tå›¾åƒç¼©æ”¾ï¼Œè¾“å…¥æ¯”ä¾‹å°ºå‡º" << endl;
+	cout << "# F - Filter\tè¾“å…¥æ»¤æ³¢æ ¸ï¼Œè¾“å‡ºæ»¤æ³¢åå›¾åƒ" << endl;
 	cout << "#################################################################" << endl;
 }
