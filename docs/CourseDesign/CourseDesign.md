@@ -22,10 +22,10 @@
 
 ## 课程设计
 ### [课设题目](./CourseDesignSubject.md)
-### [测试数据](../docs/Projects/RSImage/Data/)
+### [测试数据](../docs/Projects/RSImage/data.rar/)
 ### [程序可执行程序-修改RSCmd.exe1为RSCmd.exe](../docs/Projects/RSImage/RSCmd.exe1)
 ### [课设程序使用说明](../docs/Projects/RSImage/RSCmdManual.pdf)
-### [遥感图像显示工具-FWTools](../docs/Projects/RSImage/FWTools) [Download](http://home.gdal.org/fwtools/FWTools247.exe)
+### [遥感图像显示工具-FWTools](../docs/Projects/RSImage/OpenEV使用.pptx) [Download](http://home.gdal.org/fwtools/FWTools247.exe)
 
 ## 课设报告要求
 ### [课设模板](https://github.com/cugwhp/OOPCPP/tree/master/docs/Projects/RSImage/%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1%E6%8A%A5%E5%91%8A%E6%A8%A1%E6%9D%BF.doc)
