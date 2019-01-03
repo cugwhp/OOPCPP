@@ -285,10 +285,12 @@ void	CRSImage::OnHistogram()
 
 void	CRSImage::Rotate(float fAngle)
 {
+	cout << "Constructing ..." << endl;
 }
 
 void	CRSImage::Zoom(float fZoom)
 {
+	cout << "Constructing ..." << endl;
 }
 
 void	CRSImage::OnFilter()
@@ -312,8 +314,7 @@ void	CRSImage::OnFilter()
 
 	// Input kernel
 	double*	dpKernel = new double[nKernelSz*nKernelSz];
-	cout << "M - Mean Filter Kernel" << endl;
-	cout << "Others Key - Optional Filter Kernel"<<endl;
+	cout << "M - Mean Filter Kernel, Others Key - Optional Filter Kernel" << endl;
 
 	int		i;
 	char	cmd;
@@ -363,7 +364,7 @@ void	CRSImage::Conv(double* dFilterKernel, int nSize)
 				dConvVal = 0.0f;
 				for (s=0; s<nSize*nSize; ++s)
 					dConvVal += pDataBuff[s] * dFilterKernel[s];
-				m_pppData[i][j][k] = (DataType)dConvVal;
+				m_pppData[i][j][k] = (DataType)fabs(dConvVal);
 			}
 		}
 	}
@@ -665,13 +666,10 @@ void CRSImage::OnDisplay()
 		return;
 	}
 
-	cout << "Input Display Parameters(Display Type, Red, Green, Blue) : " << endl;
-	cout << "Display Type: " << endl;
-	cout << "0 - is Gray, 1- is Color" << endl;
-	cout << "L - Linear stretch, Others - default is Normal, " << endl;
+	cout << "Input Display Parameters(Display Type, Stretch Type, Red, Green, Blue) : " << endl;
 
 	int		nType;
-	cout << "Input 0 or 1 to Gray or Color : ";
+	cout << "Input Display Type 0-Gray or 1-Color : ";
 	cin >> nType;
 	switch(nType)
 	{
@@ -698,8 +696,16 @@ void CRSImage::OnDisplay()
 	}
 	
 	int		r, g, b;
-	cout << "r, g, b - is rgb bands base 0: ";
-	cin >> r >> g >> b;
+	cout << "Input RGB bands or gray Band in base 0 : ";
+	if (nType & DT_Gray)
+	{
+		cin >> r;
+		g = b = r;
+	}
+	else
+	{
+		cin >> r >> g >> b;
+	}
 
 	DrawImage(nType, r, g, b);
 }
