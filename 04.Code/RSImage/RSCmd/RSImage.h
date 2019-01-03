@@ -14,33 +14,42 @@
 #define NULL 0
 #endif	//#ifndef NULL
 
-// Êı¾İ´æ´¢·½Ê½Ã¶¾ÙÀàĞÍ£¬BSQ-°´²¨¶Î¼ä¸ô´æ´¢¡¢BIL-°´ĞĞÎª¼ä¸ô´æ´¢¡¢BIP-°´ÏñÔª¼ä¸ô´æ´¢
+// æ•°æ®å­˜å‚¨æ–¹å¼æšä¸¾ç±»å‹ï¼ŒBSQ-æŒ‰æ³¢æ®µé—´éš”å­˜å‚¨ã€BIL-æŒ‰è¡Œä¸ºé—´éš”å­˜å‚¨ã€BIP-æŒ‰åƒå…ƒé—´éš”å­˜å‚¨
 enum INTERLEAVE_TYPE {BSQ,BIP,BIL};
+
+// æ˜¾ç¤ºæ–¹å¼
+enum eDisplayType {
+	DT_Gray = 1,		//Gray
+	DT_Color = 2,		//RGB
+	DT_Normal = 4,
+	DT_Linear = 8,		//Linear
+	DT_Equalization=16};//Equalization
+
 
 // class CRSImage - Remote Sensing image
 class CRSImage
 {
 public:
-	typedef unsigned char	DataType;	//typedef ¶¨ÒåÊı¾İÀàĞÍ±ğÃû
+	typedef unsigned char	DataType;	//typedef å®šä¹‰æ•°æ®ç±»å‹åˆ«å
 
-	//------------------- ¹¹Ôì/Îö¹¹º¯Êı -----------------------//
+	//------------------- æ„é€ /ææ„å‡½æ•° -----------------------//
 	CRSImage();
 	CRSImage(const CRSImage& img);
 	~CRSImage();
 
 	//-------------------------- Operations ------------------------------//
-	bool	Open(const char* lpstrPath);	//´ò¿ªÎÄ¼ş£¬´«ÈëÎÄ¼şÂ·¾¶£¬¶ÁÈ¡Êı¾İµ½ÄÚ´æ±äÁ¿
-	bool	Save(const char* lpstrPath);	//±£³ÖÎÄ¼ş£¬´«ÈëÎÄ¼şÂ·¾¶£¬Ğ´Êı¾İµ½Ó²ÅÌ
-	void	Close();						//¹Ø±ÕÍ¼Ïñ£¬³õÊ¼»¯±äÁ¿
-	void	PrintInfo();					//´òÓ¡ĞÅÏ¢
-	int		CalcStatistics();				//¼ÆËãÍ³¼ÆÁ¿£¬ÒÔ²¨¶ÎÎªµ¥Î»
-	void	OnHistogram();					//Ö±·½Í¼
-	void	Rotate(float fAngle);			//Ğı×ªÍ¼Ïñ
-	void	Zoom(float fZoom);				//Ëõ·ÅÍ¼Ïñ
-	void	OnFilter();						//Í¼ÏñÂË²¨
-	void	Display(int nRedBand=0, int nGrnBand=1, int nBluBand=2);		//ÏÔÊ¾Í¼Ïñ Add by 2017.12.11
+	bool	Open(const char* lpstrPath);	//æ‰“å¼€æ–‡ä»¶ï¼Œä¼ å…¥æ–‡ä»¶è·¯å¾„ï¼Œè¯»å–æ•°æ®åˆ°å†…å­˜å˜é‡
+	bool	Save(const char* lpstrPath);	//ä¿æŒæ–‡ä»¶ï¼Œä¼ å…¥æ–‡ä»¶è·¯å¾„ï¼Œå†™æ•°æ®åˆ°ç¡¬ç›˜
+	void	Close();						//å…³é—­å›¾åƒï¼Œåˆå§‹åŒ–å˜é‡
+	void	PrintInfo();					//æ‰“å°ä¿¡æ¯
+	void	OnStatistics();					//å›¾åƒç»Ÿè®¡å€¼
+	void	OnHistogram();					//ç›´æ–¹å›¾
+	void	Rotate(float fAngle);			//æ—‹è½¬å›¾åƒ
+	void	Zoom(float fZoom);				//ç¼©æ”¾å›¾åƒ
+	void	OnFilter();						//å›¾åƒæ»¤æ³¢
+	void	OnDisplay();					//æ˜¾ç¤ºå›¾åƒ
 
-	//--------------- ÄÚÁªº¯Êı£¬»ñÈ¡Í¼ÏñÊôĞÔÖµ --------------------//
+	//--------------- å†…è”å‡½æ•°ï¼Œè·å–å›¾åƒå±æ€§å€¼ --------------------//
 	inline int	GetBands() const {return m_nBands;}
 	inline int	GetLines() const {return m_nLines;}
 	inline int GetSamples() const {return m_nSamples;}
@@ -48,24 +57,29 @@ public:
 	inline bool	IsOpen() const { return (NULL != m_pppData ? true : false);}
 
 protected:
-	// ¶ÁÎÄ¼ş
-	bool	ReadMetaData(const char* lpstrMetaFilePath);	//ÔªÊı¾İÎÄ¼ş
-	bool	InitBuffer(void);								//³õÊ¼»¯ÄÚ´æ
-	bool	ReadImgData(const char* lpstrImgFilePath);		//¶ÁÍ¼ÏñÎÄ¼ş
+	// è¯»æ–‡ä»¶
+	bool	ReadMetaData(const char* lpstrMetaFilePath);	//å…ƒæ•°æ®æ–‡ä»¶
+	bool	InitBuffer(void);								//åˆå§‹åŒ–å†…å­˜
+	bool	ReadImgData(const char* lpstrImgFilePath);		//è¯»å›¾åƒæ–‡ä»¶
 
 	//---------------- Histogram -----------------//
 	int CalcHistogram(int nBandIdx, int* pHistograms);
 	void DrawHistogram(int* pHistograms, int n);
+	int	CalcStatistics(double* dpMin=NULL,double* dpMax=NULL,double* dpMean=NULL,double* dpVar=NULL);//è®¡ç®—ç»Ÿè®¡é‡ï¼Œä»¥æ³¢æ®µä¸ºå•ä½
 
-	void	Filter(double* dFilterKernel, int nSize);	//Í¼ÏñÂË²¨
+	void	Conv(double* dFilterKernel, int nSize);	//å›¾åƒæ»¤æ³¢
+
+	//æ˜¾ç¤ºå›¾åƒ Add by 2017.12.11
+	void	DrawImage(int nDispType=DT_Color|DT_Normal,int nRedBand=0, int nGrnBand=1, int nBluBand=2);
+
 protected:
-	//--------------------- ³ÉÔ±±äÁ¿ --------------------------//
-	DataType***		m_pppData;		//Ö¸Õë¼ÇÂ¼ÈıÎ¬Êı×éÊ×µØÖ·
-	int				m_nBands;		//²¨¶ÎÊı
-	int				m_nLines;		//ĞĞÊı
-	int				m_nSamples;		//ÁĞÊı
-	INTERLEAVE_TYPE m_eInterleave;	//Êı¾İ´æ´¢ÀàĞÍBSQ/BIL/BIP
-	short       m_nDataType;		//Êı¾İÀàĞÍ
+	//--------------------- æˆå‘˜å˜é‡ --------------------------//
+	DataType***		m_pppData;		//æŒ‡é’ˆè®°å½•ä¸‰ç»´æ•°ç»„é¦–åœ°å€
+	int				m_nBands;		//æ³¢æ®µæ•°
+	int				m_nLines;		//è¡Œæ•°
+	int				m_nSamples;		//åˆ—æ•°
+	INTERLEAVE_TYPE m_eInterleave;	//æ•°æ®å­˜å‚¨ç±»å‹BSQ/BIL/BIP
+	short       m_nDataType;		//æ•°æ®ç±»å‹
 };
 
 #endif	//#ifndef _RS_IMAGE_H_INC_
