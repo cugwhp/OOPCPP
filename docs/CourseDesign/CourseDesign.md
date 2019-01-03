@@ -22,7 +22,7 @@
 
 ## 课程设计
 ### [课设题目](./CourseDesignSubject.md)
-### [测试数据](../Projects/RSImage/data.rar)
+### [测试数据 - 解压为test.img和test.hdr](../Projects/RSImage/data.rar)
 ### [程序可执行程序-修改RSCmd.exe1为RSCmd.exe](../Projects/RSImage/RSCmd.exe1)
 ### [课设程序使用说明](../Projects/RSImage/RSCmdManual.pdf)
 ### [遥感图像显示工具-FWTools](../Projects/RSImage/OpenEV使用.pptx) [Download](http://home.gdal.org/fwtools/FWTools247.exe)
