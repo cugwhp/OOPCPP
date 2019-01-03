@@ -14,12 +14,16 @@
 using namespace std;
 
 
-// Ç°ÏòÉùÃ÷£¬µ÷ÓÃ»ñÈ¡¿ØÖÆÌ¨´°¿Ú¾ä±ú
-// ÒòÎªÊÇWin32È«¾Öº¯Êı£¬¹ÊÊ¹ÓÃextern "C"
+// å‰å‘å£°æ˜ï¼Œè°ƒç”¨è·å–æ§åˆ¶å°çª—å£å¥æŸ„
+// å› ä¸ºæ˜¯Win32å…¨å±€å‡½æ•°ï¼Œæ•…ä½¿ç”¨extern "C"
 extern "C" HWND WINAPI GetConsoleWindow();
 
+COLORREF Normal(CRSImage::DataType r, CRSImage::DataType g, CRSImage::DataType b, void* pParameters=NULL);
+COLORREF Linear(CRSImage::DataType r, CRSImage::DataType g, CRSImage::DataType b, void* pParameters=NULL);
+COLORREF Equalization(CRSImage::DataType r, CRSImage::DataType g, CRSImage::DataType b, void* pParameters=NULL);
+
 /************************************************************************/
-/* ¹¹Ôìº¯Êı                                                             */
+/* æ„é€ å‡½æ•°                                                             */
 /************************************************************************/
 CRSImage::CRSImage()
 {
@@ -30,16 +34,32 @@ CRSImage::CRSImage()
 }
 
 /************************************************************************/
-/* ¿½±´¹¹Ôìº¯Êı£¬Î´ÊµÏÖ                                                 */
+/* æ‹·è´æ„é€ å‡½æ•°ï¼Œæœªå®ç°                                                 */
 /************************************************************************/
 CRSImage::CRSImage(const CRSImage& img)
 {
+	m_pppData = NULL;					//æŒ‡é’ˆè®°å½•ä¸‰ç»´æ•°ç»„é¦–åœ°å€
+	m_nBands = img.m_nBands;			//æ³¢æ®µæ•°
+	m_nLines = img.m_nLines;			//è¡Œæ•°
+	m_nSamples = img.m_nSamples;		//åˆ—æ•°
+	m_eInterleave = img.m_eInterleave;	//æ•°æ®å­˜å‚¨ç±»å‹BSQ/BIL/BIP
+	m_nDataType = img.m_nDataType;		//æ•°æ®ç±»å‹
 
+	if (InitBuffer())
+	{
+		int     i, j;
+		for (i=0; i<m_nBands; ++i)
+		{
+			for (j=0; j<m_nLines; ++j)
+				memcpy(m_pppData[i][j], img.m_pppData[i][j], 
+						sizeof(DataType)*m_nSamples);
+	    }
+	}
 }
 
 /************************************************************************/
-/* Îö¹¹º¯Êı                                                             */
-/* ÊÍ·Å·ÖÅäµÄÊı×é														*/
+/* ææ„å‡½æ•°                                                             */
+/* é‡Šæ”¾åˆ†é…çš„æ•°ç»„														*/
 /************************************************************************/
 CRSImage::~CRSImage()
 {
@@ -51,29 +71,29 @@ CRSImage::~CRSImage()
 //----------------------------------------------------------------------//
 
 /************************************************************************/
-/* ¹¦ÄÜ£ºOpen - ´ò¿ªÍ¼ÏñÎÄ¼ş                                            */
-/* ²ÎÊı£º const char* lpstrPath - Êı¾İÎÄ¼şÂ·¾¶							*/
-/* ·µ»ØÖµ£º bool ³É¹¦-true/Ê§°Ü-false									*/
+/* åŠŸèƒ½ï¼šOpen - æ‰“å¼€å›¾åƒæ–‡ä»¶                                            */
+/* å‚æ•°ï¼š const char* lpstrPath - æ•°æ®æ–‡ä»¶è·¯å¾„							*/
+/* è¿”å›å€¼ï¼š bool æˆåŠŸ-true/å¤±è´¥-false									*/
 /************************************************************************/
-/* ÈçÊ¾ÀıÊı¾İÎÄ¼şÎªtest.img ºÍ test.hdr¡£ÆäÖĞtest.img ÎªÊı¾İÎÄ¼ş£¬´æ´¢Í¼Ïñ
-   DN£»test.hdrÎªÔªÊı¾İÎÄ¼ş£¨ÎÄ±¾ÎÄ¼ş£©£¬¼ÇÂ¼Í¼ÏñµÄĞĞ¡¢ÁĞ¡¢²¨¶Î¡¢Êı¾İÀàĞÍ¡£
-   ¶ÁÈ¡ÎÄ¼şµÄÒâË¼ÊÇÖ¸£º´ÓÊı¾İÎÄ¼ş£¨Ó²ÅÌÉÏ£©¶ÁÈ¡µ½ÄÚ´æÖĞµÄ¹ı³Ì¡£			*/
+/* å¦‚ç¤ºä¾‹æ•°æ®æ–‡ä»¶ä¸ºtest.img å’Œ test.hdrã€‚å…¶ä¸­test.img ä¸ºæ•°æ®æ–‡ä»¶ï¼Œå­˜å‚¨å›¾åƒ
+   DNï¼›test.hdrä¸ºå…ƒæ•°æ®æ–‡ä»¶ï¼ˆæ–‡æœ¬æ–‡ä»¶ï¼‰ï¼Œè®°å½•å›¾åƒçš„è¡Œã€åˆ—ã€æ³¢æ®µã€æ•°æ®ç±»å‹ã€‚
+   è¯»å–æ–‡ä»¶çš„æ„æ€æ˜¯æŒ‡ï¼šä»æ•°æ®æ–‡ä»¶ï¼ˆç¡¬ç›˜ä¸Šï¼‰è¯»å–åˆ°å†…å­˜ä¸­çš„è¿‡ç¨‹ã€‚			*/
 bool	CRSImage::Open(const char* lpstrPath)
 {
-	// ²ÎÊı¼ì²é
+	// å‚æ•°æ£€æŸ¥
 	if (NULL == lpstrPath)
 		return false;
 
 	// 1. Read Meta Data
-	string		strMetaFilePath = lpstrPath;	//ÔªÊı¾İÎÄ¼şÓëÊı¾İÎÄ¼şÍ¬Ãû£¬ºó×ºÎª.hdr
+	string		strMetaFilePath = lpstrPath;	//å…ƒæ•°æ®æ–‡ä»¶ä¸æ•°æ®æ–‡ä»¶åŒåï¼Œåç¼€ä¸º.hdr
 	int				pos = strMetaFilePath.rfind('.');
 	if (pos>=0)
     {
         strMetaFilePath = strMetaFilePath.substr(0, pos);
     }
-	strMetaFilePath.append(".hdr");		//Ìæ»»ºó×ºÎª.hdr
+	strMetaFilePath.append(".hdr");		//æ›¿æ¢åç¼€ä¸º.hdr
 
-	// ¶ÁÔªÊı¾İÎÄ±¾ÎÄ¼ş
+	// è¯»å…ƒæ•°æ®æ–‡æœ¬æ–‡ä»¶
 	if (!ReadMetaData(strMetaFilePath.c_str()))
 	{
 		cerr << "Read Meta Data Failed." << endl;
@@ -81,7 +101,7 @@ bool	CRSImage::Open(const char* lpstrPath)
 	}
 
 	// 2. Initialize Buffer
-	// ·ÖÅäÈıÎ¬Êı×é£¬¸ù¾İÍ¼ÏñµÄ²¨¶Î¡¢ĞĞ¡¢ÁĞ
+	// åˆ†é…ä¸‰ç»´æ•°ç»„ï¼Œæ ¹æ®å›¾åƒçš„æ³¢æ®µã€è¡Œã€åˆ—
 	if (!InitBuffer())
 	{
 		cerr << "Initialize Buffer Failed." << endl;
@@ -89,7 +109,7 @@ bool	CRSImage::Open(const char* lpstrPath)
 	}
 
 	// 3. Read File
-	// ¶ÁÊı¾İÎÄ¼ş£¨¶ş½øÖÆ£©£¬×¢ÒâÅÅÁĞË³Ğò
+	// è¯»æ•°æ®æ–‡ä»¶ï¼ˆäºŒè¿›åˆ¶ï¼‰ï¼Œæ³¨æ„æ’åˆ—é¡ºåº
 	if (!ReadImgData(lpstrPath))
 	{
 		cerr << "Read Image Data Failed." << endl;
@@ -100,7 +120,7 @@ bool	CRSImage::Open(const char* lpstrPath)
 }
 
 /************************************************************************/
-/* Save - ±£´æÎÄ¼ş£¬Óë¶ÁÎÄ¼şµÄ¹ı³ÌÏà·´£¬Î´ÊµÏÖ                          */
+/* Save - ä¿å­˜æ–‡ä»¶ï¼Œä¸è¯»æ–‡ä»¶çš„è¿‡ç¨‹ç›¸åï¼Œæœªå®ç°                          */
 /************************************************************************/
 bool	CRSImage::Save(const char* lpstrPath)
 {
@@ -109,11 +129,11 @@ bool	CRSImage::Save(const char* lpstrPath)
 }
 
 /************************************************************************/
-/* Close - ÊÍ·ÅÍ¼ÏñÄÚ´æ                                                 */
+/* Close - é‡Šæ”¾å›¾åƒå†…å­˜                                                 */
 /************************************************************************/
 void	CRSImage::Close()
 {
-	// ×¢ÒâÊÍ·ÅµÄË³Ğò£¬ÓënewµÄË³ĞòÊÇÏà·´µÄ
+	// æ³¨æ„é‡Šæ”¾çš„é¡ºåºï¼Œä¸newçš„é¡ºåºæ˜¯ç›¸åçš„
 	if (m_pppData != NULL)
 	{
 		int			i, j;
@@ -146,7 +166,7 @@ void	CRSImage::Close()
 }
 
 /************************************************************************/
-/* ÒÔÏÂ¹¦ÄÜÎ´ÓèÒÔÊµÏÖ                                                   */
+/* ä»¥ä¸‹åŠŸèƒ½æœªäºˆä»¥å®ç°                                                   */
 /************************************************************************/
 void	CRSImage::PrintInfo()
 {
@@ -156,9 +176,9 @@ void	CRSImage::PrintInfo()
 		return;
 	}
 
-	cout << "Bands = " << m_nBands << endl;		//²¨¶ÎÊı
-	cout << "Lines = " << m_nLines << endl;		//ĞĞÊı
-	cout << "Samples = " << m_nSamples << endl;		//ÁĞÊı
+	cout << "Bands = " << m_nBands << endl;		//æ³¢æ®µæ•°
+	cout << "Lines = " << m_nLines << endl;		//è¡Œæ•°
+	cout << "Samples = " << m_nSamples << endl;		//åˆ—æ•°
 	switch(m_eInterleave)
 	{
 	case BSQ:
@@ -174,55 +194,28 @@ void	CRSImage::PrintInfo()
 		break;
 	}
 
-	cout << "Data Type = " << m_nDataType << endl;		//Êı¾İÀàĞÍ
+	cout << "Data Type = " << m_nDataType << endl;		//æ•°æ®ç±»å‹
 }
 
-int		CRSImage::CalcStatistics()
+void	CRSImage::OnStatistics()
 {
-	// Min, Max, Mean, Variance
 	if (!IsOpen())
 	{
-		cerr << "None Opened Image." << endl;
-		return -1;
+		cerr << "Unable to Open Image." << endl;
+		return;
 	}
 
-	int		i, j, k;
 	double*	dpMin = new double[m_nBands];
 	double*	dpMax = new double[m_nBands];
 	double*	dpMean = new double[m_nBands];
 	double*	dpVar = new double[m_nBands];
 
-	for (i=0; i<m_nBands; ++i)	//²¨¶Î
-	{
-		dpMin[i] = m_pppData[i][0][0];
-		dpMax[i] = m_pppData[i][0][0];
-		dpMean[i] = 0.0f;
-		dpVar[i] = 0.0f;
+	CalcStatistics(dpMin, dpMax, dpMean, dpVar);
 
-		for (j=0; j<m_nLines; ++j)	//ĞĞÊı
-		{
-			for (k=0; k<m_nSamples; ++k)	////ÁĞÊı
-			{
-				dpMin[i] = min(dpMin[i], m_pppData[i][j][k]);
-				dpMax[i] = max(dpMax[i], m_pppData[i][j][k]);
-				dpMean[i] += m_pppData[i][j][k];
-			}
-		}
-		dpMean[i] /= (1L*m_nLines*m_nSamples);	//Mean
-
-		// Variance
-		for (j=0; j<m_nLines; ++j)	//ĞĞÊı
-		{
-			for (k=0; k<m_nSamples; ++k)	////ÁĞÊı
-			{
-				dpVar[i] += pow(m_pppData[i][j][k]-dpMean[i],2);
-			}
-		}
-		dpVar[i] = sqrt(dpVar[i]/(m_nLines*m_nSamples-1L));
-	}
-
+	
 	// Display Statistics
-	for (i=0; i<m_nBands; ++i)	//²¨¶Î
+	int		i;
+	for (i=0; i<m_nBands; ++i)	//æ³¢æ®µ
 	{		
 		cout << "Statics of Band " << i+1 << endl;
 		cout << "Min = " << dpMin[i] << endl;
@@ -232,10 +225,46 @@ int		CRSImage::CalcStatistics()
 		cout << "###########################" << endl;
 	}
 
+	
 	if (dpMin)	delete[] dpMin;
 	if (dpMax)	delete[] dpMax;
 	if (dpMean) delete[] dpMean;
 	if (dpVar)	delete[] dpVar;
+}
+
+int	CRSImage::CalcStatistics(double* dpMin,double* dpMax,double* dpMean,double* dpVar)
+{
+	int		i, j, k;
+
+	for (i=0; i<m_nBands; ++i)	//æ³¢æ®µ
+	{
+		if (dpMin)	dpMin[i] = m_pppData[i][0][0];
+		if (dpMax)	dpMax[i] = m_pppData[i][0][0];
+		if (dpMean)	dpMean[i] = 0.0f;
+		if (dpVar)	dpVar[i] = 0.0f;
+
+		for (j=0; j<m_nLines; ++j)	//è¡Œæ•°
+		{
+			for (k=0; k<m_nSamples; ++k)	////åˆ—æ•°
+			{
+				if (dpMin)	dpMin[i] = min(dpMin[i], m_pppData[i][j][k]);
+				if (dpMax)	dpMax[i] = max(dpMax[i], m_pppData[i][j][k]);
+				if (dpMean)	dpMean[i] += m_pppData[i][j][k];
+			}
+		}
+		if (dpMean)	dpMean[i] /= (1L*m_nLines*m_nSamples);	//Mean
+
+		// Variance
+		for (j=0; j<m_nLines; ++j)	//è¡Œæ•°
+		{
+			for (k=0; k<m_nSamples; ++k)	////åˆ—æ•°
+			{
+				if (dpVar)	dpVar[i] += pow(m_pppData[i][j][k]-dpMean[i],2);
+			}
+		}
+		if (dpVar)	dpVar[i] = sqrt(dpVar[i]/(m_nLines*m_nSamples-1L));
+	}
+
 	return 0;
 }
 
@@ -264,12 +293,87 @@ void	CRSImage::Zoom(float fZoom)
 
 void	CRSImage::OnFilter()
 {
+	if (!IsOpen())
+	{
+		cerr << "Unable to Open Image." << endl;
+		return;
+	}
 
+	// Input kernel size
+	cout << "Input Filter Kernel Parameters(odd size and kernel): " << endl;
+	cout << "Input filter kernel size (3x3,5x5,...odds) : ";
+	int		nKernelSz;
+	cin >> nKernelSz;
+	if (nKernelSz < 0 || nKernelSz%2==0)
+	{
+		cerr << "Invalid kernel size." << endl;
+		return;
+	}
+
+	// Input kernel
+	double*	dpKernel = new double[nKernelSz*nKernelSz];
+	cout << "M - Mean Filter Kernel" << endl;
+	cout << "Others Key - Optional Filter Kernel"<<endl;
+
+	int		i;
+	char	cmd;
+	cin >> cmd;
+	switch(cmd)
+	{
+	case 'M':
+	case 'm':
+		for (i=0; i<nKernelSz*nKernelSz; ++i)
+			dpKernel[i] = 1.0f/(nKernelSz*nKernelSz);
+		break;
+	default:
+		cout << "Input Kernel " << nKernelSz << "x" << nKernelSz << " : ";
+		for (i=0; i<nKernelSz*nKernelSz; ++i)
+			cin >> dpKernel[i];
+		break;
+	}
+
+	// Do convolution
+	Conv(dpKernel, nKernelSz);
+
+	if (dpKernel) delete[] dpKernel;
+
+	return;
+}
+
+void	CRSImage::Conv(double* dFilterKernel, int nSize)
+{
+	int		i, j, k, m, n, s;
+	DataType*	pDataBuff = new DataType[nSize*nSize];
+	double		dConvVal;
+
+	for (i=0; i<m_nBands; ++i)
+	{
+		for (j=nSize/2; j<m_nLines-nSize/2; ++j)
+		{
+			for (k=nSize/2; k<m_nSamples-nSize/2; ++k)
+			{
+				for (s=0,m=-nSize/2; m<=nSize/2; ++m)
+				{
+					for (n=-nSize/2; n<nSize/2; ++n)
+					{
+						pDataBuff[s++] = m_pppData[i][j+m][k+n]; 
+					}
+				}
+
+				dConvVal = 0.0f;
+				for (s=0; s<nSize*nSize; ++s)
+					dConvVal += pDataBuff[s] * dFilterKernel[s];
+				m_pppData[i][j][k] = (DataType)dConvVal;
+			}
+		}
+	}
+
+	if (pDataBuff)	delete[] pDataBuff;
 }
 
 
 /////////////////////////////////////////////////////////////////////
-// ¶ÁÈ¡ÔªÊı¾İÎÄ¼ş
+// è¯»å–å…ƒæ•°æ®æ–‡ä»¶
 /////////////////////////////////////////////////////////////////////
 bool	CRSImage::ReadMetaData(const char* lpstrMetaFilePath)
 {
@@ -343,8 +447,8 @@ bool	CRSImage::ReadMetaData(const char* lpstrMetaFilePath)
 }
 
 /************************************************************************/
-/* InitBuffer - ·ÖÅäÄÚ´æ                                                */
-/* °´²¨¶Î¡¢ĞĞµÄË³Ğò·ÖÅäÊı¾İ´æ´¢µ¥Ôª£¬Ê¹ÓÃµÄÊÇ3Î¬Êı×é£¬×¢Òâ·ÖÅä·½Ê½¡£	*/
+/* InitBuffer - åˆ†é…å†…å­˜                                                */
+/* æŒ‰æ³¢æ®µã€è¡Œçš„é¡ºåºåˆ†é…æ•°æ®å­˜å‚¨å•å…ƒï¼Œä½¿ç”¨çš„æ˜¯3ç»´æ•°ç»„ï¼Œæ³¨æ„åˆ†é…æ–¹å¼ã€‚	*/
 /************************************************************************/
 bool	CRSImage::InitBuffer(void)
 {
@@ -374,22 +478,22 @@ bool	CRSImage::InitBuffer(void)
 }
 
 /************************************************************************/
-/* ReadImgData - ¶Á¶ş½øÖÆÎÄ¼ş                                           */
-/* const char* lpstrImgFilePath - ÎÄ¼şÂ·¾¶								*/
+/* ReadImgData - è¯»äºŒè¿›åˆ¶æ–‡ä»¶                                           */
+/* const char* lpstrImgFilePath - æ–‡ä»¶è·¯å¾„								*/
 /************************************************************************/
 bool	CRSImage::ReadImgData(const char* lpstrImgFilePath)
 {
     bool        bFlag = true;
     int         i, j;
-    ifstream    ifs;				//ÎÄ¼şÁ÷
+    ifstream    ifs;				//æ–‡ä»¶æµ
     int*        ptrBuff = NULL;
-    ifs.open(lpstrImgFilePath, ios::binary);	//°´¶ş½øÖÆÎÄ¼ş´ò¿ª
+    ifs.open(lpstrImgFilePath, ios::binary);	//æŒ‰äºŒè¿›åˆ¶æ–‡ä»¶æ‰“å¼€
 
-    if (ifs.is_open())	//ÅĞ¶ÏÊÇ·ñ´ò¿ª³É¹¦
+    if (ifs.is_open())	//åˆ¤æ–­æ˜¯å¦æ‰“å¼€æˆåŠŸ
     {
-        switch(m_eInterleave)	//Êı¾İ´æ´¢ÅÅÁĞ·½Ê½
+        switch(m_eInterleave)	//æ•°æ®å­˜å‚¨æ’åˆ—æ–¹å¼
         {
-        case BSQ:	//°´²¨¶ÎÅÅÁĞ£¬Ò»¸ö²¨¶ÎÄÚ°´ĞĞÓÅÏÈ
+        case BSQ:	//æŒ‰æ³¢æ®µæ’åˆ—ï¼Œä¸€ä¸ªæ³¢æ®µå†…æŒ‰è¡Œä¼˜å…ˆ
             for (i=0; i<m_nBands && !ifs.eof(); i++)
             {
                 for (j=0; j<m_nLines && !ifs.eof(); j++)
@@ -398,11 +502,11 @@ bool	CRSImage::ReadImgData(const char* lpstrImgFilePath)
                 }
             }
 
-            // ÅĞ¶ÏÊÇ·ñ¶Áµ½ÁËÓ¦ÓĞµÄĞĞºÍÁĞÊı
+            // åˆ¤æ–­æ˜¯å¦è¯»åˆ°äº†åº”æœ‰çš„è¡Œå’Œåˆ—æ•°
             if (i<m_nBands || j<m_nLines)
                 bFlag = false;
             break;
-        case BIL:	//°´ĞĞÀ´ÅÅÁĞ£¬ÒÔĞĞÓÅÏÈ£¬ÒÀ´Î°´²¨¶ÎÅÅÁĞ
+        case BIL:	//æŒ‰è¡Œæ¥æ’åˆ—ï¼Œä»¥è¡Œä¼˜å…ˆï¼Œä¾æ¬¡æŒ‰æ³¢æ®µæ’åˆ—
             for (i=0; i<m_nLines && !ifs.eof(); i++)
             {
                 for (j=0; j<m_nBands && !ifs.eof(); j++)
@@ -410,11 +514,11 @@ bool	CRSImage::ReadImgData(const char* lpstrImgFilePath)
                     ifs.read((char*)m_pppData[j][i], sizeof(DataType)*m_nSamples);
                 }
             }
-            // Êı¾İÊÇ·ñÍêÕû
+            // æ•°æ®æ˜¯å¦å®Œæ•´
             if (i<m_nLines || j<m_nBands)
                 bFlag = false;
             break;
-        case BIP:	//°´ÏñÔªÓÅÏÈÅÅÁĞ
+        case BIP:	//æŒ‰åƒå…ƒä¼˜å…ˆæ’åˆ—
             ptrBuff = new int[m_nBands];
             if (ptrBuff == NULL)
                 bFlag = false;
@@ -429,24 +533,24 @@ bool	CRSImage::ReadImgData(const char* lpstrImgFilePath)
                 }
             }
 
-			// ¼ì²éÊı¾İÊÇ·ñ¶ÁÍêÕû
+			// æ£€æŸ¥æ•°æ®æ˜¯å¦è¯»å®Œæ•´
             if (i<m_nSamples*m_nLines)
                 bFlag = false;
             break;
         }
 
-        ifs.close();	//¹Ø±ÕÎÄ¼ş£¬¼Ç×¡Ò»¶¨Òª¹Ø±Õ£¡
+        ifs.close();	//å…³é—­æ–‡ä»¶ï¼Œè®°ä½ä¸€å®šè¦å…³é—­ï¼
     }
 
     return bFlag;
 }
 
 //////////////////////////////////////////////////////////////////////////
-// CalcHistogram - ¼ÆËãÄ³¸ö²¨¶ÎÍ¼ÏñµÄÖ±·½Í¼								//
+// CalcHistogram - è®¡ç®—æŸä¸ªæ³¢æ®µå›¾åƒçš„ç›´æ–¹å›¾								//
 // Input:																//
-//	int nBandIdx - Í¼Ïñ²¨¶Î£¬base 0										//
-//	int* pHistograms - Ö±·½Í¼Êı×é										//
-// ·µ»ØÖµ - int Ö±·½Í¼Êı×éµÄÓĞĞ§·¶Î§£¨0--Max£©							//
+//	int nBandIdx - å›¾åƒæ³¢æ®µï¼Œbase 0										//
+//	int* pHistograms - ç›´æ–¹å›¾æ•°ç»„										//
+// è¿”å›å€¼ - int ç›´æ–¹å›¾æ•°ç»„çš„æœ‰æ•ˆèŒƒå›´ï¼ˆ0--Maxï¼‰							//
 //////////////////////////////////////////////////////////////////////////
 int CRSImage::CalcHistogram(int nBandIdx, int* pHistograms)
 {
@@ -487,11 +591,11 @@ int CRSImage::CalcHistogram(int nBandIdx, int* pHistograms)
 
 
 //////////////////////////////////////////////////////////////////////////
-// DrawHistogram - »æÖÆÄ³¸ö²¨¶ÎÍ¼ÏñµÄÖ±·½Í¼								//
+// DrawHistogram - ç»˜åˆ¶æŸä¸ªæ³¢æ®µå›¾åƒçš„ç›´æ–¹å›¾								//
 // Input:																//
-//	int* pHistograms - Ö±·½Í¼Êı×é										//
-//	int n - Êı×é¸öÊı													//
-// ·µ»ØÖµ - void														//
+//	int* pHistograms - ç›´æ–¹å›¾æ•°ç»„										//
+//	int n - æ•°ç»„ä¸ªæ•°													//
+// è¿”å›å€¼ - void														//
 //////////////////////////////////////////////////////////////////////////
 void CRSImage::DrawHistogram(int* pHistograms, int n)
 {
@@ -503,7 +607,7 @@ void CRSImage::DrawHistogram(int* pHistograms, int n)
 	int		nYMax = (100L*nMaxHistVal)/(m_nLines*m_nSamples);
 	for (i=0; i<nYMax+2; ++i)
 	{
-		// »æÖÆ×İÖá
+		// ç»˜åˆ¶çºµè½´
 		if (0 == i)
 		{
 			cout << "   A";
@@ -517,7 +621,7 @@ void CRSImage::DrawHistogram(int* pHistograms, int n)
 			cout << "%|";
 		}
 
-		// »æÖÆ * 
+		// ç»˜åˆ¶ * 
 		for (j=0; j<n; ++j)
 		{
 			if ((100L*pHistograms[j])/(m_nLines*m_nSamples) == nYMax+2-i)
@@ -528,7 +632,9 @@ void CRSImage::DrawHistogram(int* pHistograms, int n)
 		cout << endl;
 	}
 
-	// »æÖÆºáÖá
+	// ç»˜åˆ¶æ¨ªè½´
+	// ---------------------------------------------->
+	// 0         10		20			...
 	cout << "   ";
 	cout.setf(ios::left);
 	cout.fill('-');
@@ -546,48 +652,151 @@ void CRSImage::DrawHistogram(int* pHistograms, int n)
 }
 
 
-void	CRSImage::Filter(double* dFilterKernel, int nSize)
+//////////////////////////////////////////////////////////////////////////
+// OnDisplay - æ˜¾ç¤ºå›¾åƒåˆ°æ§åˆ¶å°çª—å£										//
+// è¿”å›å€¼ - void														//
+//////////////////////////////////////////////////////////////////////////
+void CRSImage::OnDisplay()
 {
+	// æœªå›¾åƒæ•°æ®ï¼Œæ— æ³•æ˜¾ç¤º
+	if (!IsOpen())
+	{
+		cerr << "Unable to Open Image." << endl;
+		return;
+	}
+
+	cout << "Input Display Parameters(Display Type, Red, Green, Blue) : " << endl;
+	cout << "Display Type: " << endl;
+	cout << "0 - is Gray, 1- is Color" << endl;
+	cout << "L - Linear stretch, Others - default is Normal, " << endl;
+
+	int		nType;
+	cout << "Input 0 or 1 to Gray or Color : ";
+	cin >> nType;
+	switch(nType)
+	{
+	case 1:
+		nType = DT_Color;
+		break;
+	default:
+		nType = DT_Gray;
+		break;
+	}
+
+	char	cmd;
+	cout << "Input L-Linear stretch, Others - default is Normal : ";
+	cin >> cmd;
+	switch(cmd)
+	{
+	case 'L':
+	case 'l':
+		nType |= DT_Linear;
+		break;
+	default:
+		nType |= DT_Normal;
+		break;
+	}
+	
+	int		r, g, b;
+	cout << "r, g, b - is rgb bands base 0: ";
+	cin >> r >> g >> b;
+
+	DrawImage(nType, r, g, b);
 }
 
-
 //////////////////////////////////////////////////////////////////////////
-// Display - ÏÔÊ¾Í¼Ïñµ½¿ØÖÆÌ¨´°¿Ú										//
-// ·µ»ØÖµ - void														//
+// DrawImage - æ˜¾ç¤ºå›¾åƒåˆ°æ§åˆ¶å°çª—å£										//
+//	eDisplayType - Display Type, Gray/Color/Normal/Linear/Equalization	//
+//	int nRedBand - Red Band base 0										//
+//	int nGrndBand - Green Band	base 0									//
+//	int nBluBand - Blue Band	base 0									//
+// è¿”å›å€¼ - void														//
 //////////////////////////////////////////////////////////////////////////
-void CRSImage::Display(int nRedBand, int nGrnBand, int nBluBand)
+void CRSImage::DrawImage(int nDispType,int nRedBand, int nGrnBand, int nBluBand)
 {	
-	// Î´Í¼ÏñÊı¾İ£¬ÎŞ·¨ÏÔÊ¾
-	if (m_pppData == NULL || m_nBands<1)
-		return;
-
-	HWND	hwnd = NULL;//»ñµÃ¾ä±ú
+	HWND	hwnd = NULL;//è·å¾—å¥æŸ„
 	HDC		hdc = NULL;
 	int		i, j;
+	COLORREF (*pf)(CRSImage::DataType, CRSImage::DataType, CRSImage::DataType, void*);
 
-	// ´°¿Ú¾ä±úÎªNULL£¬·µ»Ø
+
+	// çª—å£å¥æŸ„ä¸ºNULLï¼Œè¿”å›
 	hwnd = GetConsoleWindow();
 	if (hwnd == NULL)
 		return;
 	
-	// Éè±¸ÉÏÏÂÎÄ·µ»ØNULL£¬³ÌĞò·µ»Ø
+	// è®¾å¤‡ä¸Šä¸‹æ–‡è¿”å›NULLï¼Œç¨‹åºè¿”å›
 	hdc = GetDC(hwnd);	
 	if (hdc == NULL)
 		return;
 
-	//RGB²¨¶Î, Èô²»ºÏ·¨£¬ÔòÓÃµÚÒ»¸ö²¨¶Î×÷ÎªÈ±Ê¡Öµ
-	nRedBand = nRedBand<0||nRedBand>=m_nBands ? 0 : nRedBand;
-	nGrnBand = nGrnBand<0||nGrnBand>=m_nBands ? 0 : nGrnBand;
-	nBluBand = nBluBand<0||nBluBand>=m_nBands ? 0 : nBluBand;
+	if (nDispType & DT_Gray)	//Gray Display
+		nBluBand = nGrnBand = nRedBand;
+	else	//RGBæ³¢æ®µ, è‹¥ä¸åˆæ³•ï¼Œåˆ™ç”¨ç¬¬ä¸€ä¸ªæ³¢æ®µä½œä¸ºç¼ºçœå€¼
+	{
+		nRedBand = nRedBand<0||nRedBand>=m_nBands ? 0 : nRedBand;
+		nGrnBand = nGrnBand<0||nGrnBand>=m_nBands ? 0 : nGrnBand;
+		nBluBand = nBluBand<0||nBluBand>=m_nBands ? 0 : nBluBand;
+	}
 
-	// ±éÀúÏñËØ£¬ÏÔÊ¾Í¼Ïñ
+	double	dpParamters[6];
+	if (nDispType & DT_Linear)
+	{
+		double*	dpMin = new double[m_nBands];
+		double*	dpMax = new double[m_nBands];
+
+		CalcStatistics(dpMin, dpMax);
+
+		dpParamters[0] = dpMin[nRedBand];
+		dpParamters[1] = dpMax[nRedBand];
+		dpParamters[2] = dpMin[nGrnBand];
+		dpParamters[3] = dpMax[nGrnBand];
+		dpParamters[4] = dpMin[nBluBand];
+		dpParamters[5] = dpMax[nBluBand];
+
+		delete[] dpMin;
+		delete[] dpMax;
+
+		pf = Linear;
+	}
+	else if (nDispType & DT_Equalization)
+	{
+		pf = Equalization;
+	}
+	else
+	{
+		pf = Normal;
+	}
+
+	// éå†åƒç´ ï¼Œæ˜¾ç¤ºå›¾åƒ
 	for (i=0; i<m_nLines; i++)
 	{
 		for (j=0; j<m_nSamples; j++)
-		{	//Öğ¸öÏñÔªÊä³ö
-			SetPixel(hdc,j, i, RGB(m_pppData[nRedBand][i][j], m_pppData[nGrnBand][i][j], m_pppData[nBluBand][i][j])); 	
+		{	//é€ä¸ªåƒå…ƒè¾“å‡º
+			SetPixel(hdc,j, i, pf(m_pppData[nRedBand][i][j],
+				m_pppData[nGrnBand][i][j], m_pppData[nBluBand][i][j],(void*)dpParamters));
 		}
 	}
 	
 	ReleaseDC(hwnd,hdc);
+}
+
+COLORREF Normal(CRSImage::DataType r, CRSImage::DataType g, CRSImage::DataType b, void* pParameters)
+{
+	return RGB(r, g, b);
+}
+
+COLORREF Linear(CRSImage::DataType r, CRSImage::DataType g, CRSImage::DataType b, void* pParameters)
+{
+	double*	pszMinMax = (double*)pParameters;
+	r = r*255 / (pszMinMax[1] - pszMinMax[0]);
+	g = g*255 / (pszMinMax[3] - pszMinMax[2]);
+	b = b*255 / (pszMinMax[5] - pszMinMax[4]);
+
+	return RGB(r, g, b);
+}
+
+COLORREF Equalization(CRSImage::DataType r, CRSImage::DataType g, CRSImage::DataType b, void* pParameters)
+{
+	return RGB(r, g, b);
 }
