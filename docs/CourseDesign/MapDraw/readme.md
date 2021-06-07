@@ -22,9 +22,9 @@
 
 ### 实现步骤
 
-#### Day0：EasyX的安装与使用
+#### Day0：[EasyX的安装与使用](D0_EasyX.md)
 
-#### Day1：功能菜单的测试
+#### Day1：[搭建程序框架](D1_MainFrame.md)
 
 #### Day2：矢量类的设计与实现
 
