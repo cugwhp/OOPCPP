@@ -48,6 +48,8 @@
 
 # [**!!New课程设计**](./CourseDesign/CourseDesignNew.md)
 
+# [**课程设计-图形绘制**](./CourseDesign/CourseDesign.md)
+
 # [**课程讨论**](https://github.com/cugwhp/OOPCPP/issues)
 
 Enjoy it.
